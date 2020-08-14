@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.vanda.mapper.PetMapper">
+
+	<insert id="petInsert" parameterType="PetVO">
+		INSERT INTO pet(pet_name,
+		pet_age, pet_sex, pet_check, kind_num,food_num)
+		VALUES ( #{pet_name},
+		#{pet_age}, #{pet_sex},#{pet_check},#{kind_num},
+		#{food_num})
+	</insert>
+	<insert id="petRegister" parameterType="String">
+		INSERT INTO
+		register(pet_num,user_id) select pet_num,user_id from member,pet
+		where
+		user_id=#{user_id} AND pet_name=#{pet_name}
+	</insert>
+
+	<insert id="eatRegister">
+		INSERT INTO eat(pet_num,eat_time,eat_gram) values
+		(#{pet_num},SYSDATE,0)
+	</insert>
+	<insert id="weightRegister">
+		INSERT INTO Weight(pet_num,weight_date,pet_weight)
+		values
+		(#{pet_num},SYSDATE,0)
+	</insert>
+
+	<insert id="actRegister">
+		INSERT INTO ACTIVITY(pet_num, act_path,
+		act_name,total_distance,timer)
+		values
+		(#{pet_num},#{act_path},#{act_name},#{total_distance},#{timer})
+	</insert>
+
+
+	<select id="getPetNum" resultType="int">
+		select pet_num from member,pet
+		where user_id=#{user_id} AND
+		pet_name=#{pet_name}
+	</select>
+	<!-- 펫 우선순위로 보여주기 pet_num만 받아옴 -->
+	<select id="getPetInfo" resultType="PetVO">
+		SELECT *
+		FROM
+		pet
+		WHERE pet_num
+		in (SELECT pet_num from register WHERE user_id =
+		#{user_id} )
+		ORDER BY
+		pet_regdate
+	</select>
+	<select id="petInfo" resultType="PetInfoVO">
+select (SELECT pet_weight FROM(SELECT * FROM weight where TO_CHAR(weight_date,'YY/MM/DD') = TO_CHAR(sysdate,'YY/MM/DD') ORDER BY ROWNUM
+      DESC)WHERE pet_num = #{pet_num} and ROWNUM = 1) as pet_weight,
+(SELECT eat_gram FROM(SELECT * FROM eat where TO_CHAR(eat_time,'YY/MM/DD') = TO_CHAR(sysdate,'YY/MM/DD') ORDER BY ROWNUM
+      DESC)WHERE pet_num = #{pet_num} and ROWNUM = 1) as eat_gram
+from weight w,eat e,member where w.pet_num = e.pet_num and rownum = 1 and user_id = #{user_id}
+	</select>
+
+	<select id="petInfo_sm" resultType="PetInfoVO">
+		select (SELECT pet_weight
+		FROM(SELECT * FROM weight ORDER BY ROWNUM DESC)WHERE ROWNUM = 1) as
+		pet_weight,
+		(SELECT eat_gram FROM(SELECT * FROM eat ORDER BY ROWNUM
+		DESC)WHERE ROWNUM =
+		1) as eat_gram,
+		(SELECT total_distance FROM(SELECT *
+		FROM activity ORDER BY ROWNUM DESC)WHERE
+		ROWNUM = 1) as total_distance,
+		(SELECT timer FROM(SELECT * FROM activity ORDER BY ROWNUM DESC)WHERE
+		ROWNUM =
+		1) as timer
+		from weight,eat,activity,member
+		where
+		weight.pet_num=eat.pet_num
+		and activity.pet_num=eat.pet_num
+		and
+		weight.pet_num=#{pet_num}
+		and user_id = #{user_id}
+		and rownum = 1
+	</select>
+
+	<select id="actList" resultType="ActivityVO">
+		select * from activity where
+		pet_num = #{pet_num} order by
+		act_name desc
+	</select>
+
+	<select id="changePetList" resultType="PetVO">
+		SELECT pet_name, pet_age,
+		pet_sex, pet_check, kind_num,pet_num,food_num FROM
+		pet
+		WHERE pet_num =
+		#{pet_num}
+	</select>
+
+	<select id="eatList" resultType="EatVO">
+		SELECT pet_num, eat_time,
+		eat_gram FROM eat
+		WHERE pet_num = #{pet_num}
+	</select>
+	<select id="weightList" resultType="WeightVO">
+		SELECT pet_num, weight_date,
+		pet_weight FROM weight
+		WHERE pet_num = #{pet_num}
+	</select>
+
+	<select id="foodInfo" resultType="FoodVO">
+		SELECT food_num,
+		food_name,food_ps FROM food
+		WHERE food_num = #{food_num}
+	</select>
+
+	<select id="kindInfo" resultType="KindVO">
+		SELECT * FROM Kind
+		WHERE
+		kind_num = #{kind_num}
+	</select>
+
+	<select id="getKindkg" resultType="String">
+		SELECT std_high FROM kind
+		WHERE kind_num = #{kind_num}
+	</select>
+
+	<insert id="weightUpdate">
+		INSERT INTO WEIGHT(PET_NUM,PET_WEIGHT)
+		VALUES(#{rpipetnum},#{pet_weight})
+	</insert>
+	<insert id="eatUpdate">
+		INSERT INTO EAR(PET_NUM,EAT_GRAM)
+		VALUES(#{rpipetnum},#{EAT_GRAM})
+	</insert>
+
+
+	<select id="nonSelectedPet" resultType="PetInfoVO">
+	select pet_name,(select eat_gram from(select * from eat where TO_CHAR(eat_time,'YY/MM/DD')=TO_CHAR(sysdate,'YY/MM/DD') order by eat_time desc) where rownum=1 and pet_num=101 ) as eat_gram,
+(select pet_weight from(select * from weight where TO_CHAR(weight_date,'YY/MM/DD')=TO_CHAR(sysdate,'YY/MM/DD') order by weight_date desc) where rownum=1 and pet_num=#{oldPetnum} ) as pet_weight
+from pet,eat,weight
+where rownum=1 and pet.pet_num=eat.pet_num and weight.pet_num=eat.pet_num and pet_name = (select pet_name from pet where pet_num=#{oldPetnum})</select>
+
+
+
+</mapper>

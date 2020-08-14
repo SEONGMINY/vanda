@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.vanda.mapper.PetMapper">
+
+    <insert id="petInsert" parameterType="PetVO">
+        INSERT INTO pet(pet_name, pet_age, pet_sex, pet_check, kind_num,food_num) VALUES ( #{pet_name}, #{pet_age}, #{pet_sex},#{pet_check},#{kind_num}, #{food_num})
+    </insert>
+    <insert id="petRegister" parameterType="String">
+    INSERT INTO register(pet_num,user_id) select pet_num,user_id from member,pet where user_id=#{user_id} AND pet_name=#{pet_name}
+     </insert>
+         
+      <insert id="eatRegister">
+         INSERT INTO eat(pet_num,eat_time,eat_gram) values (#{pet_num},SYSDATE,0)
+     </insert>
+      <insert id="weightRegister">
+         INSERT INTO Weight(pet_num,weight_date,pet_weight) values (#{pet_num},SYSDATE,0)
+     </insert>
+     
+
+     <select id="getPetNum" resultType="int">
+       select pet_num from member,pet where user_id=#{user_id} AND pet_name=#{pet_name}
+        </select>
+    
+     <select id="getPetInfo" resultType="PetVO">
+        SELECT pet_name, pet_age, pet_sex, pet_check, kind_num,pet_num,food_num FROM pet
+        WHERE pet_num in (SELECT pet_num from register WHERE user_id = #{user_id} )
+    </select>
+    
+         <select id="changePetList" resultType="PetVO">
+        SELECT pet_name, pet_age, pet_sex, pet_check, kind_num,pet_num,food_num FROM pet
+        WHERE pet_num = #{pet_num}
+    </select>
+    
+        <select id="eatList" resultType="EatVO">
+        SELECT pet_num, eat_time, eat_gram FROM eat
+        WHERE pet_num = #{pet_num}
+    </select>
+            <select id="weightList" resultType="WeightVO">
+        SELECT pet_num, weight_date, pet_weight FROM weight
+        WHERE pet_num = #{pet_num}
+    </select>
+    
+       <select id="foodInfo" resultType="FoodVO">
+        SELECT food_num, food_name,food_ps FROM food
+        WHERE food_num = #{food_num}
+    </select>
+            <select id="getKindkg" resultType="String">
+        SELECT std_high FROM kind
+        WHERE kind_num = #{kind_num}
+    </select>
+    
+</mapper>

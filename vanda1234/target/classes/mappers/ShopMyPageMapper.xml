@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.vanda.mapper.ShopMypageMapper">
+
+	<!--  <select id="mypage" resultType="OrderListVO">
+		select p.pro_name, o.ord_date,
+		l.ord_num, p.pro_price, ord_amount,
+		(p.pro_price * ord_amount) as total
+		from orderlist l, product p,
+		order_info o
+		where p.pro_num = l.pro_num and
+		l.ord_num = o.ord_num and
+		#{user_id} = o.user_id
+	</select>-->
+	<select id="mypage" resultType="OrderListVO">
+		select p.pro_name, o.ord_date, l.ord_num, p.pro_price, l.ord_amount, i.img_path
+		from orderlist l, product p, order_info o, pro_image i
+		where p.pro_num = l.pro_num
+		and i.pro_num = p.pro_num
+		and l.ord_num = o.ord_num
+		and o.user_id = #{user_id}
+	</select>
+</mapper>

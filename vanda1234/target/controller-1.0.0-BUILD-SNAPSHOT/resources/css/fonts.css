@@ -1,0 +1,72 @@
+/* ===================================================================
+ * fonts.scss)
+ *
+ * ------------------------------------------------------------------- */
+ 
+/*
+ * Libre Baskerville 
+================================================================================ */
+@font-face {
+  font-family: "librebaskerville-regular";
+  src: url("/resources/fonts/librebaskerville/librebaskerville-regular-webfont.woff2") format("woff2"), url("/resources/fonts/librebaskerville/librebaskerville-regular-webfont.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "librebaskerville-italic";
+  src: url("/resources/fonts/librebaskerville/librebaskerville-italic-webfont.woff2") format("woff2"), url("/resources/fonts/librebaskerville/librebaskerville-italic-webfont.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "librebaskerville-bold";
+  src: url("/resources/fonts/librebaskerville/librebaskerville-bold-webfont.woff2") format("woff2"), url("/resources/fonts/librebaskerville/librebaskerville-bold-webfont.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+
+
+/*
+ * Montserrat
+================================================================================ */
+@font-face {
+  font-family: "montserrat-regular";
+  src: url("/resources/fonts/montserrat/montserrat-regular-webfont.woff2") format("woff2"), url("/resources/fonts/montserrat/montserrat-regular-webfont.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "montserrat-bold";
+  src: url("/resources/fonts/montserrat/montserrat-bold-webfont.woff2") format("woff2"), url("/resources/fonts/montserrat/montserrat-bold-webfont.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+/* 고딕
+/* ================================================================================ */
+@font-face {
+  font-family: "GothicA1-Black";
+  src: url("/resources/fonts/Gothic/GothicA1-Black.ttf") format("ttf");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "GothicA1-SemiBold";
+  src: url("/resources/fonts/Gothic/GothicA1-SemiBold.ttf") format("ttf");
+  font-style: normal;
+  font-weight: normal;
+}
+/* 나눔고딕
+/* ================================================================================ */
+@font-face {
+  font-family: "NanumGothicCoding-Bold";
+  src: url("/resources/fonts/NanumGothic/NanumGothicCoding-Bold.ttf") format("ttf");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "NanumGothicCoding-Regular";
+  src: url("/resources/fonts/NanumGothic/NanumGothicCoding-Regular.ttf") format("ttf");
+  font-style: normal;
+  font-weight: normal;
+}

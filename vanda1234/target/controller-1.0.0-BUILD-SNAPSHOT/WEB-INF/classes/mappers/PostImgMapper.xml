@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.vanda.mapper.PostImgMapper">
+	<insert id="insert">
+	insert into IMG(UUID, UPLOADPATH, FILENAME, FILETYPE, POST_NUM)
+	values (#{uuid}, #{uploadPath},#{fileName}, #{fileType}, #{postNum})
+	</insert>
+	
+	
+	<delete id="delete">
+		DELETE FROM IMG WHERE UUID = #{UUID}
+	</delete>
+	
+	<select id="findBypostNum" resultType="com.vanda.domain.PostImgVO">
+		SELECT * FROM IMG WHERE POST_NUM = #{postNum}
+	</select>
+	
+	<delete id="deleteAll">
+		DELETE IMG WHERE POST_NUM = #{POST_NUM}
+	</delete>
+</mapper>

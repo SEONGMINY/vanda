@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.vanda.mapper.PostMapper">
+
+		<select id = "getList" resultType="com.vanda.domain.PostDTO">
+			
+		SELECT
+		PO.POST_NUM
+		, PO.CLASS_NUM
+		, CS.CLASS_NAME -- class
+		, PO.USER_ID
+		, PO.POST_TITLE
+		, PO.POST_CONTENT
+		, PO.POST_DATE
+		, PO.POST_COUNT
+		, PO.SER_CATEGORY
+		FROM POST PO
+		INNER JOIN CLASS CS ON PO.CLASS_NUM = CS.CLASS_NUM
+
+		<include refid="criteria"></include>
+		</select>
+		
+		<insert id="insert">
+		INSERT INTO POST
+		(
+		POST_NUM,
+		CLASS_NUM,
+		USER_ID,
+		POST_TITLE,
+		POST_CONTENT,
+		POST_DATE,
+		POST_COUNT,
+		SER_CATEGORY
+		)
+		VALUES
+		(
+		seq_POST.nextval,
+		#{classNum},
+		, #{userId}
+		, #{postTitle}
+		, #{postContent}
+		, SYSDATE
+		, 0
+		, #{serCategory}
+		)
+		</insert>
+		
+		<insert id="insertSelectKey">
+		
+		<selectKey keyProperty="postNum" order="BEFORE"
+			resultType="int">
+			select seq_POST.nextval from dual
+		</selectKey>
+		
+		INSERT INTO POST
+		(
+		POST_NUM,
+		CLASS_NUM,
+		USER_ID,
+		POST_TITLE,
+		POST_CONTENT,
+		POST_DATE,
+		POST_COUNT,
+		SER_CATEGORY
+		)
+		VALUES
+		(
+		#{postNum}
+		,#{classNum}
+		, #{userId,jdbcType=VARCHAR}
+		, #{postTitle,jdbcType=VARCHAR}
+		, #{postContent,jdbcType=VARCHAR}
+		, SYSDATE
+		, 0
+		, #{serCategory,jdbcType=VARCHAR}
+		)
+		</insert>
+		
+		<select id="read" resultType="com.vanda.domain.PostDTO">
+			SELECT * FROM POST WHERE POST_NUM = #{postNum}
+		</select>
+		
+		<delete id="delete">
+			DELETE FROM POST WHERE POST_NUM = #{postNum}
+		</delete>
+		
+		<delete id="removeReply">
+			DELETE FROM REPLY WHERE POST_NUM = #{postNum}
+		</delete>
+		
+		<update id="update">
+			UPDATE POST
+				SET POST_TITLE=#{postTitle}, 
+				POST_CONTENT=#{postContent},
+				POST_DATE=SYSDATE
+				WHERE POST_NUM=#{postNum}
+		</update>
+		
+		<select id="gggetTotalCount" resultType="int">
+		select count(*) from POST where class_num = 2
+		<include refid="criteria"></include>
+		</select>
+			<select id="getTotalCount" resultType="int">
+		select count(*) from POST where class_num = 1
+		<include refid="criteria"></include>
+		</select>
+		
+		<select id="htgetTotalCount" resultType="int">
+		select count(*) from POST where class_num = 3
+		<include refid="criteria"></include>
+		</select>
+		
+		<select id="getListWithPaging" resultType="com.vanda.domain.PostDTO">
+		
+		SELECT * FROM
+		(
+			SELECT ROWNUM RNUM, A.* FROM
+			(
+				SELECT
+					POST_NUM,
+					CLASS_NUM,
+					POST_TITLE,
+					POST_CONTENT,
+					TO_CHAR(POST_DATE, 'YYYY-MM-DD HH24:mm:ss') POST_DATE,
+					POST_COUNT,
+					SER_CATEGORY
+				FROM POST
+				<include refid="criteria"></include>
+				ORDER BY POST_NUM DESC
+			) A
+			WHERE <![CDATA[ ROWNUM <= #{pageNum} * #{amount}  ]]>
+		)
+		WHERE <![CDATA[ RNUM > (#{pageNum}-1)* #{amount} ]]> and class_num = 1
+	
+	</select>
+	
+			<select id="gggetListWithPaging" resultType="com.vanda.domain.PostDTO">
+		
+		SELECT * FROM
+		(
+			SELECT ROWNUM RNUM, A.* FROM
+			(
+				SELECT
+					POST_NUM,
+					CLASS_NUM,
+					POST_TITLE,
+					POST_CONTENT,
+					TO_CHAR(POST_DATE, 'YYYY-MM-DD HH24:mm:ss') POST_DATE,
+					POST_COUNT,
+					SER_CATEGORY
+				FROM POST
+				<include refid="criteria"></include>
+				ORDER BY POST_NUM DESC
+			) A
+			WHERE <![CDATA[ ROWNUM <= #{pageNum} * #{amount}  ]]>
+		)
+		WHERE <![CDATA[ RNUM > (#{pageNum}-1)* #{amount} ]]> and class_num = 2
+	
+	</select>
+	
+	<select id="htgetListWithPaging" resultType="com.vanda.domain.PostDTO">
+		
+		SELECT * FROM
+		(
+			SELECT ROWNUM RNUM, A.* FROM
+			(
+				SELECT
+					POST_NUM,
+					CLASS_NUM,
+					POST_TITLE,
+					POST_CONTENT,
+					TO_CHAR(POST_DATE, 'YYYY-MM-DD HH24:mm:ss') POST_DATE,
+					POST_COUNT,
+					SER_CATEGORY
+				FROM POST
+				<include refid="criteria"></include>
+				ORDER BY POST_NUM DESC
+			) A
+			WHERE <![CDATA[ ROWNUM <= #{pageNum} * #{amount}  ]]>
+		)
+		WHERE <![CDATA[ RNUM > (#{pageNum}-1)* #{amount} ]]> and class_num = 3
+	
+	</select>
+		
+	<sql id="criteria">
+		<trim prefix="where" prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='C'.toString()">
+							POST_TITLE LIKE '%' || #{keyword} || '%'
+						</when>
+						<when test="type=='W'.toString()">
+							POST_CONTENT LIKE '%' || #{keyword} || '%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<update id="increase">
+		UPDATE POST
+		SET POST_COUNT = POST_COUNT + 1
+		WHERE POST_NUM = #{postNum}
+	</update>
+</mapper>

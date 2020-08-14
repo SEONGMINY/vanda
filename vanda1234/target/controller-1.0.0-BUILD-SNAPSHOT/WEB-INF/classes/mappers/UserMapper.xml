@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.vanda.mapper.UserMapper">
+
+ <select id="idChk" resultType="int">
+	SELECT COUNT(*) FROM member
+	WHERE user_id = #{user_id}
+</select>
+    <insert id="geInsert" parameterType="UserVO">
+        INSERT INTO member(user_id,user_name, user_pass,user_tel,user_sex,user_rule) VALUES (#{user_id},#{user_name}, #{user_pass}, #{user_tel}, #{user_sex},'member')
+    </insert>
+ 
+     <insert id="docInsert" parameterType="UserVO">
+        INSERT INTO member(user_id,user_name, user_pass,user_tel,user_sex,user_rule) VALUES (#{user_id},#{user_name}, #{user_pass}, #{user_tel},#{user_sex},'doctor')
+    </insert>
+    
+    
+<!--     	소셜 회원가입 -->   
+     <insert id="soInsert" parameterType="KakaoVO">
+        INSERT INTO member(user_id,user_pass,user_sex,user_name,user_rule) VALUES (#{user_id},#{user_pass},#{user_sex},#{user_name},'member')
+    </insert>
+    
+    
+ <select id="login" resultType="UserVO">
+        SELECT user_id,user_name, user_pass,user_tel,user_sex,user_rule FROM member
+        WHERE user_id = #{user_id} AND user_pass = #{user_pass}
+    </select>
+     <select id="kakaoLogin" resultType="UserVO">
+        SELECT user_id,user_name, user_pass,user_tel,user_sex,user_rule FROM member
+        WHERE user_id = #{user_id} 
+    </select>
+    
+    <update id="editINFO" parameterType="UserVO">
+        UPDATE member SET user_tel = #{user_tel} WHERE user_id = #{user_id} AND user_pass = #{user_pass}
+    </update>
+    
+    
+    <update id="myPage" parameterType="UserVO">
+        UPDATE member SET user_pass = #{user_pass} WHERE user_id = #{user_id}
+    </update>
+    
+     <delete id="bye" parameterType="UserVO">
+        DELETE FROM member WHERE user_id = #{user_id}
+    </delete>
+
+ 
+
+</mapper>

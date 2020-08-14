@@ -1,0 +1,70 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vanda.mapper.ReplyMapper">
+	<insert id="insert">
+		INSERT INTO REPLY(
+		REPLY_NUM,
+		POST_NUM,
+		USER_ID,
+		REPLY_CONTENT,
+		REPLY_DATE)
+		values(
+		reply_seq.nextval,
+		#{postNum},
+		#{userId},
+		#{replyContent},
+		SYSDATE
+		)
+	</insert>
+	
+	<select id="read" resultType="com.vanda.domain.ReplyVO">
+		SELECT * FROM REPLY WHERE REPLY_NUM = #{replyNum}
+	</select>
+	
+	<delete id="delete">
+		DELETE FROM REPLY WHERE REPLY_NUM = #{replyNum}
+	</delete>
+	
+	<update id="update">
+		UPDATE REPLY 
+		SET
+		REPLY_CONTENT = #{replyContent},
+		REPLY_DATE=SYSDATE
+		where
+		REPLY_NUM = #{replyNum}
+		<!-- AND USER_ID = #{userId} -->
+	</update>
+	
+	<select id="getListWithPaging" resultType="com.vanda.domain.ReplyVO">
+	<![CDATA[
+		SELECT 
+		REPLY_NUM,
+		POST_NUM,
+		USER_ID,
+		REPLY_CONTENT,
+		TO_CHAR(REPLY_DATE, 'YYYY-MM-DD HH24:MI:SS') REPLY_DATE
+		FROM
+		(
+			SELECT /*+INDEX(reply idx_reply) */
+			rownum rn,
+			 REPLY_NUM,
+			POST_NUM,
+			USER_ID,
+			REPLY_CONTENT,
+			REPLY_DATE
+			FROM reply
+			where POST_NUM = #{postNum}
+			and reply_Num > 0
+			and rownum <= #{crt.pageNum} * #{crt.amount}
+			) where rn > (#{crt.pageNum} -1) * #{crt.amount}
+		]]>
+	</select>
+
+	<select id="getCountBypostNum" resultType="int">
+		<![CDATA[
+		SELECT COUNT(REPLY_NUM) from REPLY WHERE POST_NUM = #{post_Num}
+		]]>
+		
+	</select>
+</mapper>

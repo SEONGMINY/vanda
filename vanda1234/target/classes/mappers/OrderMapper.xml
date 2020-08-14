@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.vanda.mapper.OrderMapper">
+
+ 
+
+<!-- 수령인 상세정보 입력 -->
+	<!-- ord_num 이거는 시퀀스로 처리 나머지는 현재 넘겨주는 데이터 맞춰서 수정 -->
+	<insert id="orderinfo" parameterType="OrderVO">
+		INSERT INTO order_info(ord_num,recip_name, recip_add, recip_add2, recip_add3, recip_tel, ord_msg, pay_category, pay_price,user_id) values(ORDER_INFO_SEQ.NEXTVAL,#{recip_name}, #{recip_add}, #{recip_add2}, #{recip_add3}, #{recip_tel}, #{ord_msg}, #{pay_category}, #{pay_price},#{user_id})
+		<selectKey keyProperty="ord_num" resultType="int" order="AFTER">
+			SELECT ORDER_INFO_SEQ.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	
+		
+	<insert id="orderlist">
+		INSERT INTO orderlist values(#{ord_num},#{pro_num},#{ord_amount})
+	</insert>
+	
+	<!-- 상품수량 카운트 -->
+	<update id="amount_discount" parameterType="ProductVO">
+		update product
+		set pro_amount = pro_amount - #{count}
+		where pro_num = #{pro_num}
+	</update>
+	    
+	   <!-- 인기상품 -->
+	<select id = "bestProduct" resultType="ProductVO">
+		select a.*, b.rk, b.total, i.img_path
+		from product a, pro_image i,
+		(select pro_num, sum(ord_amount) as total,
+		rank() over (ORDER BY sum(ord_amount) DESC) as rk
+		from orderlist
+		group by pro_num
+		order by rk) b
+		where a.pro_num = b.pro_num
+		and a.pro_num = i.pro_num
+	</select>
+</mapper>

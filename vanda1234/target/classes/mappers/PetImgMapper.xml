@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.vanda.mapper.PetImgMapper">
+	<insert id="insert">
+	insert into PETIMG(UUID, UPLOADPATH, FILENAME, FILETYPE, PET_NUM)
+	values (#{uuid}, #{uploadPath},#{fileName}, #{fileType}, #{petNum})
+	</insert>
+	
+	
+	<delete id="delete">
+		DELETE FROM PETIMG WHERE UUID = #{UUID}
+	</delete>
+	
+	<select id="findBypostNum" resultType="PetImgVO">
+		SELECT * FROM PETIMG WHERE PET_NUM = #{PET_NUM}
+	</select>
+	
+	<delete id="deleteAll">
+		DELETE PETIMG WHERE PET_NUM = #{PET_NUM}
+	</delete>
+</mapper>

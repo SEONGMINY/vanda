@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="com.vanda.domain.UserVO" alias="UserVO" />
+		<typeAlias type="com.vanda.domain.ProductVO" alias="ProductVO" />
+		<typeAlias type="com.vanda.domain.KakaoVO" alias="KakaoVO" />
+		<typeAlias type="com.vanda.domain.PetVO" alias="PetVO" />
+		<typeAlias type="com.vanda.domain.EatVO" alias="EatVO" />
+		<typeAlias type="com.vanda.domain.WeightVO" alias="WeightVO" />
+		<typeAlias type="com.vanda.domain.FoodVO" alias="FoodVO" />
+		<typeAlias type="com.vanda.domain.PostDTO" alias="PostDTO" />
+		<typeAlias type="com.vanda.domain.PageDTO" alias="PageDTO" />
+		<typeAlias type="com.vanda.domain.ReplyVO" alias="ReplyVO" />
+		<typeAlias type="com.vanda.domain.KindVO" alias="KindVO" />
+		<typeAlias type="com.vanda.domain.ActivityVO" alias="ActivityVO" />
+		<typeAlias type="com.vanda.domain.PostImgVO" alias="PostImgVO" />
+		<typeAlias type="com.vanda.domain.PetInfoVO" alias="PetInfoVO" />
+		<typeAlias type="com.vanda.domain.PetImgVO" alias="PetImgVO" />
+		<typeAlias type="com.vanda.domain.OrderVO" alias="OrderVO" />
+		<typeAlias type="com.vanda.domain.OrderListVO" alias="OrderListVO" />
+
+
+	</typeAliases>
+
+
+</configuration>

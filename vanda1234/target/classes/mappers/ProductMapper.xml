@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.vanda.mapper.ProductMapper">
+
+    <insert id="proInsert" parameterType="ProductVO">
+       INSERT INTO product(pro_num, pro_name, pro_content, pro_price, pro_amount) VALUES (PRODUCT_SEQ.NEXTVAL, #{pro_name}, #{pro_content}, #{pro_price}, #{pro_amount})
+       <selectKey keyProperty="pro_num" resultType="int" order="AFTER">
+          SELECT PRODUCT_SEQ.CURRVAL FROM DUAL
+       </selectKey>
+    </insert>
+    
+    <insert id="pro_imgInsert" parameterType="ProductVO">
+    	INSERT INTO pro_image values(#{pro_num}, #{img_path}, #{img_name})
+    </insert>
+    
+    
+    <select id="get_productList" resultType="ProductVO">
+    	select a.* , b.img_path
+		from product a, pro_image b
+		where a.pro_num = b.pro_num
+    </select>
+    
+    <delete id="ProductDel">
+		delete from product where pro_num = #{pro_num}
+	</delete>
+    
+    <delete id="ImageDel">
+		delete from pro_image where pro_num = #{pro_num}
+	</delete>
+    
+    <update id="ProductModify">
+    	update product
+    	set pro_price = #{pro_price},
+    	pro_name = #{pro_name},
+    	pro_content = #{pro_content},
+    	pro_amount = #{pro_amount}
+    	where pro_num = #{pro_num}
+    </update>
+    
+    
+    <update id="ImageModify">
+    	update pro_image
+    	set img_path = #{img_path},
+    	img_name = #{img_name}
+    	where pro_num = #{pro_num}
+    	
+    </update>
+    
+    
+    <select id="get_Product" resultType="ProductVO">
+    	select a.* , b.img_path, b.img_name
+		from product a, pro_image b
+		where a.pro_num = b.pro_num
+		and a.pro_num = #{pro_num}
+    </select>
+    
+    
+    <select id="get_ImageName" resultType="String">
+    	select img_path
+    	from pro_image
+    	where pro_num = #{pro_num}
+    </select>
+    
+    
+    <!-- 제품주문 상세화면 -->
+	<select id="read" parameterType="int" resultType="ProductVO">
+	  	select a.* , b.img_path, b.img_name
+		from product a, pro_image b
+		where a.pro_num = b.pro_num
+		and a.pro_num = #{pro_num}
+	</select>
+
+<!-- 수령인 상세정보 입력 -->
+	<!-- <insert id="ord_info" parameterType="ProductVO">
+		INSERT INTO order_info values(#{ord_num}, #{recip_name}, #{recip_add}, #{recip_tel}, #{ord_msg}, #{pay_category}, #{pay_price})
+	</insert> -->    
+	
+	<!-- 주문 리스트-->
+	<!-- <insert id="ord_list" parameterType="ProductVO">
+		INSERT INTO order_list values(#{ord_num}, #{recip_name}, #{recip_add}, #{recip_tel}, #{ord_msg}, #{pay_category}, #{pay_price})
+	</insert> -->
+	
+</mapper>
