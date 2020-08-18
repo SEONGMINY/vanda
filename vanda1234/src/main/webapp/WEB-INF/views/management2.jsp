@@ -128,7 +128,7 @@ function changePetList(){
                            <td>${pet2.pet_check}</td>
                            <c:set var="kind_num" value="${pet2.kind_num}"></c:set>
                            <c:if test="${kind_num eq '1'}">
-                               <td>푸들</td>
+                               <td>ddddddd</td>
                            </c:if>
                            <c:if test="${kind_num eq '2'}">
                                <td>말티즈</td>
