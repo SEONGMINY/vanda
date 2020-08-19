@@ -17,8 +17,6 @@ public EatVO() {}
 		this.eat_gram=eat_gram;
 	}
 	
-	
-	
 	public String getPet_num() {
 		return pet_num;
 	}

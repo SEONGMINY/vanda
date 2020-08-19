@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.vanda.domain.ActivityVO;
 import com.vanda.domain.EatVO;
 import com.vanda.domain.FoodVO;
+import com.vanda.domain.FoodWeightVO;
 import com.vanda.domain.KindVO;
 import com.vanda.domain.PetInfoVO;
 import com.vanda.domain.PetVO;
@@ -61,12 +62,25 @@ public interface PetMapper {
    public void weightUpdate(@Param("device_id") String device_id, @Param("pet_weight") float pet_weight);
 
    public PetInfoVO petInfo(@Param("user_id") String user_id, @Param("pet_num") int pet_num);
+   
+   // 안드로이드 오늘 몸무게
+   public WeightVO todayWeightAndroid(@Param("pet_num") int pet_num);
+   
+   // 안드로이드 최근 몸무게
+   public WeightVO recentlyWeightAndroid(@Param("pet_num") int pet_num);
+   
+   // 안드로이드 오늘 배식
+   public EatVO todayEatAndroid(@Param("pet_num") int pet_num);
+   
+   // 안드로이드 오늘 활동량
+   public ActivityVO todayActAndroid(@Param("pet_num") int pet_num);
+   
+   // 안드로이드 적절 배식량
+   public List<FoodWeightVO> standardEat(@Param("food_num") int food_num);
 
    public int lastPetNum();
 
    public void updatePetImg(int last_petnum);
-   
-
 
    public void weightUpdate(@Param("rpipetnum")int rpipetnum,@Param("pet_weight")double pet_weight);
    

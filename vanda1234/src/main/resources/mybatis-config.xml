@@ -23,6 +23,7 @@
 		<typeAlias type="com.vanda.domain.PetImgVO" alias="PetImgVO" />
 		<typeAlias type="com.vanda.domain.OrderVO" alias="OrderVO" />
 		<typeAlias type="com.vanda.domain.OrderListVO" alias="OrderListVO" />
+		<typeAlias type="com.vanda.domain.FoodWeightVO" alias="FoodWeightVO" />
 
 
 	</typeAliases>
