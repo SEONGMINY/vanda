@@ -1,20 +1,32 @@
 package com.vanda.domain;
 
+import com.vanda.utils.JsonConvertable;
 
+public class FoodVO extends JsonConvertable {
+	
+	public int food_num;
+	public String food_name;
+	public String food_ps;
+	public int kind_num;
 
-public class FoodVO {
 	
-	private int food_num;
-	private String food_name;
-	private String food_ps;
-
+	public FoodVO() {}
 	
-public FoodVO() {}
-	
-	public FoodVO(int food_num, String food_name, String food_ps) {
+	public FoodVO(int food_num, String food_name, String food_ps, int kind_num) {
 		this.food_num=food_num;
 		this.food_name=food_name;
 		this.food_ps=food_ps;
+		this.kind_num=kind_num;
+	}
+	
+	
+	
+	public int getKind_num() {
+		return kind_num;
+	}
+
+	public void setKind_num(int kind_num) {
+		this.kind_num = kind_num;
 	}
 
 	public int getFood_num() {
