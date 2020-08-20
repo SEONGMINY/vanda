@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,11 +20,34 @@
 </head>
 <script>
 $(document).ready(function(){
-	$('.multiple-items').slick({
+	$('.multiple-items').click({
 		  infinite: true,
 		  slidesToShow: 3,
 		  slidesToScroll: 3
 		});
+
+	$("#kind_num").change(function(){
+		var kind_num = $(this).val();
+		var query = {"kind_num" : kind_num};
+		$.ajax({
+			url : "/pet/petFood",
+			type : "post",
+			data : query,
+			dataType : "json",
+			success : function(data){
+				$("#food_num").empty();
+				var result = JSON.stringify(data);
+				result = JSON.parse(result);
+				for(var i=0; i < result.lists.length; i++){
+					var html = "<option>"+result.lists[i].food_name+"</option>";
+					$("#food_num").append(html);
+				}
+			}
+			
+		});
+		
+	});
+	
   });
 
 </script>
@@ -43,20 +68,21 @@ $(document).ready(function(){
 		</div>
 		<div class="form-group has-feedback">
 			<label class="control-label" for="kind_num">견종(kind테이블에
-				kind_num과 같게)</label><br> <select name="kind_num" id="kind_num">
-				<option value="1">푸들</option>
-				<option value="2">말티즈</option>
+				kind_num과 같게)</label><br> 
+				<select name="kind_num" id="kind_num">
+					<c:forEach var="kind" items="${kindList}" varStatus="status">
+					<option value="${kind.kind_num}">${kind.kind_name}</option>
+					</c:forEach>
 
 			</select>
 			<!-- 					<input class="form-control" type="password" id="kind_num" name="kind_num" placeholder="1만입력"/> -->
 		</div>
 		<div class="form-group has-feedback">
-			<label class="control-label" for="food_num">사료</label><br> <select
-				name="food_num" id="food_num">
-				<option value="1">로얄캐닌 오비서티</option>
-				<option value="2">로얄캐닌</option>
-
-
+			<label class="control-label" for="food_num">사료</label><br>
+			 <select name="food_num" id="food_num">
+				<c:forEach var="def" items="${defaultFood}" varStatus="status">
+					<option>${def.food_name}</option>
+				</c:forEach> 
 			</select>
 		</div>
 		<!-- 		<div class="form-group has-feedback">
