@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.vanda.mapper.KindMapper">
+
+
+
+	<!-- 견종리스트선택 -->
+	<select id="kindList" resultType="KindVO">
+		select kind_num, kind_name from
+		kind order by kind_num
+	</select>
+
+	<!-- 견종 선택 후 견종에 대한 사료 선택 -->
+	<select id="foodList" resultType="FoodVO">
+		select * from food
+		where kind_num = #{kind_num}
+	</select>
+</mapper>
