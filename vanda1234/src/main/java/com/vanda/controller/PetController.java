@@ -3,7 +3,7 @@ package com.vanda.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,12 +20,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.JsonArray;
 import com.vanda.domain.ActivityVO;
+import com.vanda.domain.FoodVO;
+import com.vanda.domain.FoodVOList;
 import com.vanda.domain.PetInfoVO;
 import com.vanda.domain.PetVO;
 import com.vanda.domain.UserVO;
 import com.vanda.domain.WalksVO;
 import com.vanda.mapper.PetMapper;
+import com.vanda.service.KindService;
 import com.vanda.service.PetService;
 
 @Controller
@@ -37,6 +41,9 @@ public class PetController {
 
 	@Autowired
 	private PetMapper petMapper;
+	
+	@Autowired
+	private KindService kindService;
 
 	// 센서값 리스트(받아온 값이 string형일때)
 	ArrayList<Float> list = new ArrayList<Float>();
@@ -77,10 +84,24 @@ public class PetController {
 
 			return "redirect:/user/login";
 		} else {
-
+			//견종 세션 및 견종에 해당하는 사료종류세션
+			session.setAttribute("kindList", kindService.kindList()); 
+			session.setAttribute("defaultFood", kindService.foodList(1));
 			return "pet/petRegister";
 		}
 
+	}
+	//사료리스트 list로 받기
+	@ResponseBody
+	@RequestMapping(value ="/petFood", method = RequestMethod.POST)
+	public String petFoodList(int kind_num) {
+		
+		ArrayList<FoodVO> list = kindService.foodList(kind_num);
+		System.out.println(list.size() + "개");
+		FoodVOList voLists = new FoodVOList();
+		voLists.lists = list;
+		
+		return voLists.toJson();
 	}
 
 	// 펫 등록 처리
