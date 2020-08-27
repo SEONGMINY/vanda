@@ -5,6 +5,7 @@ import java.util.List;
 import com.vanda.domain.ActivityVO;
 import com.vanda.domain.EatVO;
 import com.vanda.domain.FoodVO;
+import com.vanda.domain.HospitalVO;
 import com.vanda.domain.KindVO;
 import com.vanda.domain.PetImgVO;
 import com.vanda.domain.PetInfoVO;
@@ -65,4 +66,6 @@ public interface PetService {
    public void petImgInsert(PetVO petVO);
 
    public PetInfoVO nonSelectedPet(Integer oldPetnum);
+
+   public HospitalVO selectHospital(String hosp_name);
 }
