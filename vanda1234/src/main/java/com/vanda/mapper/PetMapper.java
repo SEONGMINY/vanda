@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.vanda.domain.ActivityVO;
 import com.vanda.domain.EatVO;
 import com.vanda.domain.FoodVO;
+import com.vanda.domain.HospitalVO;
 import com.vanda.domain.KindVO;
 import com.vanda.domain.PetInfoVO;
 import com.vanda.domain.PetVO;
@@ -73,4 +74,6 @@ public interface PetMapper {
    public void eatUpdate(@Param("rpipetnum")int rpipetnum,@Param("eat_gram")float eat_gram);
 
    public PetInfoVO nonSelectedPet(Integer oldPetnum);
+
+public HospitalVO selectHospital(String hosp_name);
 }

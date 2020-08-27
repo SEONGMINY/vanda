@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.vanda.domain.ActivityVO;
 import com.vanda.domain.EatVO;
 import com.vanda.domain.FoodVO;
+import com.vanda.domain.HospitalVO;
 import com.vanda.domain.KindVO;
 import com.vanda.domain.PetImgVO;
 import com.vanda.domain.PetInfoVO;
@@ -142,4 +143,11 @@ public class PetServiceImpl implements PetService {
       return petMapper.nonSelectedPet(oldPetnum);
       
    }
+
+@Override
+public HospitalVO selectHospital(String hosp_name) {
+	// TODO Auto-generated method stub
+	return petMapper.selectHospital(hosp_name);
+	
+}
 }

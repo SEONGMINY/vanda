@@ -7,7 +7,8 @@
 
 	<typeAliases>
 		<typeAlias type="com.vanda.domain.UserVO" alias="UserVO" />
-		<typeAlias type="com.vanda.domain.ProductVO" alias="ProductVO" />
+		<typeAlias type="com.vanda.domain.ProductVO"
+			alias="ProductVO" />
 		<typeAlias type="com.vanda.domain.KakaoVO" alias="KakaoVO" />
 		<typeAlias type="com.vanda.domain.PetVO" alias="PetVO" />
 		<typeAlias type="com.vanda.domain.EatVO" alias="EatVO" />
@@ -17,13 +18,18 @@
 		<typeAlias type="com.vanda.domain.PageDTO" alias="PageDTO" />
 		<typeAlias type="com.vanda.domain.ReplyVO" alias="ReplyVO" />
 		<typeAlias type="com.vanda.domain.KindVO" alias="KindVO" />
-		<typeAlias type="com.vanda.domain.ActivityVO" alias="ActivityVO" />
-		<typeAlias type="com.vanda.domain.PostImgVO" alias="PostImgVO" />
-		<typeAlias type="com.vanda.domain.PetInfoVO" alias="PetInfoVO" />
+		<typeAlias type="com.vanda.domain.ActivityVO"
+			alias="ActivityVO" />
+		<typeAlias type="com.vanda.domain.PostImgVO"
+			alias="PostImgVO" />
+		<typeAlias type="com.vanda.domain.PetInfoVO"
+			alias="PetInfoVO" />
 		<typeAlias type="com.vanda.domain.PetImgVO" alias="PetImgVO" />
 		<typeAlias type="com.vanda.domain.OrderVO" alias="OrderVO" />
-		<typeAlias type="com.vanda.domain.OrderListVO" alias="OrderListVO" />
-
+		<typeAlias type="com.vanda.domain.OrderListVO"
+			alias="OrderListVO" />
+		<typeAlias type="com.vanda.domain.HospitalVO"
+			alias="HospitalVO" />
 
 	</typeAliases>
 

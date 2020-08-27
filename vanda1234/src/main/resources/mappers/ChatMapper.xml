@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vanda.mapper.ChatMapper">
+	
+
+
+	<insert id="insert">
+	insert into room(user_id,room_num) values('TEST',1)
+	</insert>
+	
+	<select id="roomList" resultType="com.vanda.domain.RoomVO">
+	select * from room where user_id = '${user_id}'
+	</select>
+	
+	<select id="roomDocList" resultType="com.vanda.domain.RoomVO">
+	select * from room where doc_id = '${user_id}'
+	</select>
+	
+	<select id="getRoom" resultType="com.vanda.domain.RoomVO">
+	select * from room where room_num = #{room_num}
+	</select>
+	
+	<select id="msgList" resultType="com.vanda.domain.MessageVO">
+	select * from message where room_num = #{room_num} order by msg_date
+	</select>
+	
+	<insert id="insertMsg">
+	insert into message(room_num,user_id,msg_content) values(1,'TEST',#{msg_content})
+	</insert>
+	
+	
+	
+</mapper>
