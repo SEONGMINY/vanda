@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.vanda.mapper.FoodMapper">
+
+
+
+	<!-- Food_num 가져오기 -->
+	<select id="getfood" resultType="String">
+		select food_num from pet where pet_num = #{pet_num}
+	</select>
+
+
+</mapper>
