@@ -70,7 +70,7 @@ select a.pet_num, nvl2(b.eat_gram,0,0) as eat_gram
 		from pet a, weight b
 		where a.pet_num = b.pet_num
 		and a.pet_num = #{pet_num}
-		and to_char(b.weight_date, 'YY/MM/DD') < to_char(sysdate, 'YY/MM/DD')
+		and to_char(b.weight_date, 'YY/MM/DD') = to_char(sysdate, 'YY/MM/DD')
 		and rownum = 1
 		order by b.weight_date desc
 ), avg_pet as
@@ -92,7 +92,7 @@ select a.pet_num, nvl2(b.eat_gram,0,0) as eat_gram
   		  and rownum = 1
   		  order by b.act_date desc
 		)
-		select a.pet_num, b.pet_weight, e.total_distance, a.eat_gram, c.avg, c.kind_name, nvl2(d.gram,0,0) as gram, nvl2((b.pet_weight * 99 + d.gram),0,0) as recomand_distance
+		select a.pet_num, b.pet_weight, e.total_distance, a.eat_gram, c.avg, c.kind_name, d.gram, (b.pet_weight * 99 + d.gram) as recomand_distance
 		from today_eat a, today_weight b, today_act e, avg_pet c, pet_food d
 		where a.pet_num = b.pet_num
         and rownum = 1
