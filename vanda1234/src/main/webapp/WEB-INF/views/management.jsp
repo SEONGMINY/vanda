@@ -59,18 +59,27 @@
          dataType : "json",
          data : {
             "pet_num" : $("#select_box option:selected").val()
+            
          },
          success : function(data) {
-            $("#eat").text(data.eat_gram);
-            $("#weight").text(data.pet_weight);
-/*             $("#reWeight").text(data.repet_weight);
-            $("#reEat").text(data.reeat_gram);
-            $("#reWalk").text(data.rewalk); */
+            $("#eat").text(data.eat_gram);	// 현재 배식량
+            $("#weight").text(data.pet_weight);	// 현재 펫 몸무게
+	        $("#avg").text(data.avg);	//추천 몸무게
+            $("#gram").text(data.gram);	//추천 배식량
+            $("#walk").text(data.total_distance);	//현재 활동량
+            $("#recomand_distance").text(data.recomand_distance); //추천 활동량
+
+           /*  if(data.eat_gram == 0){
+            	alert("금일 측정된 데이터가 존재하지않습니다.");
+                return;
+                } */
             
          },
          error : function(request, status, error) {
-            alert("code = " + request.status + " message = "
-                  + request.responseText + " error = " + error);
+            /* alert("code = " + request.status + " message = "
+                  + request.responseText + " error = " + error); */
+                  alert("금일 측정된 데이터가 존재하지않습니다.");
+                  return;
             // 실패 시 처리
          }
 
@@ -210,10 +219,9 @@
                                     <div class="slider--item-image">
                                        <!-- <img src="/resources/assets/img/work-victory.jpg" alt="Victory"> -->
                                        <p style="line-height: 30px">체중</p>
-
                                        <p style="font-size: 40px;" id="weight">${nonSelectedPet.pet_weight}</p>
                                        <p style="font-size: 20px; color: #8C8C8C">/</p>
-                                       <p style="font-size: 20px; color: #8C8C8C" id="reWeight">권장체중</p>
+                                       <p style="font-size: 20px; color: #8C8C8C" id="avg"></p>
 
 
                                        
@@ -231,7 +239,7 @@
                                        <p style="font-size: 40px;color:#858585" id="eat">${nonSelectedPet.eat_gram}kg</p>
 
 										   <p style="font-size: 20px; color: #8C8C8C">/</p>
-                                       <p style="font-size: 20px; color: #8C8C8C" id="reEat">권장급여량</p>
+                                       <p style="font-size: 20px; color: #8C8C8C" id="gram"></p>
                                     </div> <!--    <p class="slider--item-title">Metiew &amp; Smith</p>
                       <p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p> -->
                               </a></li>
@@ -246,10 +254,10 @@
                                     <div class="slider--item-image">
                                        <!-- <img src="/resources/assets/img/work-alex-nowak.jpg" alt="Alex Nowak"> -->
                                        <p style="line-height: 30px;color:#858585">활동</p>
-                                       <p style="font-size: 40px;color:#858585" id="walk">${nonSelectedPet.eat_gram}kg</p>
+                                       <p style="font-size: 40px;color:#858585" id="walk">${nonSelectedPet.total_distance}Kcal</p>
 
 										   <p style="font-size: 20px; color: #8C8C8C">/</p>
-                                       <p style="font-size: 20px; color: #8C8C8C" id="reWalk">권장활동량</p>
+                                       <p style="font-size: 20px; color: #8C8C8C" id="recomand_distance">${nonSelectedPet.recomand_distance}Kcal</p>
                                     </div> 
                                     
                                     
