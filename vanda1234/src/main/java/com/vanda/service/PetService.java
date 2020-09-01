@@ -42,9 +42,13 @@ public interface PetService {
 
    // 선택한 펫 배식 정보 가져오기
    public EatVO eatList(int pet_num);
+   
+   public List<EatVO> eatListAndroid(int pet_num);
 
    // 선택한 펫 체중 정보 가져오기
    public WeightVO weightList(int pet_num);
+   
+   public List<WeightVO> weightListAndroid(int pet_num);
 
    // 선택한 펫 활동 정보 읽어오기
    public List<ActivityVO> actList(int pet_num);

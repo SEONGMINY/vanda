@@ -128,7 +128,7 @@
 	<select id="actList" resultType="ActivityVO">
 		select * from activity where
 		pet_num = #{pet_num} order by
-		act_name desc
+		act_date desc
 	</select>
 
 	<select id="changePetList" resultType="PetVO">
@@ -138,16 +138,25 @@
 		WHERE pet_num =
 		#{pet_num}
 	</select>
+	
+	<select id="eatListAndroid" resultType="EatVO">
+		SELECT * FROM eat
+		WHERE pet_num = #{pet_num} order by eat_time desc
+	</select>
+	
+	<select id="weightListAndroid" resultType="WeightVO">
+		SELECT * FROM weight
+		WHERE pet_num = #{pet_num} order by weight_date desc
+	</select>
 
 	<select id="eatList" resultType="EatVO">
-		SELECT pet_num, eat_time,
-		eat_gram FROM eat
-		WHERE pet_num = #{pet_num}
+		SELECT * FROM eat
+		WHERE pet_num = #{pet_num} order by eat_time desc
 	</select>
+	
 	<select id="weightList" resultType="WeightVO">
-		SELECT pet_num, weight_date,
-		pet_weight FROM weight
-		WHERE pet_num = #{pet_num}
+		SELECT * FROM weight
+		WHERE pet_num = #{pet_num} order by weight_date desc
 	</select>
 
 	<select id="foodInfo" resultType="FoodVO">

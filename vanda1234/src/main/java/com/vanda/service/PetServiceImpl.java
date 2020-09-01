@@ -157,7 +157,7 @@ public class PetServiceImpl implements PetService {
 		// TODO Auto-generated method stub
 		return petMapper.todayEatAndroid(pet_num);
 	}
-
+	
 	@Override
 	public ActivityVO todayActAndroid(int pet_num) {
 		// TODO Auto-generated method stub
@@ -169,5 +169,18 @@ public class PetServiceImpl implements PetService {
 		// TODO Auto-generated method stub
 		return petMapper.standardEat(food_num);
 	}
+
+	@Override
+	public List<EatVO> eatListAndroid(int pet_num) {
+		// TODO Auto-generated method stub
+		return petMapper.eatListAndroid(pet_num);
+	}
+
+	@Override
+	public List<WeightVO> weightListAndroid(int pet_num) {
+		// TODO Auto-generated method stub
+		return petMapper.weightListAndroid(pet_num);
+	}
+
 
 }

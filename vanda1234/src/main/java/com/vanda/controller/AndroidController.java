@@ -67,13 +67,17 @@ public class AndroidController {
 			for (PetVO pet : petList) { // Register 테이블에 있는 펫 리스트 Json 형태로 저장 PetInfoVO
 				
 				List<FoodWeightVO> foodWeightVO = petService.standardEat(pet.getFood_num());
+				List<EatVO> eatList = petService.eatListAndroid(pet.getPet_num());
+				List<WeightVO> weightList = petService.weightListAndroid(pet.getPet_num());
+				List<ActivityVO> actList = petService.actList(pet.getPet_num());
+				
 				WeightVO weightVO = petService.todayWeightAndroid(pet.getPet_num());
 				EatVO eatVO = petService.todayEatAndroid(pet.getPet_num());
 				ActivityVO actVO = petService.todayActAndroid(pet.getPet_num());
 				Double weight,distance; 
 				int eat,gram = 0;
 				Double standardWeight = (petService.kindInfo(pet.getKind_num()).getStd_high() + petService.kindInfo(pet.getKind_num()).getStd_low()) / 2;
-				
+		
 				if(weightVO != null) {
 					weight = weightVO.getPet_weight();
 				} else {
@@ -104,6 +108,7 @@ public class AndroidController {
 						break;
 					}
 				}
+				
 
 				System.out.println("펫 번호:" + pet.getPet_num());
 				System.out.println("펫 이름:" + pet.getPet_name());
@@ -115,6 +120,9 @@ public class AndroidController {
 				System.out.println("펫 급여량:" + eat);
 				System.out.println("펫 표준 급여량:" + gram);
 				System.out.println("펫 산책:" + distance);
+				System.out.println("체중 기록:"+weightList);
+				System.out.println("배식 기록:"+eatList.get(0).getEat_time());
+				System.out.println("산책 기록:"+actList);
 				System.out.println("----------------------------");
 				petObj.put("pet_num", pet.getPet_num());
 				petObj.put("pet_name", pet.getPet_name());
@@ -126,8 +134,14 @@ public class AndroidController {
 				petObj.put("pet_eat", eat);
 				petObj.put("avg_eat", gram);
 				petObj.put("pet_act", distance);
+				petObj.put("weight_list",weightList);
+				petObj.put("eat_list",eatList);
+				petObj.put("act_list",actList);
+				
 
 				petListObj.add(petObj);
+
+				
 				petObj = new JSONObject();
 
 			}
@@ -147,7 +161,13 @@ public class AndroidController {
 
 		JSONObject userObj = new JSONObject();
 		JSONObject petObj = new JSONObject();
+		JSONObject weightObj = new JSONObject();
+		JSONObject eatObj = new JSONObject();
+		JSONObject actObj = new JSONObject();
 		JSONArray petListObj = new JSONArray();
+		JSONArray weightListObj = new JSONArray();
+		JSONArray eatListObj = new JSONArray();
+		JSONArray actListObj = new JSONArray();
 
 		System.out.println("id:" + user_id);
 		System.out.println("token:" + token);
@@ -175,13 +195,17 @@ public class AndroidController {
 			for (PetVO pet : petList) { // Register 테이블에 있는 펫 리스트 Json 형태로 저장
 
 				List<FoodWeightVO> foodWeightVO = petService.standardEat(pet.getFood_num());
+				List<EatVO> eatList = petService.eatListAndroid(pet.getPet_num());
+				List<WeightVO> weightList = petService.weightListAndroid(pet.getPet_num());
+				List<ActivityVO> actList = petService.actList(pet.getPet_num());
+				
 				WeightVO weightVO = petService.todayWeightAndroid(pet.getPet_num());
 				EatVO eatVO = petService.todayEatAndroid(pet.getPet_num());
 				ActivityVO actVO = petService.todayActAndroid(pet.getPet_num());
 				Double weight,distance; 
 				int eat,gram = 0;
 				Double standardWeight = (petService.kindInfo(pet.getKind_num()).getStd_high() + petService.kindInfo(pet.getKind_num()).getStd_low()) / 2;
-				
+		
 				if(weightVO != null) {
 					weight = weightVO.getPet_weight();
 				} else {
@@ -212,6 +236,7 @@ public class AndroidController {
 						break;
 					}
 				}
+				
 
 				System.out.println("펫 번호:" + pet.getPet_num());
 				System.out.println("펫 이름:" + pet.getPet_name());
@@ -223,6 +248,9 @@ public class AndroidController {
 				System.out.println("펫 급여량:" + eat);
 				System.out.println("펫 표준 급여량:" + gram);
 				System.out.println("펫 산책:" + distance);
+				System.out.println("체중 기록:"+weightList);
+				System.out.println("배식 기록:"+eatList.get(0).getEat_time());
+				System.out.println("산책 기록:"+actList);
 				System.out.println("----------------------------");
 				petObj.put("pet_num", pet.getPet_num());
 				petObj.put("pet_name", pet.getPet_name());
@@ -234,12 +262,19 @@ public class AndroidController {
 				petObj.put("pet_eat", eat);
 				petObj.put("avg_eat", gram);
 				petObj.put("pet_act", distance);
+				petObj.put("weight_list",weightList);
+				petObj.put("eat_list",eatList);
+				petObj.put("act_list",actList);
+				
 
 				petListObj.add(petObj);
+
+				
 				petObj = new JSONObject();
 
 			}
 			userObj.put("petList", petListObj);
+			
 
 		} else {
 			userObj.put("message", "잘못된 아이디 또는 비밀번호 입니다");

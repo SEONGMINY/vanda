@@ -39,12 +39,16 @@ public interface PetMapper {
 
    // 선택한 펫 배식 정보 읽어오기
    public EatVO eatList(int pet_num);
+   
+   public List<EatVO> eatListAndroid(@Param("pet_num") int pet_num);
 
    // 펫 번호 가져오기
    public int getPetNum(@Param("user_id") String user_id, @Param("pet_name") String pet_name);
 
    // 선택한 펫 체중 정보 가져오기
    public WeightVO weightList(int pet_num);
+   
+   public List<WeightVO> weightListAndroid(@Param("pet_num") int pet_num);
 
    // 선택한 펫 사료 정보 가져오기
    public FoodVO foodInfo(int food_num);

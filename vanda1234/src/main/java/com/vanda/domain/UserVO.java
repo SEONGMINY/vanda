@@ -10,8 +10,6 @@ public class UserVO {
 	private String user_rule;
 	private String token;
 
-
-	
 	
 	public UserVO() {}
 	
@@ -68,7 +66,6 @@ public class UserVO {
 	public void setUser_tel(String user_tel) {
 		this.user_tel = user_tel;
 	}
-
 
 
 	public String getUser_name() {
