@@ -112,10 +112,16 @@ public class PetServiceImpl implements PetService {
    }
 
    @Override
-   public PetInfoVO petInfo(String user_id, int pet_num) {
+   public PetInfoVO petInfo(String user_id, int pet_num, int food_num) {
       // TODO Auto-generated method stub
-      return petMapper.petInfo(user_id,pet_num);
+      return petMapper.petInfo(user_id,pet_num, food_num);
    }
+   
+   @Override
+  	public PetInfoVO recentPetInfo(String user_id, int pet_num, int food_num) {
+  		// TODO Auto-generated method stub
+  		return petMapper.recentPetInfo(user_id,pet_num, food_num);
+  	}
 
    @Override
    public List<PetImgVO> getImgList(int petNum) {

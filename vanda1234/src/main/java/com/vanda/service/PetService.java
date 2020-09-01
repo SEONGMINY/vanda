@@ -59,7 +59,9 @@ public interface PetService {
    
    public void eatUpdate(int rpipetnum, float eat_gram);
 
-   public PetInfoVO petInfo(String user_id, int pet_num);
+   public PetInfoVO petInfo(String user_id, int pet_num, int food_num);
+   
+   public PetInfoVO recentPetInfo(String user_id, int pet_num, int food_num);
 
    public List<PetImgVO> getImgList(int pet_Num);
 
