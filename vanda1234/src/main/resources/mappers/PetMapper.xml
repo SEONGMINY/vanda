@@ -54,12 +54,97 @@
 		ORDER BY
 		pet_regdate
 	</select>
+	<select id="recentPetInfo" resultType="PetInfoVO">
+	<![CDATA[
+		with today_eat as
+(
+select a.pet_num, nvl2(b.eat_gram,0,0) as eat_gram
+        from pet a, eat b
+        where a.pet_num = b.pet_num
+        and a.pet_num = #{pet_num}
+        and to_char(b.eat_time, 'YY/MM/DD') < to_char(sysdate, 'YY/MM/DD')
+        and rownum = 1
+        order by b.eat_time desc
+), today_weight as
+		(select a.pet_num, b.pet_weight
+		from pet a, weight b
+		where a.pet_num = b.pet_num
+		and a.pet_num = #{pet_num}
+		and to_char(b.weight_date, 'YY/MM/DD') < to_char(sysdate, 'YY/MM/DD')
+		and rownum = 1
+		order by b.weight_date desc
+), avg_pet as
+		(select (std_low + std_high) / 2 as avg, kind_name
+		 from kind
+		 where kind_num = (select kind_num from pet where pet_num = #{pet_num})
+), pet_food as
+		(select a.food_num, a.food_name, b.low_weight, b.high_weight, b.gram
+		 from food a, (select food_num, substr(weight, 0, instr(weight, '~') -1) as low_weight, substr(weight, instr(weight, '~')+1) as high_weight, gram
+		 from food_weight) b
+		 where a.food_num = b.food_num
+		 and a.food_num = #{food_num}
+), today_act as 
+		(select a.pet_num, nvl2(b.total_distance,0,0) as total_distance
+  		 from pet a, activity b
+   		 where a.pet_num = b.pet_num
+   		 and a.pet_num = #{pet_num}
+   		 and to_char(b.act_date, 'YY/MM/DD') < to_char(sysdate, 'YY/MM/DD')
+  		  and rownum = 1
+  		  order by b.act_date desc
+		)
+		select a.pet_num, b.pet_weight, e.total_distance, a.eat_gram, c.avg, c.kind_name, nvl2(d.gram,0,0) as gram, nvl2((b.pet_weight * 99 + d.gram),0,0) as recomand_distance
+		from today_eat a, today_weight b, today_act e, avg_pet c, pet_food d
+		where a.pet_num = b.pet_num
+        and rownum = 1
+        ]]>
+	</select>
+	
 	<select id="petInfo" resultType="PetInfoVO">
-select (SELECT pet_weight FROM(SELECT * FROM weight where TO_CHAR(weight_date,'YY/MM/DD') = TO_CHAR(sysdate,'YY/MM/DD') ORDER BY ROWNUM
-      DESC)WHERE pet_num = #{pet_num} and ROWNUM = 1) as pet_weight,
-(SELECT eat_gram FROM(SELECT * FROM eat where TO_CHAR(eat_time,'YY/MM/DD') = TO_CHAR(sysdate,'YY/MM/DD') ORDER BY ROWNUM
-      DESC)WHERE pet_num = #{pet_num} and ROWNUM = 1) as eat_gram
-from weight w,eat e,member where w.pet_num = e.pet_num and rownum = 1 and user_id = #{user_id}
+	<![CDATA[
+with today_eat as
+(
+select a.pet_num, b.eat_gram
+from pet a, eat b
+where a.pet_num = b.pet_num
+and a.pet_num = #{pet_num}
+and to_char(b.eat_time, 'YY/MM/DD') = to_char(sysdate, 'YY/MM/DD')
+and rownum = 1
+order by b.eat_time desc
+), today_weight as
+(select a.pet_num, b.pet_weight
+from pet a, weight b
+where a.pet_num = b.pet_num
+and a.pet_num = #{pet_num}
+and to_char(b.weight_date, 'YY/MM/DD') = to_char(sysdate, 'YY/MM/DD')
+and rownum = 1
+order by b.weight_date desc), avg_pet as
+(
+    select (std_low + std_high) / 2 as avg, kind_name
+    from kind
+    where kind_num = (select kind_num from pet where pet_num = #{pet_num})
+), pet_food as
+(
+    select a.food_num, a.food_name, b.low_weight, b.high_weight, b.gram
+    from food a, (select food_num, substr(weight, 0, instr(weight, '~') -1) as low_weight, substr(weight, instr(weight, '~')+1) as high_weight, gram
+    from food_weight) b
+    where a.food_num = b.food_num
+    and a.food_num = #{food_num}
+),  today_act as 
+(
+   		 select a.pet_num, b.total_distance
+  		  from pet a, activity b
+   		 where a.pet_num = b.pet_num
+   		 and a.pet_num = #{pet_num}
+   		 and to_char(b.act_date, 'YY/MM/DD') = to_char(sysdate, 'YY/MM/DD')
+  		  and rownum = 1
+  		  order by b.act_date desc
+		)
+		select a.pet_num, b.pet_weight, e.total_distance, a.eat_gram, c.avg, c.kind_name, d.gram, (b.pet_weight * 99 + d.gram) as recomand_distance
+		from today_eat a, today_weight b, today_act e, avg_pet c, pet_food d
+		where a.pet_num = b.pet_num
+		and d.high_weight >= c.avg 
+		and d.low_weight <= c.avg
+		]]>
 	</select>
 
 	<select id="petInfo_sm" resultType="PetInfoVO">
@@ -138,10 +223,17 @@ from weight w,eat e,member where w.pet_num = e.pet_num and rownum = 1 and user_i
 
 
 	<select id="nonSelectedPet" resultType="PetInfoVO">
-	select pet_name,(select eat_gram from(select * from eat where TO_CHAR(eat_time,'YY/MM/DD')=TO_CHAR(sysdate,'YY/MM/DD') order by eat_time desc) where rownum=1 and pet_num=101 ) as eat_gram,
-(select pet_weight from(select * from weight where TO_CHAR(weight_date,'YY/MM/DD')=TO_CHAR(sysdate,'YY/MM/DD') order by weight_date desc) where rownum=1 and pet_num=#{oldPetnum} ) as pet_weight
-from pet,eat,weight
-where rownum=1 and pet.pet_num=eat.pet_num and weight.pet_num=eat.pet_num and pet_name = (select pet_name from pet where pet_num=#{oldPetnum})</select>
+		select pet_name,(select eat_gram from(select * from eat where
+		TO_CHAR(eat_time,'YY/MM/DD')=TO_CHAR(sysdate,'YY/MM/DD') order by
+		eat_time desc) where rownum=1 and pet_num=101 ) as eat_gram,
+		(select pet_weight from(select * from weight where
+		TO_CHAR(weight_date,'YY/MM/DD')=TO_CHAR(sysdate,'YY/MM/DD') order by
+		weight_date desc) where rownum=1 and pet_num=#{oldPetnum} ) as
+		pet_weight
+		from pet,eat,weight
+		where rownum=1 and pet.pet_num=eat.pet_num and weight.pet_num=eat.pet_num
+		and pet_name = (select pet_name from pet where pet_num=#{oldPetnum})
+	</select>
 
 
 
