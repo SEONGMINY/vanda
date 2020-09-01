@@ -61,8 +61,10 @@ public interface PetMapper {
 
    public void weightUpdate(@Param("device_id") String device_id, @Param("pet_weight") float pet_weight);
 
-   public PetInfoVO petInfo(@Param("user_id") String user_id, @Param("pet_num") int pet_num);
+   public PetInfoVO petInfo(@Param("user_id") String user_id, @Param("pet_num") int pet_num, @Param("food_num") int food_num);
 
+   public PetInfoVO recentPetInfo(@Param("user_id") String user_id, @Param("pet_num") int pet_num, @Param("food_num") int food_num);
+   
    public int lastPetNum();
 
    public void updatePetImg(int last_petnum);
