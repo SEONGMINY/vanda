@@ -27,6 +27,7 @@ import com.vanda.domain.PetVO;
 import com.vanda.domain.UserVO;
 import com.vanda.domain.WalksVO;
 import com.vanda.mapper.PetMapper;
+import com.vanda.service.FoodService;
 import com.vanda.service.KindService;
 import com.vanda.service.PetService;
 
@@ -34,6 +35,9 @@ import com.vanda.service.PetService;
 @RequestMapping("/pet/*")
 public class PetController {
 
+	@Autowired
+	private FoodService foodservice;
+	
 	@Autowired
 	private PetService petService;
 
@@ -150,7 +154,13 @@ public class PetController {
 
 		UserVO userVO = (UserVO) session.getAttribute("check");
 		String user_id = userVO.getUser_id();
-		PetInfoVO petinfoVO = petService.petInfo(user_id, pet_num);
+		int food_num = Integer.parseInt(foodservice.getfood(pet_num));
+		PetInfoVO petinfoVO = petService.petInfo(user_id, pet_num,food_num);
+		
+		if(petinfoVO == null) {
+			petinfoVO = petService.recentPetInfo(user_id, pet_num, food_num);
+			
+		}
 
 		// 산책 리스트
 		List<ActivityVO> actList = petService.actList(pet_num);
@@ -196,8 +206,15 @@ public class PetController {
 
 		UserVO userVO = (UserVO) session.getAttribute("check");
 		String user_id = userVO.getUser_id();
-		PetInfoVO petinfoVO = petService.petInfo(user_id, pet_num);
-
+		int food_num = Integer.parseInt(foodservice.getfood(pet_num));
+		
+		System.out.println(food_num + "번");
+		PetInfoVO petinfoVO = petService.petInfo(user_id,pet_num,food_num);
+		
+		if(petinfoVO == null) {
+			petinfoVO = petService.recentPetInfo(user_id, pet_num, food_num);
+			
+		}
 		// 산책 리스트
 		List<ActivityVO> actList = petService.actList(pet_num);
 		List<WalksVO> walksList = new ArrayList<>();
