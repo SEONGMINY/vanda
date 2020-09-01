@@ -1,4 +1,4 @@
-package com.vanda.domain;
+ㅈpackage com.vanda.domain;
 
 import java.util.List;
 
