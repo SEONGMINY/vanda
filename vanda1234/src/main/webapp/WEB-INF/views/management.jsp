@@ -221,7 +221,7 @@
                                        <p style="line-height: 30px">체중</p>
                                        <p style="font-size: 40px;" id="weight">${nonSelectedPet.pet_weight}</p>
                                        <p style="font-size: 20px; color: #8C8C8C">/</p>
-                                       <p style="font-size: 20px; color: #8C8C8C" id="avg"></p>
+                                       <p style="font-size: 20px; color: #8C8C8C" id="avg">${nonSelectedPet.avg}KG</p>
 
 
                                        
@@ -236,10 +236,10 @@
                                     <div class="slider--item-image">
                                        <!--  <img src="/resources/assets/img/work-metiew-smith.jpg" alt="Metiew and Smith"> -->
                                        <p style="line-height: 30px;color:#858585">배식</p>
-                                       <p style="font-size: 40px;color:#858585" id="eat">${nonSelectedPet.eat_gram}kg</p>
+                                       <p style="font-size: 40px;color:#858585" id="eat">${nonSelectedPet.eat_gram}g</p>
 
 										   <p style="font-size: 20px; color: #8C8C8C">/</p>
-                                       <p style="font-size: 20px; color: #8C8C8C" id="gram"></p>
+                                       <p style="font-size: 20px; color: #8C8C8C" id="gram">${nonSelectedPet.gram}g</p>
                                     </div> <!--    <p class="slider--item-title">Metiew &amp; Smith</p>
                       <p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p> -->
                               </a></li>
