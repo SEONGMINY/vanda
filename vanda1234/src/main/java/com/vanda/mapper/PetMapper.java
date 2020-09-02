@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.vanda.domain.ActivityVO;
 import com.vanda.domain.EatVO;
 import com.vanda.domain.FoodVO;
+import com.vanda.domain.FoodWeightVO;
 import com.vanda.domain.HospitalVO;
 import com.vanda.domain.KindVO;
 import com.vanda.domain.PetInfoVO;
@@ -39,12 +40,16 @@ public interface PetMapper {
 
    // 선택한 펫 배식 정보 읽어오기
    public EatVO eatList(int pet_num);
+   
+   public List<EatVO> eatListAndroid(@Param("pet_num") int pet_num);
 
    // 펫 번호 가져오기
    public int getPetNum(@Param("user_id") String user_id, @Param("pet_name") String pet_name);
 
    // 선택한 펫 체중 정보 가져오기
    public WeightVO weightList(int pet_num);
+   
+   public List<WeightVO> weightListAndroid(@Param("pet_num") int pet_num);
 
    // 선택한 펫 사료 정보 가져오기
    public FoodVO foodInfo(int food_num);
@@ -68,8 +73,6 @@ public interface PetMapper {
    public int lastPetNum();
 
    public void updatePetImg(int last_petnum);
-   
-
 
    public void weightUpdate(@Param("rpipetnum")int rpipetnum,@Param("pet_weight")double pet_weight);
    
@@ -77,5 +80,20 @@ public interface PetMapper {
 
    public PetInfoVO nonSelectedPet(Integer oldPetnum);
 
-public HospitalVO selectHospital(String hosp_name);
+   public HospitalVO selectHospital(String hosp_name);
+   
+   // 안드로이드 오늘 몸무게
+   public WeightVO todayWeightAndroid(@Param("pet_num") int pet_num);
+   
+   // 안드로이드 최근 몸무게
+   public WeightVO recentlyWeightAndroid(@Param("pet_num") int pet_num);
+   
+   // 안드로이드 오늘 배식
+   public EatVO todayEatAndroid(@Param("pet_num") int pet_num);
+   
+   // 안드로이드 오늘 활동량
+   public ActivityVO todayActAndroid(@Param("pet_num") int pet_num);
+   
+   // 안드로이드 적절 배식량
+   public List<FoodWeightVO> standardEat(@Param("food_num") int food_num);
 }

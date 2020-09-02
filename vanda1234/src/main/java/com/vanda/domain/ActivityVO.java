@@ -1,5 +1,7 @@
 package com.vanda.domain;
 
+import java.util.Date;
+
 public class ActivityVO {
 	private int pet_num;
 	private String act_path;
@@ -7,7 +9,14 @@ public class ActivityVO {
 	private int act_num;
 	private double total_distance;
 	private String timer;
+	private Date act_date;
 	
+	public Date getAct_date() {
+		return act_date;
+	}
+	public void setAct_date(Date act_date) {
+		this.act_date = act_date;
+	}
 	public String getTimer() {
 		return timer;
 	}

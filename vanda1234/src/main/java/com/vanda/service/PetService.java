@@ -2,10 +2,13 @@ package com.vanda.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.vanda.domain.ActivityVO;
 import com.vanda.domain.EatVO;
 import com.vanda.domain.FoodVO;
 import com.vanda.domain.HospitalVO;
+import com.vanda.domain.FoodWeightVO;
 import com.vanda.domain.KindVO;
 import com.vanda.domain.PetImgVO;
 import com.vanda.domain.PetInfoVO;
@@ -40,9 +43,13 @@ public interface PetService {
 
    // 선택한 펫 배식 정보 가져오기
    public EatVO eatList(int pet_num);
+   
+   public List<EatVO> eatListAndroid(int pet_num);
 
    // 선택한 펫 체중 정보 가져오기
    public WeightVO weightList(int pet_num);
+   
+   public List<WeightVO> weightListAndroid(int pet_num);
 
    // 선택한 펫 활동 정보 읽어오기
    public List<ActivityVO> actList(int pet_num);
@@ -52,8 +59,21 @@ public interface PetService {
 
    // 품종 정보 가 져오기
    public KindVO kindInfo(int kind_num);
+   
+   // 안드로이드 오늘 몸무게
+   public WeightVO recentlyWeightAndroid(int pet_num);
+   
+   // 안드로이드 최근 몸무게
+   public WeightVO todayWeightAndroid(int pet_num);
+   
+   // 안드로이드 오늘 배식
+   public EatVO todayEatAndroid(int pet_num);
+   
+   // 안드로이드 오늘 활동량
+   public ActivityVO todayActAndroid(int pet_num);
 
-
+   // 안드로이드 적절 배식량
+   public List<FoodWeightVO> standardEat(int food_num);
 
    public void weightUpdate(int rpipetnum, double pet_weight);
    
