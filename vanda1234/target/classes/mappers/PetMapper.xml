@@ -151,7 +151,7 @@ order by b.weight_date desc), avg_pet as
 	<select id="actList" resultType="ActivityVO">
 		select * from activity where
 		pet_num = #{pet_num} order by
-		act_name desc
+		act_date desc
 	</select>
 
 	<select id="changePetList" resultType="PetVO">
@@ -244,13 +244,8 @@ order by b.weight_date desc), avg_pet as
 	</select>
 
 	<select id="todayActAndroid" resultType="ActivityVO">
-		select
-		pet_num,act_num,act_path,act_name,total_distance,timer,act_date
-		from activity
-		where pet_num = #{pet_num}
-		and to_char(act_date, 'YY/MM/DD') = to_char(sysdate, 'YY/MM/DD')
-		and rownum = 1
-		order by act_date desc
+		select * from (select * from activity where pet_num = #{pet_num} and to_char(act_date, 'YY/MM/DD') = to_char(sysdate, 'YY/MM/DD') order by act_date desc)
+		where rownum =1
 	</select>
 
 	<select id="standardEat" resultType="FoodWeightVO">

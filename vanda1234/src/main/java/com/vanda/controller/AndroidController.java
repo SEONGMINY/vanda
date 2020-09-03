@@ -168,7 +168,7 @@ public class AndroidController {
 		JSONArray weightListObj = new JSONArray();
 		JSONArray eatListObj = new JSONArray();
 		JSONArray actListObj = new JSONArray();
-
+		
 		System.out.println("id:" + user_id);
 		System.out.println("token:" + token);
 		System.out.println("----------------------------");

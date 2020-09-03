@@ -77,7 +77,8 @@ public class MapController {
 		}
 
 		int pet_num = voList.get(0).getPetNum();
-		double total_distance = voList.get(voList.size()-1).getTotal();
+		double total_distance = 0;
+		total_distance = voList.get(voList.size()-1).getTotal();
 		String timer = voList.get(voList.size()-1).getTimer();
 		walks.setWalks(voList);
 
