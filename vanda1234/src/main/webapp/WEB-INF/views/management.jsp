@@ -12,7 +12,15 @@
 <meta name="keywords" content="global, template, html, sass, jquery">
 <meta name="author" content="Bucky Maler">
 <link rel="stylesheet" href="/resources/assets/css/main.css">
+
+<!-- slick slider  -->
+<link rel="stylesheet" href="/resources/slick/slick.css">
+<link rel="stylesheet" href="/resources/slick/slick-theme.css">
+
 <style>
+.maplist div {
+	color: black;
+}
 #select_box {
    width: 200px;
    height: 60px;
@@ -51,6 +59,9 @@
 </style>
 </head>
 <script>
+   var arrData = [];
+   var option = {infinite: true,slidesToShow:3,slidesToScroll: 3};
+   
    function changePetList() {
 
       $.ajax({
@@ -87,35 +98,72 @@
 
    }
 
-   function changePetListWalk() {
+   function walksList() {
+	      $.ajax({
+	         url : "/pet/walksList",
+	         type : "post",
+	         dataType : "json",
+	         data : {
+	            "pet_num" : $("#select_box option:selected").val()
+	         },
+	         success : function(data) {
+	            var str = "";
+	            $.each(data, function( index, value ) {
+	            	str += "<div id='map" + index + "' index style='width:500px;height:400px;'>"+index+"</div>";
+	            	arrData[index] = data[index];
+	                console.log(index + " : " + data[index].walks);
+	                console.log(arrData[index].walks);                
+	            });
+	            alert(str);
+	            $(".slider-for").html(str);
 
-      $.ajax({
-         url : "/pet/selectedPetWalk",
-         type : "post",
-         dataType : "json",
-         data : {
-            "pet_num" : $("#select_box option:selected").val()
-         },
-         success : function(data) {
-            var str = "";
-            
-            for(var i = 0;i<data.length;i++){      
-               str += "<a href='#0'><h3 data-actNum='" + data[i].act_num + "'>"+data[i].timer+"</h3></a>";
 
-            } 
-      
-            $(".about--options").html(str);
-         },
-         error : function(request, status, error) {
-            alert("code = " + request.status + " message = "
-                  + request.responseText + " error = " + error);
-            // 실패 시 처리
-         }
+	            for(var i = 0; i<arrData.length;i++){
+	                var path = [];
+	            	var mapOptin = {
+	       	        		center : new kakao.maps.LatLng(arrData[i].walks[0].lat, arrData[i].walks[0].lon), // 지도의 중심좌표
+	       	        		level:3
+	                 	}
+	     	        var container = document.getElementById('map'+i);
 
-      })
+	     	        // 폴리 라인
+	     	        for(var j = 0;j<arrData[i].walks.length;j++){
+	             	    path[j] = new kakao.maps.LatLng(arrData[i].walks[j].lat, arrData[i].walks[j].lon);
+	     	        	
+	         	    }
 
+	     	       var map = new kakao.maps.Map(container, mapOptin);
+				   var polyline = new kakao.maps.Polyline({
+					      map: map,
+					      path: path,
+					      strokeWeight: 2, // 두께
+					      strokeColor: '#FF00FF',//색
+					      strokeOpacity: 0.8 // 투명도
+				   });
+	            }
+	           
+	         },
+	         error : function(request, status, error) {
+	            alert("code = " + request.status + " message = "
+	                  + request.responseText + " error = " + error);
+	            // 실패 시 처리
+	         }, complete : function(){
+	    		$('.slider-for').slick({
+	    			infinite: true,
+	  			  	slidesToShow: 3,
+	  			  	slidesToScroll: 3 
+		    	});
+		     }
+
+	        	 
+
+	      })
+
+	
    }
+
 </script>
+
 <style>
 </style>
 <body>
@@ -202,8 +250,7 @@
 
                         <br>
                         <!-- 강아지 이름 슬라이드  -->
-                        <select id="select_box" onchange="changePetList(),changePetListWalk()">
-      
+                        <select id="select_box" onchange="changePetList(),walksList()"> 
                            <c:forEach var="pet" items="${pet}" varStatus="status">
                               <option id="pet_name" value="${pet.pet_num}">${pet.pet_name}</option>
                               <br>
@@ -299,37 +346,24 @@
                      </div>
                   </li>
                   
-               <!-- 산책 리스트  -->
+<!--==========================================================================산책 리스트 시작========================================================================== -->
                   <li class="l-section section">
                      <div class="about">
-                        <div class="about--banner">
-                           <h2>
-                              We<br>believe in<br>passionate<br>people
-                           </h2>
-                           <a href="#0">Career <span>
-                              <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                          viewBox="0 0 150 118" style="enable-background: new 0 0 150 118;" xml:space="preserve">
-                                      <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
-                                           <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z" />
-                                      </g>
-                                   </svg>
-                           </span>
-                           </a> <img src="/resources/assets/img/about-visual.png" alt="About Us">
-                        </div>
-                        <div class="about--options">
-                           <%-- <c:forEach items="${actList}" var="actList">
-                              <a href="#0"><h3><c:out value="${actList.total_distance}" /></h3></a>
-                           </c:forEach> --%>
-                           <!-- <a href="#0">
-                              <h3>Winners</h3>
-                           </a> <a href="#0">
-                              <h3>Philosophy</h3>
-                           </a> <a href="#0">
-                              <h3>History</h3>
-                           </a> -->   
-                        </div>
+                        <div class="maplist">
+                           <div class="slider slider-for">
+                           <div>1</div>
+                           <div>1</div>
+                           <div>1</div>
+                           <div>1</div>
+                           <div>1</div>
+                           <div>1</div>
+                           <div>1</div>
+                           <div>1</div>
+                           <div>1</div>
+						   </div>
                      </div>
                   </li>
+<!--==========================================================================산책 리스트 끝========================================================================== -->
                   <li class="l-section section">
                      <div class="contact">
                         <div class="contact--lockup">
@@ -455,6 +489,23 @@
                   .write('<script src="/resources/assets/js/vendor/jquery-2.2.4.min.js"><\/script>')
    </script>
    <script src="/resources/assets/js/functions-min.js"></script>
+   
+   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+   <script type="text/javascript" src="/resources/slick/slick.min.js"></script>
+   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8cfe1238b811474461cb505f145a49a0"></script>
+   
+   	<script>
+	$(document).ready(function(){
+		/* $.noConflict();
+		 $('.slider-for').slick({
+			 infinite: true,
+			  slidesToShow: 3,
+			  slidesToScroll: 3 
+		 }); */
+	     
+	});
+	</script>
 
 </body>
 </html>

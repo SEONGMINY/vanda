@@ -97,8 +97,8 @@ public class PetServiceImpl implements PetService {
 	}
 
 	@Override
-	public void weightUpdate(int rpipetnum, double pet_weight) {
-		petMapper.weightUpdate(rpipetnum, pet_weight);
+	public void weightUpdate(int pet_num, double pet_weight) {
+		petMapper.weightUpdate(pet_num, pet_weight);
 
 	}
 

@@ -5,8 +5,8 @@
 <!DOCTYPE html>
 <html class="no-js" lang="ko">
 <head>
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- <script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <!--- basic page needs
    ================================================== -->
 <meta charset="utf-8">
@@ -1370,7 +1370,7 @@
 
    <!-- Java Script
    ================================================== -->
-   <script src="/resources/js/jquery-2.1.3.min.js"></script>
+   <script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.min.js"></script>
    <script src="/resources/js/plugins.js"></script>
    <script src="/resources/js/main.js"></script>
 

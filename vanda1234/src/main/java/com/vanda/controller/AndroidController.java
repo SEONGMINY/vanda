@@ -48,7 +48,8 @@ public class AndroidController {
 
 		UserVO userInfo = userService.login(user_id, user_pass);
 
-		if (userInfo != null) { // 로그인 성공 userService.tokenUpdate(user_id, token);
+		if (userInfo != null) { // 로그인 성공 
+			userService.tokenUpdate(user_id, token);
 			List<PetVO> petList = petService.getPetInfo(user_id);
 			System.out.println(userInfo.getUser_id());
 			System.out.println(userInfo.getUser_pass());
@@ -175,7 +176,9 @@ public class AndroidController {
 
 		UserVO userInfo = userService.autoLogin(user_id);
 
-		if (userInfo != null) { // 로그인 성공 userService.tokenUpdate(user_id, token);
+		if (userInfo != null) { // 로그인 성공 
+			
+			userService.tokenUpdate(user_id, token);
 
 			List<PetVO> petList = petService.getPetInfo(user_id);
 			System.out.println(userInfo.getUser_id());
@@ -249,7 +252,7 @@ public class AndroidController {
 				System.out.println("펫 표준 급여량:" + gram);
 				System.out.println("펫 산책:" + distance);
 				System.out.println("체중 기록:"+weightList);
-				System.out.println("배식 기록:"+eatList.get(0).getEat_time());
+				System.out.println("배식 기록:"+eatList);
 				System.out.println("산책 기록:"+actList);
 				System.out.println("----------------------------");
 				petObj.put("pet_num", pet.getPet_num());
@@ -289,9 +292,9 @@ public class AndroidController {
 	public void weightUpdate(String pet_num, String weight) {
 		System.out.println("petNum:" + pet_num);
 		System.out.println("weight:" + weight + "kg");
-		int rpet_num = Integer.parseInt(pet_num);
-		double rweight = Double.parseDouble(weight);
-		petService.weightUpdate(rpet_num, rweight);
+		int petNum = Integer.parseInt(pet_num);
+		double weights = Double.parseDouble(weight);
+		petService.weightUpdate(petNum, weights);
 
 	}
 

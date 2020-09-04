@@ -74,7 +74,7 @@ public interface PetMapper {
 
    public void updatePetImg(int last_petnum);
 
-   public void weightUpdate(@Param("rpipetnum")int rpipetnum,@Param("pet_weight")double pet_weight);
+   public void weightUpdate(@Param("pet_num")int pet_num,@Param("pet_weight")double pet_weight);
    
    public void eatUpdate(@Param("rpipetnum")int rpipetnum,@Param("eat_gram")float eat_gram);
 

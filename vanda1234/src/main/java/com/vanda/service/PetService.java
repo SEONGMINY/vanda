@@ -75,7 +75,7 @@ public interface PetService {
    // 안드로이드 적절 배식량
    public List<FoodWeightVO> standardEat(int food_num);
 
-   public void weightUpdate(int rpipetnum, double pet_weight);
+   public void weightUpdate(int pet_num, double pet_weight);
    
    public void eatUpdate(int rpipetnum, float eat_gram);
 

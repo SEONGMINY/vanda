@@ -64,7 +64,7 @@
 	</update>
 	
 	<select id="tokenGet" resultType="UserVO">
-		select * from member where user_id = (select user_id from memdevice where device_id = #{device_id})
+		select * from member where user_id = (select user_id from memdevice where device_id = #{device_id} and rownum=1)
 	</select>
 
 

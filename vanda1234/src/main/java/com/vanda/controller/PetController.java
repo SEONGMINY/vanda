@@ -37,13 +37,13 @@ public class PetController {
 
 	@Autowired
 	private FoodService foodservice;
-	
+
 	@Autowired
 	private PetService petService;
 
 	@Autowired
 	private PetMapper petMapper;
-	
+
 	@Autowired
 	private KindService kindService;
 
@@ -86,23 +86,24 @@ public class PetController {
 
 			return "redirect:/user/login";
 		} else {
-			//견종 세션 및 견종에 해당하는 사료종류세션
-			session.setAttribute("kindList", kindService.kindList()); 
+			// 견종 세션 및 견종에 해당하는 사료종류세션
+			session.setAttribute("kindList", kindService.kindList());
 			session.setAttribute("defaultFood", kindService.foodList(1));
 			return "pet/petRegister";
 		}
 
 	}
-	//사료리스트 list로 받기
+
+	// 사료리스트 list로 받기
 	@ResponseBody
-	@RequestMapping(value ="/petFood", method = RequestMethod.POST)
+	@RequestMapping(value = "/petFood", method = RequestMethod.POST)
 	public String petFoodList(int kind_num) {
-		
+
 		ArrayList<FoodVO> list = kindService.foodList(kind_num);
 		System.out.println(list.size() + "개");
 		FoodVOList voLists = new FoodVOList();
 		voLists.lists = list;
-		
+
 		return voLists.toJson();
 	}
 
@@ -136,10 +137,9 @@ public class PetController {
 		petService.weightRegister(pet_num);
 		petVO.setPet_num(pet_num);
 		petService.petImgInsert(petVO);
-        List<PetVO> petUser = petService.getPetInfo(user_id);
-        
-        
-        session.setAttribute("pet",petUser);
+		List<PetVO> petUser = petService.getPetInfo(user_id);
+
+		session.setAttribute("pet", petUser);
 		return "redirect:/";
 
 	}
@@ -155,21 +155,21 @@ public class PetController {
 		UserVO userVO = (UserVO) session.getAttribute("check");
 		String user_id = userVO.getUser_id();
 		int food_num = Integer.parseInt(foodservice.getfood(pet_num));
-		PetInfoVO petinfoVO = petService.petInfo(user_id, pet_num,food_num);
-		
-		if(petinfoVO == null) {
+		PetInfoVO petinfoVO = petService.petInfo(user_id, pet_num, food_num);
+
+		if (petinfoVO == null) {
 			petinfoVO = petService.recentPetInfo(user_id, pet_num, food_num);
-			
+
 		}
 
 		// 산책 리스트
 		List<ActivityVO> actList = petService.actList(pet_num);
 		List<WalksVO> walksList = new ArrayList<>();
-		
+
 		session.setAttribute("actList", actList);
-		
+
 		// 산책 리스트 xml 파일을 변환
-		for(int i=0;i<actList.size();i++) {
+		for (int i = 0; i < actList.size(); i++) {
 			String path = actList.get(i).getAct_path();
 			String fileName = actList.get(i).getAct_name();
 
@@ -182,74 +182,59 @@ public class PetController {
 				WalksVO walks = (WalksVO) jaxbUnmarshaller.unmarshal(new File(path + "/" + fileName + ".xml"));
 
 				System.out.println(walks.getWalks());
-				
-				walksList.add(walks);
-				System.out.println("walkList:"+walksList.get(i).getWalks());
 
+				walksList.add(walks);
+				System.out.println("walkList:" + walksList.get(i).getWalks());
 
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-			
+
 		}
-		
+
 		session.setAttribute("walksList", walksList);
 
 		return petinfoVO;
 
 	}
-	
+
 	@ResponseBody
-	@RequestMapping(value = "/selectedPetWalk", method = RequestMethod.POST)
-	public List<ActivityVO> changePetWalkList(int pet_num, HttpSession session, Model model) {
+	@RequestMapping(value = "/walksList", method = RequestMethod.POST)
+	public List<WalksVO> walkList(int pet_num, HttpSession session, Model model) {
 		System.out.println(pet_num);
 
-		UserVO userVO = (UserVO) session.getAttribute("check");
-		String user_id = userVO.getUser_id();
-		int food_num = Integer.parseInt(foodservice.getfood(pet_num));
-		
-		System.out.println(food_num + "번");
-		PetInfoVO petinfoVO = petService.petInfo(user_id,pet_num,food_num);
-		
-		if(petinfoVO == null) {
-			petinfoVO = petService.recentPetInfo(user_id, pet_num, food_num);
-			
-		}
 		// 산책 리스트
 		List<ActivityVO> actList = petService.actList(pet_num);
 		List<WalksVO> walksList = new ArrayList<>();
-		
-		session.setAttribute("actList", actList);
-		
+
 		// 산책 리스트 xml 파일을 변환
-		/*
-		 * for(int i=0;i<actList.size();i++) { String path =
-		 * actList.get(i).getAct_path(); String fileName = actList.get(i).getAct_name();
-		 * 
-		 * try { System.out.println(path + "/" + fileName); JAXBContext jaxbContext =
-		 * JAXBContext.newInstance(WalksVO.class); Unmarshaller jaxbUnmarshaller =
-		 * jaxbContext.createUnmarshaller();
-		 * 
-		 * // We had written this file in marshalling example WalksVO walks = (WalksVO)
-		 * jaxbUnmarshaller.unmarshal(new File(path + "/" + fileName + ".xml"));
-		 * 
-		 * System.out.println(walks.getWalks());
-		 * 
-		 * walksList.add(walks);
-		 * System.out.println("walkList:"+walksList.get(i).getWalks());
-		 * 
-		 * 
-		 * } catch (Exception e) { // TODO: handle exception }
-		 * 
-		 * }
-		 */
-		
+		// LAT,LON XML파일 데이터로 변환
 
-		return actList;
+		for (int i = 0; i < actList.size(); i++) {
+			String path = actList.get(i).getAct_path();
+			String fileName = actList.get(i).getAct_name();
 
+			try {
+				System.out.println(path + "/" + fileName);
+				JAXBContext jaxbContext = JAXBContext.newInstance(WalksVO.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+				// We had written this file in marshalling example
+				WalksVO walks = (WalksVO) jaxbUnmarshaller.unmarshal(new File(path + "/" + fileName + ".xml"));
+
+				walksList.add(walks);
+				System.out.println(walksList.get(i).getWalks());
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
+		}
+
+		return walksList;
 	}
 
-	//배식
+	// 배식
 	@PostMapping("/DIS")
 	@ResponseBody
 	public void DIS(HttpServletRequest httpServletRequest, HttpSession session) throws IOException {
@@ -258,24 +243,23 @@ public class PetController {
 		String test = httpServletRequest.getParameter("result");
 
 		// 받아온 센서값 int형 변환.
-		 //int test = Integer.parseInt(httpServletRequest.getParameter("result"));
+		// int test = Integer.parseInt(httpServletRequest.getParameter("result"));
 
-		//JSON 변환
+		// JSON 변환
 		JSONObject test1 = new JSONObject(test);
 		String device_id = (String) test1.get("device_id");
 		float data = test1.getFloat("data");
-	
+
 		int device_type = test1.getInt("device_type");
 
 		System.out.println("----------------------------------------------");
 		System.out.println("----------디바이스 아이디 값 : " + device_id + "\r데이터 값 : " + data + "\r장치 타입 : " + device_type);
 		System.out.println("\r현재 배열 : " + list.toString());
 		System.out.println("----------------------------------------------");
-	
-			petService.eatUpdate(117,data);
-			list.clear();
-		
 
-}
+		petService.eatUpdate(117, data);
+		list.clear();
+
+	}
 
 }
