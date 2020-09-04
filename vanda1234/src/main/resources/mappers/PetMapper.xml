@@ -271,6 +271,10 @@ order by b.weight_date desc), avg_pet as
 		WHERE pet_num = #{pet_num} order by weight_date desc
 	</select>
 
+	<select id="selectHospital" resultType="HospitalVO">
+		select hosp_name,hosp_add,hosp_tel from hospital where
+		hosp_name=#{hosp_name}
+	</select>
 
 
 </mapper>

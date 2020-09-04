@@ -218,7 +218,7 @@
             <li class="current"><a class="smoothscroll" href="#home"
                title="">Home</a></li>
             <li><a href="http://localhost:8080/user/login">비만매니지먼트</a></li>
-            <li><a class="smoothscroll" href="#services" title="">상담</a></li>
+            <li><a href="http://localhost:8080/consulting/consulting" title="">상담</a></li>
             <li><a href="http://localhost:8080/post/postlist">커뮤니티</a></li>
             <li><a href="http://localhost:8080/product/shopmain"> 쇼핑몰</a></li>
             <c:choose>

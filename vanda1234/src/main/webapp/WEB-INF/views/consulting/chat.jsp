@@ -31,10 +31,13 @@
 	  </div>
 	  <!-- 상담 내역 -->
 	  <div class="inbox_chat scroll">
-	  
+	
+	 
+	 
+	
 		  <c:choose>
 		  
-		  	<c:when test="${check.user_rule eq '회원' }">
+		  	<c:when test="${check.user_rule eq 'member' }">
 		  		<c:forEach items="${roomList}" var="room">
 			  		<div class="chat_list" data-num="${room.room_num }">
 				  		<div class="chat_people">
@@ -49,7 +52,7 @@
 				</c:forEach>
 		  	</c:when>
 		  	
-		  	<c:when test="${check.user_rule eq '수의사' }">
+		  	<c:when test="${check.user_rule eq 'doctor' }">
 		  		<c:forEach items="${roomDocList}" var="room">
 			  		<div class="chat_list" data-num="${room.room_num }">
 				  		<div class="chat_people">

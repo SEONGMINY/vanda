@@ -88,8 +88,8 @@
     .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
     .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
     .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
-    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-    .info .close:hover {cursor: pointer;}
+  .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+    .info .close:hover {cursor: pointer;} 
     .info .body {position: relative;overflow: hidden;}
     .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
     .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
@@ -165,16 +165,17 @@
 		<!-- end #menu-nav-wrap -->
 
 	</header>
+
 	<!-- end header -->
 
 
-<div style="width:50%;background-color: orange;float:left;margin-top:150px;">
+<div style="width:100%;background-color: orange;float:left;margin-top:150px;">
 
 <div class="map_wrap">
 
 <div id="map" style="width:100%;height:500px;position:relative;overflow:hidden;"></div>
 
-   
+  
     
     <div id="menu_wrap" class="bg_white">
 
@@ -192,22 +193,10 @@
     </div>
 </div>
 </div>
-<div style="width:50%;background-color: orange;float:left;margin-top:150px;">
 
-
-<h3 style="text-align : center">선택한 병원 정보</h3>
-
-
-<h4>병원 이름 :</h4> <p id="hosp_name"></p>
-<h4>병원 주소:</h4><p id="hosp_add"></p>
-<h4>병원 연락처:</h4><p id="hosp_tel"></p>
-<button id="movDocSelect" onclick="movDocSelect">수의사 선택</button>
-
-
-
-</div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7c08f314710cd5f7bdb6ccee17bbd24f&libraries=services"></script>
 <script>
+
 function movDocSelect() {}
 var markers=[];
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
@@ -266,9 +255,14 @@ function placesSearchCB(data, status, pagination) {
     }
 }
 
+
+
+
 // 검색 결과 목록과 마커를 표출하는 함수입니다
 function displayPlaces(places) {
 
+
+	
     var listEl = document.getElementById('placesList'), 
     menuEl = document.getElementById('menu_wrap'),
     fragment = document.createDocumentFragment(), 
@@ -280,9 +274,16 @@ function displayPlaces(places) {
 
     // 지도에 표시되고 있는 마커를 제거합니다
     removeMarker();
-    
-    for ( var i=0; i<places.length; i++ ) {
+	
+    var hospChk = [1,2,3,4];
 
+  //커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+
+   
+    for ( var i=0; i<hospChk.length; i++ ) {
+
+
+		
         // 마커를 생성하고 지도에 표시합니다
         var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
             marker = addMarker(placePosition, i), 
@@ -292,44 +293,28 @@ function displayPlaces(places) {
         // LatLngBounds 객체에 좌표를 추가합니다
         bounds.extend(placePosition);
 
-        var content = '<div class="wrap">' + 
-        '    <div class="info">' + 
-        '        <div class="title">' + 
-        '            카카오 스페이스닷원' + 
-        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-        '        </div>' + 
-        '        <div class="body">' + 
-        '            <div class="img">' +
-        '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
-        '           </div>' + 
-        '            <div class="desc">' + 
-        '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
-        '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' + 
-        '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
-        '            </div>' + 
-        '        </div>' + 
-        '    </div>' +    
-        '</div>';
+ 
 
-//마커 위에 커스텀오버레이를 표시합니다
-//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-var overlay = new kakao.maps.CustomOverlay({
-content: content,
-map: map,
-position: marker.getPosition()       
-});
-//커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-function closeOverlay() {
-    overlay.setMap(null);     
-}
+        
+
+
+		
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
-        (function(marker, title) {
+        (function(marker,title) {
+        	
             kakao.maps.event.addListener(marker, 'mouseover', function() {
-            	 overlay.setMap(map);
+
+            	
+            	
+            		            	 
             });
+            
             kakao.maps.event.addListener(marker, 'click', function() {
+          	  function closeOverlay() {
+	        		overlay.setMap(null); 
+	        	}
         		$.ajax({
 					url : "/consulting/selectHospital",
 					type : "post",
@@ -338,18 +323,48 @@ function closeOverlay() {
 						"hosp_name" : title
 					},
 					success : function(data) {
-						$("#hosp_name").text(data.hosp_name);
+				 
+										
+				        var content = '<div class="wrap">' + 
+				        '    <div class="info">' + 
+				        '        <div class="title">' + 
+				        title + 
+				        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+				        '        </div>' + 
+				        '        <div class="body">' + 
+				        '            <div class="img">' +
+				        '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+				        '           </div>' + 
+				        '            <div class="desc">' + 
+				        '                <div class="ellipsis">' +data.hosp_add + '</div>' + 
+				        '                <div class="jibun ellipsis">'+data.hosp_tel +'</div>' + 
+				        '                <div><a href="http://localhost:8080/consulting/room" target="_blank" class="link">예약하기</a></div>' + 
+				        '            </div>' + 
+				        '        </div>' + 
+				        '    </div>' +    
+				        '</div>';
 
-						$("#hosp_add").text(data.hosp_add);
+				//마커 위에 커스텀오버레이를 표시합니다
+				//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
 
-						$("#hosp_tel").text(data.hosp_tel);
-				/* 	var result = confirm("병원 이름 : " + data.hosp_name+"\n병원 주소 : " + data.hosp_add + "\n병원 번호 : "+ data.hosp_tel+"이 맞습니까?");
-					if(result){
-					    alert("수의사 선택화면으로 이동합니다.");
-					    location.href="http://localhost:8080/consulting/room";
-					}else{
-					    alert("다시 선택해주세요");
-					}  */
+
+
+				var overlay = new kakao.maps.CustomOverlay({
+				content: content,
+				position: marker.getPosition(),
+
+				});
+
+			
+
+				
+				  overlay.setMap(map);  
+		
+	
+			
+					
+						
+						
 					},
 					error : function(request, status, error) {
 						alert("해당병원이 없습니다. 다시선택해주세요 !")
@@ -362,7 +377,7 @@ function closeOverlay() {
             });
 
             kakao.maps.event.addListener(marker, 'mouseout', function() {
-                infowindow.close();
+            
             });
 
             itemEl.onmouseover =  function () {
@@ -385,13 +400,15 @@ function closeOverlay() {
     map.setBounds(bounds);
 }
 
+
+
 // 검색결과 항목을 Element로 반환하는 함수입니다
 function getListItem(index, places) {
 
     var el = document.createElement('li'),
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info">' +
-                '   <h5>' + places.place_name + '</h5>';
+                '<h5>' + places.place_name + '</h5>';
 
     if (places.road_address_name) {
         itemStr += '    <span>' + places.road_address_name + '</span>' +

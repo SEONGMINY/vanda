@@ -90,4 +90,5 @@ public interface PetService {
    public PetInfoVO nonSelectedPet(Integer oldPetnum);
 
    public HospitalVO selectHospital(String hosp_name);
+
 }

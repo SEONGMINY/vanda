@@ -182,18 +182,16 @@
                            <img src="/resources/assets/img/dog.png" alt="Welcome">
                         </div>
                         <div class="intro--options">
-                           <a href="#0">
-                              <h3>Shopping</h3>
-                              <p>VANDA만의 고유한 IOT장비와 각각의 반려견의 사료를 추천 받고 싶다면</p>
-                           </a> <a href="#0">
-                              <h3>Fantasy interactive</h3>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing
-                                 elit sed do.</p>
-                           </a> <a href="#0">
-                              <h3>Paul &amp; shark</h3>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing
-                                 elit sed do.</p>
-                           </a>
+                          		<a href="http://localhost:8080/product/shopmain">
+										<h3>Shopping</h3>
+										<p>VANDA만의 고유한 IOT장비와 각각의 반려견의 사료를 추천 받고 싶다면</p>
+									</a> <a href="http://localhost:8080/post/postlist">
+										<h3>Community</h3>
+										<p>각종 반려견의 정보를 알고싶다면</p>
+									</a> <a href="http://localhost:8080/consulting/consulting">
+										<h3>Consulting</h3>
+										<p>올바르게 다이어트 하고있는지 상담하고 싶다면</p>
+									</a>
                         </div>
                      </div>
                   </li>

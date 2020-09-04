@@ -14,7 +14,7 @@
 	<c:forEach items="${roomList}" var="room">
 	<tr>
 		<td>${room.room_num}</td>
-		<td><a class="move" href="/chat/chatView?room_num=${room.room_num }">${room.user_id},${room.doc_id}</a></td>
+		<td><a class="move" href="/consulting/consulting?room_num=${room.room_num }">${room.user_id}</a></td>
 	</tr>
 	</c:forEach>
 </table>

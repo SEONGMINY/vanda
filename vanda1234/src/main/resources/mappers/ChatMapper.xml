@@ -5,15 +5,15 @@
 
 
 	<insert id="insert">
-	insert into room(user_id,room_num) values('TEST',1)
+	insert into room(user_id,doc_id) values(#{user_id},#{doc_id})
 	</insert>
 	
 	<select id="roomList" resultType="com.vanda.domain.RoomVO">
-	select * from room where user_id = '${user_id}'
+	select * from room where user_id = #{user_id}
 	</select>
 	
 	<select id="roomDocList" resultType="com.vanda.domain.RoomVO">
-	select * from room where doc_id = '${user_id}'
+	select * from room where user_id = #{user_id}
 	</select>
 	
 	<select id="getRoom" resultType="com.vanda.domain.RoomVO">
