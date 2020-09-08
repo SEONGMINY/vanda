@@ -277,5 +277,22 @@ public class PetController {
 		
 
 }
+	@PostMapping(value="/weightUpdate")
+	   @ResponseBody
+	   public void weightUpdate(HttpServletRequest httpServletRequest) {
+		
+	
+		String test = httpServletRequest.getParameter("result");
+		
+		JSONObject test1 = new JSONObject(test);
+
+
+		float data = test1.getFloat("data");
+	     
+	      petService.weightUpdate(101, data);
+	  	System.out.println(data);
+	   
+	   }
+
 
 }

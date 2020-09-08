@@ -76,7 +76,7 @@ public interface PetMapper {
 
    public void weightUpdate(@Param("rpipetnum")int rpipetnum,@Param("pet_weight")double pet_weight);
    
-   public void eatUpdate(@Param("rpipetnum")int rpipetnum,@Param("eat_gram")float eat_gram);
+   public void eatUpdate(@Param("dispetnum")int dispetnum,@Param("eat_gram")float eat_gram);
 
    public PetInfoVO nonSelectedPet(Integer oldPetnum);
 

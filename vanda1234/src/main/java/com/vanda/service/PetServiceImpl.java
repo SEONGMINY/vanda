@@ -102,11 +102,11 @@ public class PetServiceImpl implements PetService {
 
 	}
 
-	@Override
-	public void eatUpdate(int rpipetnum, float eat_gram) {
-		petMapper.eatUpdate(rpipetnum, eat_gram);
-
-	}
+	 @Override
+	   public void eatUpdate(int dispetnum,float eat_gram) {
+	      petMapper.eatUpdate(dispetnum,eat_gram);
+	      
+	   }
 
 	@Override
 	public PetInfoVO petInfo(String user_id, int pet_num, int food_num) {

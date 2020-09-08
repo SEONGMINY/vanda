@@ -216,9 +216,9 @@ order by b.weight_date desc), avg_pet as
 		INSERT INTO WEIGHT(PET_NUM,PET_WEIGHT)
 		VALUES(#{rpipetnum},#{pet_weight})
 	</insert>
-	<insert id="eatUpdate">
-		INSERT INTO EAR(PET_NUM,EAT_GRAM)
-		VALUES(#{rpipetnum},#{EAT_GRAM})
+<insert id="eatUpdate">
+		INSERT INTO EAT(PET_NUM,EAT_GRAM)
+		VALUES(#{dispetnum},#{eat_gram})
 	</insert>
 
 

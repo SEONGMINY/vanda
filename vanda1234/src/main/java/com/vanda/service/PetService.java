@@ -77,7 +77,8 @@ public interface PetService {
 
    public void weightUpdate(int rpipetnum, double pet_weight);
    
-   public void eatUpdate(int rpipetnum, float eat_gram);
+ //배식 데이터 업데이트
+   public void eatUpdate(int dispetnum, float eat_gram);
 
    public PetInfoVO petInfo(String user_id, int pet_num, int food_num);
    
