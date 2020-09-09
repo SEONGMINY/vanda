@@ -50,6 +50,16 @@
 }
 </style>
 </head>
+
+<script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
 <script>
    function changePetList() {
 
@@ -116,6 +126,159 @@
 
    }
 </script>
+
+<script>
+	$(function() {
+		var chartLabels = [];
+		var chartData = [];
+
+		var chartLabels1 = [];
+		var chartData1 = [];
+		
+		Chart.defaults.global.legend.display = false;
+		$('#select_box').change(
+				function() {
+
+					
+					$.ajax({
+						url : "/getPetnum",
+						type : "post",
+						dataType : "json",
+						data : {
+							"pet_num" : $("#select_box option:selected").val()
+						},
+						success : function(data) {
+
+							
+							chartLabels = [];
+							chartData = [];
+
+							$.getJSON("http://localhost:8080/chartList",
+									function(data) {
+										$.each(data, function(inx, obj) {
+											chartLabels.push(obj.weight_date);
+											chartData.push(obj.pet_weight);
+										});
+										createChart();
+										console.log("create Chart")
+									});
+
+							var lineChartData = {
+								type : 'line',
+								labels : chartLabels,
+								datasets : [ {
+									label : "Weight",
+									pointBorderColor : "rgba(0,0,0,1)",
+									borderColor : "rgba(0, 0, 0, 0.5)",
+									backgroundColor : [ 'rgba(255, 255, 255, 0)' ],
+									borderWidth : 3,
+									data : chartData,
+									options : {
+
+									}
+								} ]
+							}
+
+							function createChart() {
+								var ctx = document.getElementById("canvas").getContext(
+										"2d");
+								LineChartDemo = Chart.Line(ctx, {
+									data : lineChartData,
+									options : {
+										scales : {
+											yAxes : [ {
+												ticks : {
+													beginAtZero : true
+												}
+											} ]
+										},
+										legend : {
+											display : false
+										},
+										tooltips : {
+											callbacks : {
+												label : function(tooltipItem) {
+													return tooltipItem.yLabel;
+												}
+											}
+										}
+									}
+								})
+							}
+							
+				chartLabels1 = [];
+				chartData1 = [];
+
+				$.getJSON("http://localhost:8080/activityList",
+						function(data) {
+							$.each(data, function(inx, obj) {
+								chartLabels1.push(obj.act_date);
+								chartData1.push(obj.total_distance);
+							});
+							createChart1();
+							console.log("create Chart")
+						});
+
+				var lineChartData1 = {
+					type : 'line',
+					labels : chartLabels1,
+					datasets : [ {
+						label : "distance",
+						pointBorderColor : "rgba(0,0,0,1)",
+						borderColor : "rgba(0, 0, 0, 0.5)",
+						backgroundColor : [ 'rgba(255, 255, 255, 0)' ],
+						borderWidth : 3,
+						data : chartData1,
+						options : {
+
+						}
+					} ]
+				}
+
+				function createChart1() {
+					var ctx = document.getElementById("canvas1").getContext(
+							"2d");
+					LineChartDemo = Chart.Line(ctx, {
+						data : lineChartData1,
+						options : {
+							scales : {
+								yAxes : [ {
+									ticks : {
+										beginAtZero : true
+									}
+								} ]
+							},
+							legend : {
+								display : false
+							},
+							tooltips : {
+								callbacks : {
+									label : function(tooltipItem) {
+										return tooltipItem.yLabel;
+										}
+									}
+								}
+							}
+						})
+					}
+				
+
+						},
+						error : function(request, status, error) {
+							alert("code = " + request.status + " message = "
+									+ request.responseText + " error = "
+									+ error);
+							// 실패 시 처리
+						}
+
+					})
+
+					
+		});
+	});
+</script>
+
+
 <style>
 </style>
 <body>
@@ -207,6 +370,24 @@
                               <br>
                            </c:forEach>
                         </select>
+                        
+                        <div id="weight5" class="modal">
+  								<div>
+									<div>
+										<canvas id="canvas" height="200" width="250"></canvas>
+									</div>
+								</div>
+ 									 <a href="#" rel="modal:close">닫기</a>
+								</div>
+								
+								<div id="activity5" class="modal">
+  								<div>
+									<div>
+										<canvas id="canvas1" height="200" width="250"></canvas>
+									</div>
+								</div>
+ 									 <a href="#" rel="modal:close">닫기</a>
+								</div>
 
 
                         <!-- 강아지 상세정보 구현 -->
@@ -216,7 +397,7 @@
                               <li class="slider--item slider--item-left"><a href="#0">
                                     <div class="slider--item-image">
                                        <!-- <img src="/resources/assets/img/work-victory.jpg" alt="Victory"> -->
-                                       <p style="line-height: 30px">체중</p>
+                                       <p style="line-height: 30px"><a href="#weight5" rel="modal:open">체중 </a></p>
                                        <p style="font-size: 40px;" id="weight">${nonSelectedPet.pet_weight}</p>
                                        <p style="font-size: 20px; color: #8C8C8C">/</p>
                                        <p style="font-size: 20px; color: #8C8C8C" id="avg">${nonSelectedPet.avg}KG</p>
@@ -251,7 +432,7 @@
                               
                                     <div class="slider--item-image">
                                        <!-- <img src="/resources/assets/img/work-alex-nowak.jpg" alt="Alex Nowak"> -->
-                                       <p style="line-height: 30px;color:#858585">활동</p>
+                                       <p style="line-height: 30px; color: #858585"><a href="#activity5" rel="modal:open">활동</a></p>
                                        <p style="font-size: 40px;color:#858585" id="walk">${nonSelectedPet.total_distance}Kcal</p>
 
 										   <p style="font-size: 20px; color: #8C8C8C">/</p>
@@ -445,8 +626,7 @@
       </ul>
    </div>
 
-   <script
-      src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
    <script>
       window.jQuery
             || document
