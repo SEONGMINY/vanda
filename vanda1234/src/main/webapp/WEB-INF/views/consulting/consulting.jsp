@@ -255,9 +255,13 @@ function placesSearchCB(data, status, pagination) {
     }
 }
 
+//오버레이 제거를 위한 임시 배열
+var delOverlay = [];
 
-
-
+  function closeOverlay() {
+	  delOverlay[0].setMap(null);
+	  delOverlay.shift();
+	}
 // 검색 결과 목록과 마커를 표출하는 함수입니다
 function displayPlaces(places) {
 
@@ -312,9 +316,7 @@ function displayPlaces(places) {
             });
             
             kakao.maps.event.addListener(marker, 'click', function() {
-          	  function closeOverlay() {
-	        		overlay.setMap(null); 
-	        	}
+
         		$.ajax({
 					url : "/consulting/selectHospital",
 					type : "post",
@@ -360,7 +362,7 @@ function displayPlaces(places) {
 				
 				  overlay.setMap(map);  
 		
-	
+				  delOverlay.unshift(overlay);
 			
 					
 						
