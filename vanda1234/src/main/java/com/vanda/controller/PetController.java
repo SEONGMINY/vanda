@@ -161,38 +161,8 @@ public class PetController {
 			petinfoVO = petService.recentPetInfo(user_id, pet_num, food_num);
 
 		}
-
-		// 산책 리스트
-		List<ActivityVO> actList = petService.actList(pet_num);
-		List<WalksVO> walksList = new ArrayList<>();
-
-		session.setAttribute("actList", actList);
-
-		// 산책 리스트 xml 파일을 변환
-		for (int i = 0; i < actList.size(); i++) {
-			String path = actList.get(i).getAct_path();
-			String fileName = actList.get(i).getAct_name();
-
-			try {
-				System.out.println(path + "/" + fileName);
-				JAXBContext jaxbContext = JAXBContext.newInstance(WalksVO.class);
-				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-
-				// We had written this file in marshalling example
-				WalksVO walks = (WalksVO) jaxbUnmarshaller.unmarshal(new File(path + "/" + fileName + ".xml"));
-
-				System.out.println(walks.getWalks());
-
-				walksList.add(walks);
-				System.out.println("walkList:" + walksList.get(i).getWalks());
-
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-
-		}
-
-		session.setAttribute("walksList", walksList);
+		
+		System.out.println(petinfoVO.getPet_name()+"/"+petinfoVO.getEat_gram());
 
 		return petinfoVO;
 

@@ -60,7 +60,11 @@
 </head>
 <script>
    var arrData = [];
-   var option = {infinite: true,slidesToShow:3,slidesToScroll: 3};
+   var option = {
+		   infinite: true,
+			  slidesToShow: 3,
+			  slidesToScroll: 3 
+		   };
    
    function changePetList() {
 
@@ -79,7 +83,7 @@
             $("#gram").text(data.gram);	//추천 배식량
             $("#walk").text(data.total_distance);	//현재 활동량
             $("#recomand_distance").text(data.recomand_distance); //추천 활동량
-
+            alert("금일 측정된 데이터가 존재하지않습니다.");
            /*  if(data.eat_gram == 0){
             	alert("금일 측정된 데이터가 존재하지않습니다.");
                 return;
@@ -87,8 +91,8 @@
             
          },
          error : function(request, status, error) {
-            /* alert("code = " + request.status + " message = "
-                  + request.responseText + " error = " + error); */
+             alert("code = " + request.status + " message = "
+                  + request.responseText + " error = " + error); 
                   alert("금일 측정된 데이터가 존재하지않습니다.");
                   return;
             // 실패 시 처리
@@ -98,7 +102,19 @@
 
    }
 
+   function mapSlick(){
+	   return {
+			 infinite: true,
+			  slidesToShow: 3,
+			  slidesToScroll: 3 
+	   }
+   }
+
+
+   
+
    function walksList() {
+	   	  $(".slider-for").slick("slickRemove",null,null,true);
 	      $.ajax({
 	         url : "/pet/walksList",
 	         type : "post",
@@ -108,14 +124,18 @@
 	         },
 	         success : function(data) {
 	            var str = "";
+	            var idx = 0;
 	            $.each(data, function( index, value ) {
-	            	str += "<div id='map" + index + "' index style='width:500px;height:400px;'>"+index+"</div>";
+	            	// str += "<div class='map' id='map" + index + "' index style='width:500px;height:400px;'></div>";
+	            	$('.slider-for').slick('slickAdd',"<div class='map' id='map" + index + "' index style='width:500px;height:400px;margin-right:10px'></div>");
 	            	arrData[index] = data[index];
 	                console.log(index + " : " + data[index].walks);
 	                console.log(arrData[index].walks);                
 	            });
-	            alert(str);
-	            $(".slider-for").html(str);
+
+	            //$(".slider-for").slick("slickRemove", idx);
+	            
+	            // $(".slider-for").append(str);
 
 
 	            for(var i = 0; i<arrData.length;i++){
@@ -141,26 +161,32 @@
 					      strokeOpacity: 0.8 // 투명도
 				   });
 	            }
+
+	         
+	            /* $('.slider-for').slick('unslick');
+	            $('.slider-for').slick(mapSlick()); */
+	            
+	 
+
+	            /* var jq = $.noConflict();
+	            jq('.slider-for').slick({
+	    			infinite: true,
+	  			  	slidesToShow: 3,
+	  			  	slidesToScroll: 3 
+		     	}); */
 	           
 	         },
 	         error : function(request, status, error) {
 	            alert("code = " + request.status + " message = "
 	                  + request.responseText + " error = " + error);
 	            // 실패 시 처리
-	         }, complete : function(){
-	    		$('.slider-for').slick({
-	    			infinite: true,
-	  			  	slidesToShow: 3,
-	  			  	slidesToScroll: 3 
-		    	});
-		     }
-
+	         }
 	        	 
-
-	      })
+	      });
 
 	
    }
+  
 
 </script>
 
@@ -350,16 +376,22 @@
                   <li class="l-section section">
                      <div class="about">
                         <div class="maplist">
-                           <div class="slider slider-for">
-                           <div>1</div>
-                           <div>1</div>
-                           <div>1</div>
-                           <div>1</div>
-                           <div>1</div>
-                           <div>1</div>
-                           <div>1</div>
-                           <div>1</div>
-                           <div>1</div>
+                           <div class="slider slider-for" id="sliderlist">
+                           		<!-- <div id="map" class="map"></div> -->
+                           		<div></div>
+                           		<div></div>
+                           		<div></div>
+                           		<div></div>
+                           		<div></div>
+                           		<div></div>
+                           		<div></div>
+                           		<div></div>
+                           		<div></div>
+                           		<div></div>
+                           		<div></div>
+                           		<div></div>
+                           		<div></div>
+                           		<div></div>
 						   </div>
                      </div>
                   </li>
@@ -497,12 +529,12 @@
    
    	<script>
 	$(document).ready(function(){
-		/* $.noConflict();
+		$.noConflict();
 		 $('.slider-for').slick({
 			 infinite: true,
 			  slidesToShow: 3,
 			  slidesToScroll: 3 
-		 }); */
+		 });
 	     
 	});
 	</script>
