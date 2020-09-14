@@ -1,303 +1,226 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>반다 : 반려견 다이어트</title>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-
- 
-</head>
-<body>
-<script type="text/javascript">
-
-function changePetList(){
-
-      $.ajax({
-         url : "http://localhost:8080/pet/test",
-         type : "post",
-         dataType : "json",
-         data : {"pet_num" : $("#petName option:selected").val()},
-         success : function(data){
-             alert("tst");
-             location.reload(); 
-            
-            },
-          error:function(request,status,error){
-              alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); 
-              // 실패 시 처리
-             }
-
-
-
-      })
-       
-        }
-
-
-</script>
-
-<!-- 지도에 폴리라인 띄우기 -->
-<script>		
-			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-			mapOption = {
-				<c:forEach var="walkList" items="${walk}" varStatus="i">
-					<c:if test="${i.first}">
-						center : new kakao.maps.LatLng(${walkList.lat}, ${walkList.lon}), // 지도의 중심좌표
-					</c:if>
-				</c:forEach>
-				
-				level : 3
-			// 지도의 확대 레벨
-			};
+    <!-- 부트 스크립트 필수 링크 및 스크립트 -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 	
-			// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-			var map = new kakao.maps.Map(mapContainer, mapOption);
-			
-			var polyline = new kakao.maps.Polyline({
-			    map: map,
-			    path: [
-					<c:forEach var="walkList" items="${walk}" varStatus="i">
-						<c:if test="${not i.last}">
-							new kakao.maps.LatLng(${walkList.lat}, ${walkList.lon}),
-						</c:if>
-						<c:if test="${i.last}">
-							new kakao.maps.LatLng(${walkList.lat}, ${walkList.lon})
-						</c:if>
-					</c:forEach>
-			    ],
-			    strokeWeight: 2, // 두께
-			    strokeColor: '#FF00FF',//색
-			    strokeOpacity: 0.8 // 투명도
-			});
+	<!-- jQuery 필수 스크립트 -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+    <!-- Favicons -->
+	<meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
+	<meta name="theme-color" content="#563d7c">
 	
-			// 지도에 선을 표시합니다 
-			polyline.setMap(map);
-</script>
+	<style>
+	/* Noto Sans 글씨체  */
+	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+		
+		body {
+			font-family: 'Noto Sans KR', sans-serif;
+		}
+		.navbar-nav > li{
+			/* padding-left:50px;
+			padding-right:50px; */
+			width : 180px;
+			/* line-height: 15px; */
+		}
+		
+
+    </style>
+
+  </head>
+  <body>
+    <header>
+	    <!--네비게이션(=메인 메뉴창)-->
+	    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#313132">
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mx-auto">
+		      <li class="nav-item" width>
+		        <a class="nav-link" href="#"><img src="/resources/images/logo_icon.png" width="25" height="25" alt=""></a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">쇼핑몰</a>
+		      </li>		      
+		      <li class="nav-item dropdown">
+		        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		        	커뮤니티		          
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" href="#">Before & After</a>
+		          <a class="dropdown-item" href="#">홈 트레이닝</a>
+		          <a class="dropdown-item" href="#">공식정보</a>
+		        </div>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">마이페이지</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">로그아웃</a>
+		      </li>
+		    </ul>
+		  </div>
+		</nav>
+	</header>
+	
+  
+  <!-- =========================================================================================-->
+  <main role="main">
+  
+  <!-- 탭 기능 -->
+  <div class="container marketing" >
+  	<ul class="nav nav-tabs" style="margin-top:30px;">
+	  <li class="nav-item">
+	    <a class="nav-link active" data-toggle="tab" href="#management">매니지먼트</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" data-toggle="tab" href="#consult">상담</a>
+	  </li>
+	</ul>
+	
+	<div class="tab-content" style="margin-top:10px;">
+	  <div class="tab-pane fade show active" id="management">
+	    <div class="row" >
+		    <!-- 비만 매니지먼트  -->
+		    <div class="col-lg-4" style="margin-bottom: 20px">
+			    <div class="card" style="width: 18rem;">
+				  <img src="..." class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <h5 class="card-title">이름</h5>
+				    <p class="card-text">나이:1살</p>
+				    <p class="card-text">성별:암컷</p>
+				    <a href="#" class="btn btn-info">상세정보</a>
+				  </div>
+				</div>
+		    </div>
+		    
+		    <div class="col-lg-4" style="margin-bottom: 20px">
+			    <div class="card" style="width: 18rem;">
+				  <img src="..." class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <h5 class="card-title">이름</h5>
+				    <p class="card-text">나이:1살</p>
+				    <p class="card-text">성별:암컷</p>
+				    <a href="#" class="btn btn-info">상세정보</a>
+				  </div>
+				</div>
+		    </div>
+		    
+		    <div class="col-lg-4" style="margin-bottom: 20px">
+			    <div class="card" style="width: 18rem;">
+				  <img src="..." class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <h5 class="card-title">이름</h5>
+				    <p class="card-text">나이:1살</p>
+				    <p class="card-text">성별:암컷</p>
+				    <a href="#" class="btn btn-info">상세정보</a>
+				  </div>
+				</div>
+		    </div>
+		    
+	    </div>
+	  </div>
+	  
+	  <div class="tab-pane fade" id="consult">
+	  	<div class="row" >
+	  		<p>상담 페이지</p>
+	  	</div>
+	  </div>
+	</div>
+		 
+  	
+  	<hr class="featurette-divider">
+  
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <h2>Heading</h2>
+        <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <h2>Heading</h2>
+        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <h2>Heading</h2>
+        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
 
 
+    <!-- START THE FEATURETTES -->
 
+    <hr class="featurette-divider">
 
-       
-<section id="about">
-
-
-      <div class="row about-wrap">
-         <div class="col-full">
-
-            <div class="about-profile-bg"></div>
-
-            <div class="intro">
-                        <div id="content1">
-                                  <h2>선택한 펫 정보</h2><br>
-                        <table>
-                         <thead>
-                          <tr>
-                          
-                           <th>펫이름</th>
-                           <th>펫나이</th>
-                           <th>펫성별</th>
-                           <th>중성화유무</th>
-                           <th>견종</th>
-                           <th>펫번호</th>
-                           <th>사료</th>
-                          </tr>
-                         </thead>
-                          <tbody>
-                  
-                          <tr>
-                           <td><select id="petName"onchange="changePetList()">
-                            <option>- 펫이름 -</option>
-                         <c:forEach var="pet" items="${pet}" varStatus="status">
-                                <option value="${pet.pet_num}">${pet.pet_name}</option><br>
-                            </c:forEach>
-                        
-                        </select></td>
-                        
-                        
-                           <td>${pet2.pet_age}</td>
-                           <td>${pet2.pet_sex}</td>
-                           <td>${pet2.pet_check}</td>
-                           <c:set var="kind_num" value="${pet2.kind_num}"></c:set>
-                           <c:if test="${kind_num eq '1'}">
-                               <td>ddddddd</td>
-                           </c:if>
-                           <c:if test="${kind_num eq '2'}">
-                               <td>말티즈</td>
-                           </c:if>
-                        
-                           <td>${pet2.pet_num}</td>
-                             <td>${foodInfo.food_name}</td> 
-                          </tr>     
-                         </tbody>
-                        </table>
-                         <button class="btn btn-default" data-target="#layerpop" data-toggle="modal">사료정보 보려면 클릭</button><br>
-                                       <a href='http://localhost:8080/pet/petRegister'>펫등록</a> 
-                                       <a href='http://localhost:8080/pet/weight'>체중확인하기</a> 
-                                       
-                           
-                     </div>
-            </div>   
-
-         </div> <!-- end col-full  -->
-      </div> <!-- end about-wrap  -->
-
-   </section> <!-- end about -->
-
-
-   <!-- about
-   ================================================== -->
-
-  <!-- 비만매니지먼트 체중, 식단, 칼로리 ,상태
-   ================================================== -->
-   <section id="about">
-
-      <div class="row about-wrap">
-         <div class="col-full">
-
-            <div class="about-profile-bg"></div>
-
-            <div class="intro">
-               <div id="content2">
-            <div id="content2_1">
-               <div id="content2_2">
-                    <div id="circle1">
-                       <p style="line-height: 30px" >체중</p>
-                    <p style="font-size:40px;">${weight.pet_weight}kg</p>
-                    <p style="font-size:20px; color:#8C8C8C">/${weight.pet_weight}kg</p>
-                    </div>
-                     <div id="circle2">
-                        <p style="line-height: 30px">배식</p>
-                    <p style="font-size:40px;">${eat.eat_gram}g</p>
-                    <p style="font-size:20px; color:#8C8C8C">/256g</p>
-                    </div>
-                     <div id="circle3">
-                        <p style="line-height: 30px">활동</p>
-                    <p style="font-size:40px;">${weight.pet_weight }Kal</p>
-                    <p style="font-size:20px; color:#8C8C8C">/${weight.pet_weight }kal</p>
-                    </div>
-                     <div id="circle4">
-                        <p style="line-height: 30px">${pet2.pet_name} 의 상태</p>
-                        
-			<c:if test="${weight.pet_weight > 3}">
-                    <p style="font-size:40px;">과체중</p>
-                    </c:if>
-                    
-                    <c:if test="${weight.pet_weight < 3}">
-                    <p style="font-size:40px;">저체중</p>
-                    </c:if>
-                    <p style="font-size:20px; color:#8C8C8C">표준:${kindkg}kg</p>
-                    </div>
-                 </div>
-              </div>
-         </div>
-            </div>   
-
-         </div> <!-- end col-full  -->
-      </div> <!-- end about-wrap  -->
-
-   </section> <!-- end about -->
-   <!-- about
-   ================================================== -->
-   <section id="about">
-
-      <div class="row about-wrap">
-         <div class="col-full">
-
-            <div class="about-profile-bg"></div>
-
-            <div class="intro">
-                  <div id="content3">
-             <select id="browsers" name="browsers">
-             <option value="크롬">크롬</option>
-             <option value="사파리">사파리</option>
-             <option value="엣지">엣지</option>
-             <option value="인터넷익스플로러">인터넷익스플로러</option>
-             <option value="파이어폭스">파이어폭스</option>
-             <option value="오페라">오페라</option>
-         </select>
-           <div id="cotnet3_1">
-              <div id="content3_2">
-                    <div id="square1">
-                       <p style="line-height: 30px" >산책정보</p>
-                    <p style="font-size:40px;">${weight.pet_weight }kg</p>
-                    <p style="font-size:20px; color:#8C8C8C">/${weight.pet_weight }kg</p>
-                    </div>
-                     <div id="square1">
-                       <p style="line-height: 30px" >산책정보</p>
-                    <p style="font-size:40px;">${weight.pet_weight }kg</p>
-                    <p style="font-size:20px; color:#8C8C8C">/${weight.pet_weight }kg</p>
-                    </div>
-                      <div id="square1">
-                       <p style="line-height: 30px" >산책정보</p>
-                    <p style="font-size:40px;">${weight.pet_weight }kg</p>
-                    <p style="font-size:20px; color:#8C8C8C">/${weight.pet_weight }kg</p>
-                    </div>
-                 </div>
-              </div>
-              <div id="square3">
-              <p>${pet2.pet_name}에 맞는 코칭 프로그램 바로가기</p>
-              </div>
-             
-              
-         </div>
-            </div>   
-
-         </div> <!-- end col-full  -->
-      </div> <!-- end about-wrap  -->
-
-   </section>
-
-<!-- Modal 창  -->
-<br/>
-<div class="modal fade" id="layerpop" >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <!-- header -->
-      <div class="modal-header">
-        <!-- 닫기(x) 버튼 -->
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <!-- header title -->
-        <h4 class="modal-title">현재 사료정보 </h4>
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
+        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
       </div>
-      <!-- body -->
-      <div class="modal-body">
-     사료명 : ${foodInfo.food_name} <br>
-   특징 : ${foodInfo.food_ps }
-      <br>
-
-      
-      <button onclick="recommend()" >사료추천받기</button>
-      
-      <div id="recommend" style="display:none">
-      추천된 사료 목록
-      </div>
-      
-      </div>
-      <!-- Footer -->
-      <div class="modal-footer">
-        Footer
-        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      <div class="col-md-5">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- Modal 창  -->
-</body>
+    <hr class="featurette-divider">
 
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
+        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+      </div>
+      <div class="col-md-5">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+
+
+  <!-- FOOTER -->
+  <footer class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+  </footer>
+</main>
 </html>
-
-
-
-
-
-

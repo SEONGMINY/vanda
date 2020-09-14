@@ -27,13 +27,16 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	*/
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(/* HttpSession session */) {
-
-		
-		/* System.out.println("현재 세션 : " + session.getAttribute("check")); */
-		
+	public String home() {
 		
 		return "home";
+		
+	}
+	
+	@RequestMapping(value = "/management2", method = RequestMethod.GET)
+	public String management(/* HttpSession session */) {		
+		
+		return "management2";
 		
 	}
 	
