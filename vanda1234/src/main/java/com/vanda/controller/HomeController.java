@@ -47,5 +47,12 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public String mypage(/* HttpSession session */) {		
+		
+		return "/pet/myPage";
+		
+	}
+	
 
 }

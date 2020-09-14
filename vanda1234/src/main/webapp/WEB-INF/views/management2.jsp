@@ -14,6 +14,7 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
     
+    <!-- Noto Sans 글씨체 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
     <!-- 부트 스크립트 필수 링크 및 스크립트 -->
@@ -29,9 +30,6 @@
 	<link rel="stylesheet" href="/resources/slick/slick.css">
 	<link rel="stylesheet" href="/resources/slick/slick-theme.css">
 	<script type="text/javascript" src="/resources/slick/slick.min.js"></script>
-
-    <!-- Favicons -->
-	<meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
 	<meta name="theme-color" content="#563d7c">
 	
 	<style>
@@ -108,39 +106,7 @@
   </head>
   <body>
     <header>
-	    <!--네비게이션(=메인 메뉴창)-->
-	    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#313132">
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		    <span class="navbar-toggler-icon"></span>
-		  </button>
-		
-		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		    <ul class="navbar-nav mx-auto">
-		      <li class="nav-item" width>
-		        <a class="nav-link" href="#"><img src="/resources/images/logo_icon.png" width="25" height="25" alt=""></a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="#">쇼핑몰</a>
-		      </li>		      
-		      <li class="nav-item dropdown">
-		        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		        	커뮤니티		          
-		        </a>
-		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item" href="#">Before & After</a>
-		          <a class="dropdown-item" href="#">홈 트레이닝</a>
-		          <a class="dropdown-item" href="#">공식정보</a>
-		        </div>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="#">마이페이지</a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="#">로그아웃</a>
-		      </li>
-		    </ul>
-		  </div>
-		</nav>
+    	<%@include file="./navBar.jsp" %>	    
 	</header>
 	
   
