@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,6 +13,8 @@
     <title>반다 : 반려견 다이어트</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
     <!-- 부트 스크립트 필수 링크 및 스크립트 -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -21,14 +24,17 @@
 	
 	<!-- jQuery 필수 스크립트 -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	
+	<!-- slider 필수 스크립트  -->
+	<link rel="stylesheet" href="/resources/slick/slick.css">
+	<link rel="stylesheet" href="/resources/slick/slick-theme.css">
+	<script type="text/javascript" src="/resources/slick/slick.min.js"></script>
 
     <!-- Favicons -->
 	<meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
 	<meta name="theme-color" content="#563d7c">
 	
 	<style>
-	/* Noto Sans 글씨체  */
-	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 		
 		body {
 			font-family: 'Noto Sans KR', sans-serif;
@@ -40,8 +46,64 @@
 			/* line-height: 15px; */
 		}
 		
+		#weight{
+			width:250px;
+			height:250px;
+			border-radius: 50%;
+			background: #FFFFFF;
+			font-size: 16px;
+			text-align: center;
+			color:#000000;
+			font-weight:bold;
+			float:left;
+			margin: 10px 45px 10px 45px;
+			border:10px solid #BC2424;
+		}
+		#eat{
+			width:250px;
+			height:250px;
+			border-radius: 50%;
+			background: #FFFFFF;
+			font-size: 16px;
+			text-align: center;
+			color:#000000;
+			font-weight:bold;
+			float:left;
+			margin: 10px 45px 10px 45px;
+			border:10px solid #00bba7;
+		}
+		#activity{
+			width:250px;
+			height:250px;
+			border-radius: 50%;
+			background: #FFFFFF;
+			font-size: 16px;
+			text-align: center;
+			color:#000000;
+			font-weight:bold;
+			float:left;
+			margin: 10px 45px 10px 45px;
+			border:10px solid #ffea00;
+		}
+		
 
     </style>
+    
+    <script>
+	    $(document).ready(function(){
+	    	$('.multiple-items').slick({
+	    		  /* infinite: true, //양방향 무한 모션
+	    		  speed:300, // 슬라이드 스피드
+	    		  slidesToShow: 3, //한 화면에 보여줄 아이템수
+	    		  slidesToScroll: 3, // 한번에 슬라이드 시킬 아이템 개수
+	    		  arrows: true //좌우 화살 버튼 노출 여부 ( false 시 안보임 ) */
+
+	    		infinite: true,
+	    		slidesToShow: 3,
+	    		slidesToScroll: 3
+    		});		     
+		});
+    </script>
 
   </head>
   <body>
@@ -99,8 +161,10 @@
 	<div class="tab-content" style="margin-top:10px;">
 	  <div class="tab-pane fade show active" id="management">
 	    <div class="row" >
+		    
 		    <!-- 비만 매니지먼트  -->
-		    <div class="col-lg-4" style="margin-bottom: 20px">
+		    
+		    <div class="col-lg-4" style="margin-bottom: 10px">
 			    <div class="card" style="width: 18rem;">
 				  <img src="..." class="card-img-top" alt="...">
 				  <div class="card-body">
@@ -112,7 +176,7 @@
 				</div>
 		    </div>
 		    
-		    <div class="col-lg-4" style="margin-bottom: 20px">
+		    <div class="col-lg-4" style="margin-bottom: 10px">
 			    <div class="card" style="width: 18rem;">
 				  <img src="..." class="card-img-top" alt="...">
 				  <div class="card-body">
@@ -124,7 +188,7 @@
 				</div>
 		    </div>
 		    
-		    <div class="col-lg-4" style="margin-bottom: 20px">
+		    <div class="col-lg-4" style="margin-bottom: 10px">
 			    <div class="card" style="width: 18rem;">
 				  <img src="..." class="card-img-top" alt="...">
 				  <div class="card-body">
@@ -134,10 +198,86 @@
 				    <a href="#" class="btn btn-info">상세정보</a>
 				  </div>
 				</div>
-		    </div>
+		    </div>    
 		    
 	    </div>
+	    
+	    <hr class="featurette-divider">
+	    
+	    <!-- 체중, 배식, 활동량 정보 -->
+	    <div class="row">
+	      <div class="col-lg-4">
+	        <div id="weight">
+	           	<p style="line-height: 30px" >체중</p>
+	        	<p style="font-size:40px;">0kg</p>
+	        	<p style="font-size:20px; color:#8C8C8C">/0kg</p>
+	        </div>
+	      </div><!-- /.col-lg-4 -->
+	      <div class="col-lg-4">
+	        <div id="eat">
+	            <p style="line-height: 30px">배식</p>
+	         	<p style="font-size:40px;">0g</p>
+	         	<p style="font-size:20px; color:#8C8C8C">/0g</p>
+	        </div>
+	      </div><!-- /.col-lg-4 -->
+	      <div class="col-lg-4">
+	        <div id="activity">
+		        <p style="line-height: 30px">활동</p>
+		        <p style="font-size:40px;">0Kal</p>
+		        <p style="font-size:20px; color:#8C8C8C">/0kal</p>
+	        </div>
+	      </div>
+	    </div>
+	    
+	    <hr class="featurette-divider">
+	    
+	    <!-- 산책  -->
+	    <div class="row">
+		    <div class="col-md-12">
+			    <div class="multiple-items">
+			    	<div class="card" style="width: 18rem;">
+					  <div id="map" style="width: 100%; height:300px; border:solid 1px black;"></div>
+					  <div class="card-body">
+					    <p class="card-text">
+					    	거리 0m <br>
+					    	소요시간  09:30초
+					    </p>
+					  </div>
+					</div>
+					<div class="card" style="width: 18rem;">
+					  <div id="map" style="width: 100%; height:300px; border:solid 1px black;"></div>
+					  <div class="card-body">
+					    <p class="card-text">
+					    	거리 0m <br>
+					    	소요시간  09:30초
+					    </p>
+					  </div>
+					</div>
+			    	<div class="card" style="width: 18rem;">
+					  <div id="map" style="width: 100%; height:300px; border:solid 1px black;"></div>
+					  <div class="card-body">
+					    <p class="card-text">
+					    	거리 0m <br>
+					    	소요시간  09:30초
+					    </p>
+					  </div>
+					</div>
+			    	<div class="card" style="width: 18rem;">
+					  <div id="map" style="width: 100%; height:300px; border:solid 1px black;"></div>
+					  <div class="card-body">
+					    <p class="card-text">
+					    	거리 0m <br>
+					    	소요시간  09:30초
+					    </p>
+					  </div>
+					</div>			    	
+			    </div>
+		
+			</div>
+	    </div>
+	    
 	  </div>
+	  
 	  
 	  <div class="tab-pane fade" id="consult">
 	  	<div class="row" >
@@ -145,33 +285,8 @@
 	  	</div>
 	  </div>
 	</div>
-		 
-  	
-  	<hr class="featurette-divider">
-  
 
-    <!-- Three columns of text below the carousel -->
-    <div class="row">
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-        <h2>Heading</h2>
-        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
-
+    <hr class="featurette-divider">
 
     <!-- START THE FEATURETTES -->
 

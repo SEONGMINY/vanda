@@ -286,31 +286,31 @@ function changePetList(){
 
             <div class="intro">
                <div id="content2">
-            <div id="content2_1">
-               <div id="content2_2">
-                    <div id="circle1">
-                       <p style="line-height: 30px" >체중</p>
-                    <p style="font-size:40px;">${weight.pet_weight}kg</p>
-                    <p style="font-size:20px; color:#8C8C8C">/${weight.pet_weight}kg</p>
-                    </div>
-                     <div id="circle2">
-                        <p style="line-height: 30px">배식</p>
-                    <p style="font-size:40px;">${eat.eat_gram}g</p>
-                    <p style="font-size:20px; color:#8C8C8C">/${test.eat_gram}g</p>
-                    </div>
-                     <div id="circle3">
-                        <p style="line-height: 30px">활동</p>
-                    <p style="font-size:40px;">${weight.pet_weight }Kal</p>
-                    <p style="font-size:20px; color:#8C8C8C">/${weight.pet_weight }kal</p>
-                    </div>
-                     <div id="circle4">
-                        <p style="line-height: 30px">${pet2.pet_name} 의 상태</p>
-                    <p style="font-size:40px;">과체중</p>
-                    <p style="font-size:20px; color:#8C8C8C">표준:${weight.pet_weight }kg</p>
-                    </div>
-                 </div>
-              </div>
-         </div>
+	            <div id="content2_1">
+	               <div id="content2_2">
+	                    <div id="circle1">
+	                       <p style="line-height: 30px" >체중</p>
+	                    <p style="font-size:40px;">${weight.pet_weight}kg</p>
+	                    <p style="font-size:20px; color:#8C8C8C">/${weight.pet_weight}kg</p>
+	                    </div>
+	                     <div id="circle2">
+	                        <p style="line-height: 30px">배식</p>
+	                    <p style="font-size:40px;">${eat.eat_gram}g</p>
+	                    <p style="font-size:20px; color:#8C8C8C">/${test.eat_gram}g</p>
+	                    </div>
+	                     <div id="circle3">
+	                        <p style="line-height: 30px">활동</p>
+	                    <p style="font-size:40px;">${weight.pet_weight }Kal</p>
+	                    <p style="font-size:20px; color:#8C8C8C">/${weight.pet_weight }kal</p>
+	                    </div>
+	                     <div id="circle4">
+	                        <p style="line-height: 30px">${pet2.pet_name} 의 상태</p>
+	                    <p style="font-size:40px;">과체중</p>
+	                    <p style="font-size:20px; color:#8C8C8C">표준:${weight.pet_weight }kg</p>
+	                    </div>
+	                 </div>
+	            </div>
+         	</div>
             </div>   
 
          </div> <!-- end col-full  -->
