@@ -185,7 +185,7 @@ public class ProductController {
 			}
 		}
 
-		return "redirect:/";
+		return "redirect:/product/shopmain";
 	}
 
 	// 상품 주문(상품 상세화면)
@@ -358,6 +358,7 @@ public class ProductController {
 		System.out.println("--------------------");
 		System.out.println("장바구니 구매 페이지");
 		System.out.println(totalPrice);
+
 		System.out.println("--------------------");
 		
 		model.addAttribute("total", totalPrice);
@@ -426,7 +427,7 @@ public class ProductController {
 			System.out.println("----------------------------");
 			
 			
-			String user_id = "TEST1";
+			String user_id = "TEST";
 			
 			ArrayList<OrderListVO> list = shopservice.mypage(user_id);
 			
