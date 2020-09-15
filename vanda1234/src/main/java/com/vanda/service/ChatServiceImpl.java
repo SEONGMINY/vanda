@@ -22,8 +22,8 @@ public class ChatServiceImpl implements ChatService {
 	private ChatMapper mapper;
 
 	@Override
-	public void insert(RoomVO vo) {
-		mapper.insert(vo);
+	public void insert(String user_id,String doc_id) {
+		mapper.insert(user_id,doc_id);
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.vanda.domain.DoctorVO;
 import com.vanda.domain.KakaoVO;
 import com.vanda.domain.UserVO;
 
@@ -50,7 +51,7 @@ public interface UserMapper {
 	public void registerMemdev(@Param("user_id")String user_id,@Param("device_id") String device_id, @Param("is")Integer integer);
 
 	public List<Integer> oldPetnum(String user_id);
-
+	public List<DoctorVO> selectAllDoctor();
 
 
 }

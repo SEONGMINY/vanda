@@ -3,6 +3,7 @@ package com.vanda.service;
 
 import java.util.List;
 
+import com.vanda.domain.DoctorVO;
 import com.vanda.domain.KakaoVO;
 import com.vanda.domain.UserVO;
 
@@ -52,5 +53,7 @@ public interface UserService {
 	public void registerMemdev(String user_id, String device_id, Integer integer);
 
 	public List<Integer> oldPetnum(String user_id);
+	//수의사 가져오기
+		public List<DoctorVO> selectAllDoctor();
 
 }

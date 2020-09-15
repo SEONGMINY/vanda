@@ -19,11 +19,13 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.vanda.domain.DoctorVO;
 import com.vanda.domain.EatVO;
 import com.vanda.domain.KakaoVO;
 import com.vanda.domain.PetVO;
 import com.vanda.domain.UserVO;
 import com.vanda.domain.WeightVO;
+import com.vanda.service.ChatService;
 import com.vanda.service.PetService;
 import com.vanda.service.UserService;
 
@@ -35,7 +37,8 @@ public class UserController {
    private UserService userService;
    @Autowired
    private PetService petService;
-   
+	@Autowired
+	private ChatService service;
    //선택한 펫의 목록보여줌
    @ResponseBody
    @RequestMapping(value="/test",method = RequestMethod.POST)
@@ -191,7 +194,11 @@ public class UserController {
          session.setAttribute("nonSelectedPet", petService.nonSelectedPet(oldPetnum.get(0)));
          
          System.out.println("pet정보 : " + petUser);
-         return "home";
+ 		//전세 수의사 목록
+ 		List<DoctorVO> allDoctor = userService.selectAllDoctor();
+ 		//상담가능한 수의사 목록
+ 		session.setAttribute("doctor", allDoctor);
+         return "management2";
       }
       else {
          session.setAttribute("check", null);

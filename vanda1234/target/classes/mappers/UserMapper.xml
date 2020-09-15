@@ -83,5 +83,6 @@
 		<select id="oldPetnum" resultType="int">
 		select pet.pet_num from pet,register where pet.pet_num=register.pet_num order by pet.pet_regdate
 	</select>
-	
+		<select id="selectAllDoctor" resultType="DoctorVO">
+		select user_id,hosp_tel from doctor</select>
 </mapper>

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.vanda.domain.DoctorVO;
 import com.vanda.domain.KakaoVO;
 import com.vanda.domain.UserVO;
 import com.vanda.mapper.UserMapper;
@@ -98,6 +99,10 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userMapper.oldPetnum(user_id);
 	}
-
+	@Override
+	public List<DoctorVO> selectAllDoctor() {
+		// TODO Auto-generated method stub
+		return userMapper.selectAllDoctor();
+	}
 
 }

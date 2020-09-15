@@ -260,8 +260,7 @@
 
    <!-- home
    ================================================== -->
-   <c:choose>
-      <c:when test="${check == null}">
+
          <section id="home">
 
             <div class="overlay"></div>
@@ -317,16 +316,9 @@
             </div>
 
          </section>
-      </c:when>
-   </c:choose>
 
 
-   <c:choose>
-      <c:when test="${check != null}">
-         <%@ include file="management.jsp"%>
-      </c:when>
 
-   </c:choose>
    <!-- end home -->
    <!-- about
    ================================================== -->
@@ -497,8 +489,7 @@
    <!-- about
    ================================================== -->
 
-   <c:choose>
-      <c:when test="${check == null}">
+
          <section id="about">
 
             <div class="row about-wrap">
@@ -521,11 +512,8 @@
 
          </section>
          <!-- end about -->
-      </c:when>
-   </c:choose>
 
-   <c:choose>
-      <c:when test="${check == null}">
+
          <!-- 반다 소개 시작 -->
          <section id="portfolio">
 
@@ -716,8 +704,7 @@
 
          </section>
          <!-- end portfolio -->
-      </c:when>
-   </c:choose>
+
    <!-- about
    ================================================== -->
 
@@ -841,8 +828,7 @@
    <!-- portfolio
    ================================================== -->
 
-   <c:choose>
-      <c:when test="${check == null}">
+
          <section id="portfolio" style="display: none;">
 
             <div class="intro-wrap">
@@ -1034,13 +1020,10 @@
 
          </section>
          <!-- end portfolio -->
-      </c:when>
-   </c:choose>
 
    <!-- Testimonials Section
    ================================================== -->
-   <c:choose>
-      <c:when test="${check == null}">
+
          <section id="testimonials">
 
             <div class="row">
@@ -1106,13 +1089,11 @@
          </section>
          <!-- end testimonials -->
 
-      </c:when>
-   </c:choose>
+
    <!-- stats
    ================================================== -->
 
-   <c:choose>
-      <c:when test="${check == null}">
+
          <section id="clients">
 
             <div class="row animate-this">
@@ -1159,8 +1140,7 @@
 
          </section>
          <!-- end clients -->
-      </c:when>
-   </c:choose>
+
 
    <!-- contact
    ================================================== -->
@@ -1271,8 +1251,7 @@
 
    <!-- footer
    ================================================== -->
-   <c:choose>
-      <c:when test="${check == null}">
+
          <footer>
             <div class="footer-main">
 
@@ -1360,8 +1339,7 @@
                </a>
             </div>
          </footer>
-      </c:when>
-   </c:choose>
+
 
 
    <div id="preloader">

@@ -50,9 +50,11 @@ public class ConsultingController {
 	}
 
 	@RequestMapping("/roomRegist")
-	public String roomRegist(RoomVO room, RedirectAttributes rttr) {
-		service.insert(room);
-		rttr.addFlashAttribute("room", room);
+	public String roomRegist(String user_id,String doc_id, RedirectAttributes rttr) {
+		System.out.println(user_id);
+		System.out.println(doc_id);
+		service.insert(user_id,doc_id);
+		//rttr.addFlashAttribute("room", room);
 		return "consulting/chat";
 	}
 
