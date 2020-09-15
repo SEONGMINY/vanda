@@ -32,7 +32,7 @@ padding: 0px 30px 0px 30px;
 
 <div id="nav_menu">
 <ul>
- <c:if test="${check.user_rule == 'manager'}">
+ <c:if test="${check.user_rule == 'admin'}">
 <li><a href="/product/productmain">상품관리</a></li>
 </c:if>
 
