@@ -5,101 +5,104 @@
 <head>
 <meta charset="UTF-8">
 <title>구매자 정보적는창</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- Custom styles for this template -->
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="/resources/vendor/jquery/jquery.min.js"></script>
+<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
 </head>
 <body>
-	<h2>수령인 상세정보 입력창</h2>
-	<div class="orderInfo">
-		<form id="orderForm" name="orderForm" role="form" action="/product/order_info" method="post" autocomplete="off">
-			
-
-			<div class="inputArea">
-				<label for="recip_name">수령인</label> <input type="text"
-					name="recip_name" id="recip_name" required="required" />
-			</div>
-
-			<div class="inputArea">
-				<label for="recip_tel">수령인 연락처</label> <input type="text"
-					name="recip_tel" id="recip_tel" required="required" />
-			</div>
-
-			<div class="inputArea">
-				<label for="ord_msg">배송 요청사항</label> <input type="text"
-					name="ord_msg" id="ord_msg" required="required" />
-			</div>
-			<%-- <p>총가격1 : <input type="text" id="pay_TotalPrice" name="pay_TotalPrice" value="${read.pro_price}" readonly="readonly"/> --%>
-			<p>상품가격: ${read.pro_price} 원</p>
-			<input type="hidden" id="product_price" value="${read.pro_price}">
-			<input type="hidden" id="Maxamount" value="${read.pro_amount}">
-
-			</p>
-
-
-			<!-- 수량비례 총 가격 부분 input태그 버전 -->
-			총가격 : <input type="text" id="pay_price" name="pay_price" value="${read.pro_price}" readonly ="readonly">원
-		
-		
-		<!-- 수량비례 총 가격 부분 div태그버전
-			<div id="pay_TotalPrice">
-				<%-- <p>총 가격 : ${read.pro_price}</p> --%>
-			총가격 : <input type="text" id="pay_TotalPrice" name="pay_TotalPrice" value="${read.pro_price}" readonly="readonly"/>원
-			</div>
-		-->
-			
-			<!-- 
-					<div class="inputArea">
-						<label for="userAddr1">우편번호</label>
-						<input type="text" name="userAddr1" id="userAddr1" required="required" />
-					</div>
-					
-					<div class="inputArea">
-						<label for="userAddr2">1차 주소</label>
-						<input type="text" name="userAddr2" id="userAddr2" required="required" />
-					</div>
-					
-					<div class="inputArea">
-						<label for="userAddr3">2차 주소</label>
-						<input type="text" name="userAddr3" id="userAddr3" required="required" />
-					</div>
-					-->
-			<div class="inputArea">
-
-				<p>
-					<input type="text" name="recip_add" id="recip_add"
-						placeholder="우편번호"> <input type="button"
-						onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-					<input type="text" name="recip_add2" id="recip_add2"
-						placeholder="도로명주소"> <input type="text"
-						id="sample4_jibunAddress" placeholder="지번주소"> <span
-						id="guide" style="color: #999; display: none"></span> <input
-						type="text" name="recip_add3" id="recip_add3" placeholder="상세주소">
-					<input type="text" id="sample4_extraAddress" placeholder="참고항목">
-					<!-- <input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"> -->
-				</p>
-				<!-- <p>
- -->
-				<p>
-					<label for="">결제방법</label>
-				</p>
-				<p>
-					<input type="radio" id="pay_category" name="pay_category"
+<div class="container">
+    <form name="f" method="post">
+ 
+        <div class="col-sm-12 pt-3">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title"><i class="fas fa-square"></i>수령인 상세정보 입력창</h4>
+                    <p class="card-catagory"></p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                            <tr style="line-height:32px;">
+                                <td>수령인</td>
+                                <td>
+                                    <input type="text" name="recip_name" id="recip_name" required="required" />
+								</td>           
+                            </tr>
+                            <tr>
+                                <td>수령인 전화번호</td>
+                                <td>
+                                    <input type="text" name="recip_tel" id="recip_tel" required="required" />
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td>상품가격: ${read.pro_price} 원 <input type="hidden" id="product_price" value="${read.pro_price}">
+									<input type="hidden" id="Maxamount" value="${read.pro_amount}"></td>
+                            </tr>
+                            <tr id="pay_TotalPrice" >
+                            	<td>총가격 </td>
+                            	<td><input type="text" id="pay_price" name="pay_price" value="${read.pro_price}" readonly ="readonly">원</td>
+                            </tr>
+                            <tr>
+                            
+                            	<td>배송 요청사항</td>
+                                <td>
+                                     <input type="text" name="ord_msg" id="ord_msg" required="required" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>우편번호</td>
+                                <td>
+                          		        <input type="text" name="recip_add" id="recip_add"
+											placeholder="우편번호"> <input type="button"
+											onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+										<input type="text" name="recip_add2" id="recip_add2"
+											placeholder="도로명주소"> <input type="text"
+										id="sample4_jibunAddress" placeholder="지번주소"> <span
+										id="guide" style="color: #999; display: none"></span> <input
+										type="text" name="recip_add3" id="recip_add3" placeholder="상세주소">
+										<input type="text" id="sample4_extraAddress" placeholder="참고항목">
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>결제방법</td>
+                                <td colspan="3">
+                                    <input type="radio" id="pay_category" name="pay_category"
 						value="카카오페이">카카오페이 <input type="radio" id="pay_category"
 						name="pay_category" value="신용카드">신용카드 <input type="radio"
 						id="pay_category" name="pay_category" value="무통장입금">무통장입금
-				</p>
-			</div>
-		</form>
-		<button id="buy_btn">결제하기</button>
-	</div>
+                                   
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+ 
+          
+        </div>
+        
+    </form>
+    <div class="text-center mt-3">
+        	<button id ="buy_btn" class="btn btn-success">결제하기</button>
+    </div>
+ 
+    
+</div>
+
 
 	<!-- 도로명 주소 api -->
-	<script
-		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		function sample4_execDaumPostcode() {
 
@@ -181,10 +184,10 @@
 				pro_num : pro_num,
 				count : count
 			};
+			console.log(data);
 
 			var IMP = window.IMP; // 생략가능
 			IMP.init("imp73646324"); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용	
-
 			IMP.request_pay({
 				pg : 'kakao', // version 1.1.0부터 지원. 결제수단
 				pay_method : 'card', // 결제종류
@@ -245,7 +248,7 @@
 			}
 
 			cnt++;
-			var html = "<p>총 가격 : " + price * cnt + " 원</p>"
+			var html = "<td>총 가격 : " + price * cnt + " 원</td>"
 			$("#amountcount").val(cnt)
 			$("#pay_TotalPrice").empty();
 			$("#pay_TotalPrice").append(html);
@@ -263,7 +266,7 @@
 			}
 
 			cnt--;
-			var html = "<p>총 가격 : " + price * cnt + " 원</p>"
+			var html = "<td>총 가격 : " + price * cnt + " 원</td>"
 			$("#amountcount").val(cnt)
 			$("#pay_TotalPrice").empty();
 			$("#pay_TotalPrice").append(html);

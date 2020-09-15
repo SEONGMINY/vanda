@@ -29,8 +29,5 @@
 
 	<button id="select">상품페이지이동</button>
 
-
-
-
 </body>
 </html>
