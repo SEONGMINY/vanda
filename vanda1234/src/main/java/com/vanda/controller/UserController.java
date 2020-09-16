@@ -167,46 +167,42 @@ public class UserController {
     }
 
 
-      //일반 로그인 처리
-   @RequestMapping(value = "/login", method = RequestMethod.POST)
-   public String login(String user_id, String user_pass, HttpSession session,Model model) throws Exception {
+    //일반 로그인 처리
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public String login(String user_id, String user_pass, HttpSession session,Model model) throws Exception {
 
-      UserVO loginUser = userService.login(user_id, user_pass);
+       UserVO loginUser = userService.login(user_id, user_pass);
 
-      if (loginUser != null) {
+       if (loginUser != null) {
 
-         session.setAttribute("check", loginUser);
-         System.out.println("loginUserID = " + loginUser.getUser_id());
-         
-         //펫정보 받아오는부분. ---> 펫컨트롤러로 이동.
+          session.setAttribute("check", loginUser);
+          System.out.println("loginUserID = " + loginUser.getUser_id());
+          
+          //펫정보 받아오는부분. ---> 펫컨트롤러로 이동.
 
-         
-         //로그인한 유저의 펫정보를 받아옴.
-         List<PetVO> petUser = petService.getPetInfo(user_id);
-       
-   
-         session.setAttribute("pet",petUser);
-         System.out.println("pet정보:"+ petUser); 
-         //가장 오래키운펫의 펫넘
-         List<Integer> oldPetnum =  new ArrayList<Integer>();
-         oldPetnum = userService.oldPetnum(user_id);
-         
-         session.setAttribute("nonSelectedPet", petService.nonSelectedPet(oldPetnum.get(0)));
-         
-         System.out.println("pet정보 : " + petUser);
- 		//전세 수의사 목록
- 		List<DoctorVO> allDoctor = userService.selectAllDoctor();
- 		//상담가능한 수의사 목록
- 		session.setAttribute("doctor", allDoctor);
-         return "management2";
-      }
-      else {
-         session.setAttribute("check", null);
-         System.out.println("id/password 오류!!");
-         return "user/login";
-
-      }
-   }
+          
+          //로그인한 유저의 펫정보를 받아옴.
+          List<PetVO> petUser = petService.getPetInfo(user_id);
+        
+    
+          session.setAttribute("pet",petUser);
+          System.out.println("pet정보:"+ petUser); 
+          //가장 오래키운펫의 펫넘
+          List<Integer> oldPetnum =  new ArrayList<Integer>();
+          oldPetnum = userService.oldPetnum(user_id);
+          
+          session.setAttribute("nonSelectedPet", petService.nonSelectedPet(oldPetnum.get(0)));
+          
+          System.out.println("pet정보 : " + petUser);
+          return "success";
+       }
+       else {
+          session.setAttribute("check", null);
+          System.out.println("id/password 오류!!");
+          return "fail";
+       }
+    }
 
 
    // 카카오 로그인 05.28db에 아이디 비교후 있을때는 로그인해주고. 없을시에는 회원가입페이지로 연결해줌.

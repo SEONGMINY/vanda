@@ -223,7 +223,7 @@
             <li><a href="http://localhost:8080/product/shopmain"> 쇼핑몰</a></li>
             <c:choose>
                <c:when test="${check == null}">
-                  <li><a href="http://localhost:8080/user/login">로그인</a></li>
+                  <li><a href="http://localhost:8080/login">로그인</a></li>
                </c:when>
                <c:when test="${check != null}">
                   <li><a href="http://localhost:8080/user/logout">로그아웃</a></li>

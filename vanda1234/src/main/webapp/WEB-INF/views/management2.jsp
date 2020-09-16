@@ -40,13 +40,17 @@
 		body {
 			font-family: 'Noto Sans KR', sans-serif;
 		}
-		.navbar-nav > li{
-			/* padding-left:50px;
-			padding-right:50px; */
-			width : 180px;
-			/* line-height: 15px; */
-		}
-		
+		nav a{
+         
+         	color : #d4d4d4;
+         	font-size : 14px;
+      	}
+      
+      	nav a:hover {
+         	text-decoration:none;
+         	color : #eeeeee;
+      	}
+      	
 		#weight{
 			width:250px;
 			height:250px;

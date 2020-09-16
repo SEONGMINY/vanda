@@ -54,5 +54,15 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(HttpSession session) {
+		
+		if(session.getAttribute("check")==null) {
+	        return "/user/login2";
+	    } else {
+	        return "management2";
+	    }
+	}
+	
 
 }
