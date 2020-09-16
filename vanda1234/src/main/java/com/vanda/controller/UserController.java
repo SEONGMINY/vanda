@@ -60,10 +60,38 @@ public class UserController {
       return petVO;
       
    }
+   
+   //회원가입 선택 화면 - 성민
+   @RequestMapping(value="signup",method = RequestMethod.GET)
+   public String signUp() {
+      System.out.println("회원가입 선택");
+
+      return "user/signUp2";
+   }
+   
+   @RequestMapping(value="idcheck",method = RequestMethod.POST,produces ="application/text; charset=utf8")
+   @ResponseBody
+   public String idCheck(String id) {
+	  
+	  UserVO userVO = new UserVO();
+	  userVO.setUser_id(id);
+      
+	  int result = userService.idChk(userVO);
+	  
+	  if(result == 1) {
+		  return "1";
+	  } else if (result == 0) {
+		  return "0";
+	  }
+	  
+	  return "";
+
+   }
+
 
    //회원가입 선택 화면
    @RequestMapping("selectSignUp")
-   public String signUp() {
+   public String signUp2() {
       System.out.println("회원가입 선택");
 
       return "user/selectSignUp";

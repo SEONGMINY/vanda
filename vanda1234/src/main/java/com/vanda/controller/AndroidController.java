@@ -121,7 +121,7 @@ public class AndroidController {
 				System.out.println("펫 표준 급여량:" + gram);
 				System.out.println("펫 산책:" + distance);
 				System.out.println("체중 기록:"+weightList);
-				System.out.println("배식 기록:"+eatList.get(0).getEat_time());
+				System.out.println("배식 기록:");
 				System.out.println("산책 기록:"+actList);
 				System.out.println("----------------------------");
 				petObj.put("pet_num", pet.getPet_num());
@@ -249,7 +249,7 @@ public class AndroidController {
 				System.out.println("펫 표준 급여량:" + gram);
 				System.out.println("펫 산책:" + distance);
 				System.out.println("체중 기록:"+weightList);
-				System.out.println("배식 기록:"+eatList.get(0).getEat_time());
+				System.out.println("배식 기록:");
 				System.out.println("산책 기록:"+actList);
 				System.out.println("----------------------------");
 				petObj.put("pet_num", pet.getPet_num());
