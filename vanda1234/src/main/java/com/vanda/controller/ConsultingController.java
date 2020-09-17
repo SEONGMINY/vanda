@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.vanda.domain.ActivityVO;
+import com.vanda.domain.DoctorVO;
 import com.vanda.domain.HospitalVO;
 import com.vanda.domain.RoomVO;
 import com.vanda.domain.UserVO;
@@ -49,13 +50,44 @@ public class ConsultingController {
 		session.setAttribute("roomList", room);
 	}
 
-	@RequestMapping("/roomRegist")
-	public String roomRegist(String user_id,String doc_id, RedirectAttributes rttr) {
-		System.out.println(user_id);
-		System.out.println(doc_id);
-		service.insert(user_id,doc_id);
+	@ResponseBody
+	@PostMapping("/roomRegist")
+	public List<RoomVO> roomRegist(String user_id,String doc_id, RedirectAttributes rttr,HttpSession session,Model model) {
+		UserVO loginUser = (UserVO) session.getAttribute("check");
+		System.out.println("user_id :" + user_id);
+		System.out.println("doc_id :" + doc_id);
+		//service.insert(user_id,doc_id);
+		
+		
+		
+		if(loginUser.getUser_rule().equals("member")) {
+			System.out.println("멤버입니다");
+			List<RoomVO> room = service.roomList(loginUser.getUser_id());
+			System.out.println(room.get(0).getRoom_date());
+			return room;
+		}
+		else {
+			System.out.println("의사입니다");
+			List<RoomVO> roomDoc = service.roomDocList(loginUser.getUser_id());
+			
+			return roomDoc;
+			
+		}
+		
 		//rttr.addFlashAttribute("room", room);
-		return "consulting/chat";
+
+		
+	}
+	
+	//해당병원 수의사 보여주기
+	@ResponseBody
+	@PostMapping("/selectDoc")
+	public List<DoctorVO> selectDoc(String hosp_tel) {
+		List<DoctorVO> doctor = service.selectDoc(hosp_tel);
+        System.out.println("hosp_tel : " + hosp_tel);
+		System.out.println("의사 : " + doctor);
+		return doctor;
+		
 	}
 
 	// 뷰 보여주는부분
@@ -84,7 +116,7 @@ public class ConsultingController {
 	public HospitalVO selectHospital(String hosp_name) {
 		System.out.println(hosp_name);
 		HospitalVO hpVO = petService.selectHospital(hosp_name);
-
+		
 		if (hpVO == null) {
 			System.out.println("해당병원없음");
 

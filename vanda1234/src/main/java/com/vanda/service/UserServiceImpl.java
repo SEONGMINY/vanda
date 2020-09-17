@@ -99,10 +99,6 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userMapper.oldPetnum(user_id);
 	}
-	@Override
-	public List<DoctorVO> selectAllDoctor() {
-		// TODO Auto-generated method stub
-		return userMapper.selectAllDoctor();
-	}
+
 
 }

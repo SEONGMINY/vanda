@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vanda.domain.DoctorVO;
 import com.vanda.domain.MessageVO;
 import com.vanda.domain.RoomVO;
 import com.vanda.mapper.ChatMapper;
@@ -56,6 +57,12 @@ public class ChatServiceImpl implements ChatService {
 	public int insertMsg(MessageVO msg) {
 
 		return mapper.insertMsg(msg);
+	}
+
+	@Override
+	public List<DoctorVO> selectDoc(String hosp_tel) {
+		// TODO Auto-generated method stub
+		return mapper.selectDoc(hosp_tel);
 	}
 
 	

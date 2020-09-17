@@ -20,10 +20,13 @@
 
     <!-- 부트 스크립트 필수 링크 및 스크립트 -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  	<link href="/resources/css/styles2.css" rel="stylesheet" /> 
+	
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-	
+	 <script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 	<!-- jQuery 필수 스크립트 -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	  <script
@@ -152,8 +155,7 @@
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}
     
-    /* 
-    팝업스타일 */
+    /* 수의사 선택화면 스타일 */
    
 #mask {
     position: absolute;
@@ -196,6 +198,47 @@
     width: 96%;    
     margin: 2%;
     color: #828282; }
+    
+    /* --------------------------------------------- */
+    
+    /* 채팅창 스타일 */
+       
+.layerpop2 {
+    display: none;
+    z-index: 1000;
+    border: 2px solid #ccc;
+    background: #fff;
+    cursor: move; }
+
+.layerpop_area2 .title {
+    padding: 10px 10px 10px 10px;
+    border: 0px solid #aaaaaa;
+    background: #f1f1f1;
+    color: #3eb0ce;
+    font-size: 1.3em;
+    font-weight: bold;
+    line-height: 24px; }
+
+.layerpop_area2 .layerpop_close2 {
+    width: 25px;
+    height: 25px;
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent url('btn_exit_off.png') no-repeat; }
+
+.layerpop_area2 .layerpop_close2:hover {
+    background: transparent url('btn_exit_on.png') no-repeat;
+    cursor: pointer; }
+
+.layerpop_area2 .content2 {
+    width: 96%;    
+    margin: 2%;
+    color: #828282; }
+    
+    
+    
     </style>
     
     <script>
@@ -401,7 +444,7 @@
  <!-- 팝업뜰때 배경 -->
     <div id="mask"></div>
 
-    <!--Popup Start -->
+    <!--수의사 선택화면 -->
     <div id="layerbox" class="layerpop"
         style="width: 700px; height: 350px;">
         <article class="layerpop_area">
@@ -409,13 +452,61 @@
         <a href="javascript:popupClose();" class="layerpop_close"
             id="layerbox_close">X</a> <br>
         <div class="content">
-	<c:forEach var="doctor" items="${doctor}" varStatus="status">
-		<a href="http://localhost:8080/consulting/roomRegist?doc_id='${doctor.user_id}'&user_id='${check.user_id}'" class="list-group-item">${doctor.user_id} 수의사와 상담 시작하기</a>
-	</c:forEach>
-    
+	<div class="row" id="docArea">
+			
+		</div>
+    <input type="hidden" id="user_id" name="user_id" value="${check.user_id }"/>
         </div>
         </article>
     </div>
+         <!-- 상담 -->
+        <div id="layerbox2" class="layerpop2"
+        style="width: 1500px; height: 650px;">
+        <article class="layerpop_area2">
+        <div class="title">상담</div>
+        <a href="javascript:chatClose();" class="layerpop_close2"
+            id="layerbox_close2">X</a> <br>
+        <div class="content2" >
+	<div class="messaging">
+  <div class="inbox_msg">
+	<div class="inbox_people">
+	  <div class="headind_srch">
+		<div class="recent_heading">
+		  <h4>상담 기록</h4>
+		</div>
+		<div class="srch_bar">
+		  <div class="stylish-input-group">
+			<input type="text" class="search-bar"  placeholder="Search" >
+			</div>
+		</div>
+	  </div>
+	  <!-- 상담 내역 -->
+	  <div class="inbox_chat scroll" id="chatHistory">
+	
+	  </div>
+	</div>
+	
+	<!-- 메세지 내용  -->	
+	<div class="mesgs">
+	  <div class="msg_history">
+	
+	  </div>
+	  <div class="type_msg">
+		<div class="input_msg_write">
+		  <input type="text" class="write_msg" placeholder="메세지를 입력하세요." />
+		  <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+		</div>
+	  </div>
+	</div>
+  </div>
+</div>
+
+
+    
+        </div>
+        </article>
+    </div> 
+    
   <!-- FOOTER -->
   <footer class="container">
     <p class="float-right"><a href="#">Back to top</a></p>
@@ -423,50 +514,169 @@
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7c08f314710cd5f7bdb6ccee17bbd24f&libraries=services"></script>
 
 <script type="text/javascript">
+/* 채팅 스크립트 */
+
+function chatOpen() {
+    $('.layerpop2').css("position", "absolute");
+    //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
+    $('.layerpop2').css("top",(($(window).height() - $('.layerpop2').outerHeight()) / 2 +15) + $(window).scrollTop());
+    $('.layerpop2').css("left",(($(window).width() - $('.layerpop2').outerWidth()) / 2) + $(window).scrollLeft());
+    $('.layerpop2').draggable();
+    $('#layerbox2').show();
+}
+
+function chatClose() {
+    $('#layerbox2').hide();
+}
+
+function chatStart() {
+	chatOpen(); //레이어 팝업창 오픈 
+
+    }
+
+var chat=[];
+
+
+
+function startCon(docId){
+
+	
+	$.ajax({
+		url : "/consulting/roomRegist",
+		type : "post",
+		dataType:"json",
+		data : {
+			"user_id" : $('#user_id').val(),
+			"doc_id" : docId
+		},
+		success : function(data) {
+			
+			$.each(data, function(index,item){
+				chat[index] = data[index];
+					
+				})
+				const theTime = new Date(chat[0].room_date);
+
+			for(var z=0; z<data.length; z++){
+
+					var test = '<div class="chat_list" >'+
+		  		'<div class="chat_people">'+
+				'<div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>'+
+					'<div class="chat_ib">'+
+					'<div><h5>'+chat[z].doc_id+' 수의사님과 상담<span class="chat_date"></span></h5>'+
+		  			'<p>'+theTime.toLocaleString()+'</p>'+
+		  			'<input type="hidden" id="roomNum" value='+chat[z].room_num+'/></div>'+ 
+					'</div></div></div>';
+					
+
+				$('#chatHistory').append(test);
+			}
+		popupClose();
+		chatStart();
+			
+			
+		},
+		error : function(request, status, error) {
+			alert("해당병원이 없습니다. 다시선택해주세요 !");
+		 	alert("code = " + request.status + " message = "
+					+ request.responseText + " error = " + error); 
+			// 실패 시 처리
+		}
+
+	})
+	}
 /* 팝업스크립트 */
 
- function wrapWindowByMask() {
-     //화면의 높이와 너비를 구한다.
-     var maskHeight = $(document).height(); 
-     var maskWidth = $(window).width();
+function wrapWindowByMask() {
+    //화면의 높이와 너비를 구한다.
+    var maskHeight = $(document).height(); 
+    var maskWidth = $(window).width();
 
-     //문서영역의 크기 
-     console.log( "document 사이즈:"+ $(document).width() + "*" + $(document).height()); 
-     //브라우저에서 문서가 보여지는 영역의 크기
-     console.log( "window 사이즈:"+ $(window).width() + "*" + $(window).height());        
+    //문서영역의 크기 
+    console.log( "document 사이즈:"+ $(document).width() + "*" + $(document).height()); 
+    //브라우저에서 문서가 보여지는 영역의 크기
+    console.log( "window 사이즈:"+ $(window).width() + "*" + $(window).height());        
 
-     //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
-     $('#mask').css({
-         'width' : maskWidth,
-         'height' : maskHeight
-     });
+    //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
+    $('#mask').css({
+        'width' : maskWidth,
+        'height' : maskHeight
+    });
 
-     //애니메이션 효과
-     //$('#mask').fadeIn(1000);      
-     $('#mask').fadeTo("slow", 0.5);
- }
+    //애니메이션 효과
+    //$('#mask').fadeIn(1000);      
+    $('#mask').fadeTo("slow", 0.5);
+}
 
- function popupOpen() {
-     $('.layerpop').css("position", "absolute");
-     //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
-     $('.layerpop').css("top",(($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
-     $('.layerpop').css("left",(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
-     $('.layerpop').draggable();
-     $('#layerbox').show();
- }
+function popupOpen() {
+    $('.layerpop').css("position", "absolute");
+    //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
+    $('.layerpop').css("top",(($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
+    $('.layerpop').css("left",(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
+    $('.layerpop').draggable();
+    $('#layerbox').show();
+}
 
- function popupClose() {
-     $('#layerbox').hide();
-     $('#mask').hide();
- }
+function popupClose() {
+    $('#layerbox').hide();
+    $('#mask').hide();
+    $('.list-group-item').remove();
+}
 
- function goDetail() {
+//예악하기 버튼 클릭시 클릭한 병원에해당하는 수의사를 가져오기위한 병원번호
+var glb_hosp_tel;
+var arr= [];
 
-     /*팝업 오픈전 별도의 작업이 있을경우 구현*/ 
+function goDetail() {
 
-     popupOpen(); //레이어 팝업창 오픈 
-     wrapWindowByMask(); //화면 마스크 효과 
- }
+	 var hosp_tel = glb_hosp_tel;
+		
+	
+    /*팝업 오픈전 별도의 작업이 있을경우 구현*/ 
+	/* 해당 병원에 해당하는 의사 보여줘야함.*/
+	    		$.ajax({
+				url : "/consulting/selectDoc",
+				type : "post",
+				dataType: "json",
+				data : {
+					"hosp_tel" : hosp_tel
+				},
+				success : function(data) {
+
+					$.each(data, function(index,item){
+						arr[index] = data[index];
+							
+						})
+				
+						for(var i=0; i<data.length; i++) {
+
+							var divHosp='<div class="col-md-12"><a href=javascript:startCon("'+arr[i].user_id+'"); class="list-group-item" style="float:left;width:450px;height:100px;"><img src='+ arr[i].dimg_name + ' style="width:100px;height:60px;"/>'+ arr[i].user_id +' 수의사님과 상담하기</a></div>'
+
+							
+							$('#docArea').append(divHosp);	
+							}
+					
+			
+
+				
+					 popupOpen(); //수의사 선택화면 오픈 
+				     wrapWindowByMask(); //화면 마스크 효과 
+					
+				},
+				error : function(request, status, error) {
+					alert("해당병원이 없습니다. 다시선택해주세요 !");
+				 	alert("code = " + request.status + " message = "
+							+ request.responseText + " error = " + error); 
+					// 실패 시 처리
+				}
+
+			})
+	
+	
+	
+    
+   
+}
 
 
 </script>
@@ -540,7 +750,7 @@ var delOverlay = [];
 // 검색 결과 목록과 마커를 표출하는 함수입니다
 function displayPlaces(places) {
 
-
+	
 	
     var listEl = document.getElementById('placesList'), 
     menuEl = document.getElementById('menu_wrap'),
@@ -554,12 +764,12 @@ function displayPlaces(places) {
     // 지도에 표시되고 있는 마커를 제거합니다
     removeMarker();
 	
-    var hospChk = [1,2,3,4];
+
 
   //커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
 
    
-    for ( var i=0; i<hospChk.length; i++ ) {
+    for ( var i=0; i<places.length; i++ ) {
 
 
 		
@@ -601,7 +811,9 @@ function displayPlaces(places) {
 						"hosp_name" : title
 					},
 					success : function(data) {
-				 
+
+						glb_hosp_tel=data.hosp_tel;
+				 		
 										
 				        var content = '<div class="wrap">' + 
 				        '    <div class="info">' + 
@@ -611,12 +823,12 @@ function displayPlaces(places) {
 				        '        </div>' + 
 				        '        <div class="body">' + 
 				        '            <div class="img">' +
-				        '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+				        '                <img src=' + data.himg_name + ' width="73" height="70">' +
 				        '           </div>' + 
 				        '            <div class="desc">' + 
 				        '                <div class="ellipsis">' +data.hosp_add + '</div>' + 
-				        '                <div class="jibun ellipsis">'+data.hosp_tel +'</div>' + 
-				        '                <div><button onClick="goDetail()">예약하기</button></div>' + 
+				        '                <div class="jibun ellipsis" style="margin-bottom:10px;">'+data.hosp_tel +'</div>' + 
+				        '                <div><button class="btn btn-outline-secondary btn-sm" style="width:60px;" onClick="goDetail()">예약</button></div>' + 
 				        '            </div>' + 
 				        '        </div>' + 
 				        '    </div>' +    
@@ -780,6 +992,133 @@ function removeAllChildNods(el) {
     }
 }
 
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var userId = "${check.user_id}"; // 유저 아이디
+		var roomNum; // 방 번호
+		var roomBox = $(".inbox_chat"); // 상당 내역 DIV
+		var msgHistory = $(".msg_history"); // 채팅 DIV
+		var msgInput = $(".write_msg"); // 채팅 치는 곳
+
+		
+
+		$(".chat_list").on("click", function(e){
+			roomNum = $(this).data('num');
+			msgList();
+		});
+
+		
+
+		/* 메세지 불러오기  */
+		function msgList(){
+			chatService.msgList({room_num:roomNum},function(list){
+				var str = "";
+
+				if(list == null || list.length == 0){
+					msgHistory.html("");
+					return;
+				}
+
+
+				for(var i = 0;i<list.length;i++){
+					
+					if("${check.user_id}" == list[i].user_id){
+						str += "<div class='outgoing_msg' data-roomNum='" + list[i].msg_num + "'>";
+						str += "<div class='sent_msg'>";
+						str += "<p>" + list[i].msg_content + "</p>";
+						str += "<span class='time_date'>" + chatService.displayTime(list[i].msg_date) + "</span></div></div>";
+					} else {
+						str += "<div class='incoming_msg' data-roomNum='" + list[i].msg_num + "'>";
+						str += "<div class='incoming_msg_img'> <img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'> </div>";
+						str += "<div class='received_msg'>";
+						str += "<div class='received_withd_msg'>";
+						str += "<h5>" + list[i].user_id + "</h5>";
+						str += "<p>" + list[i].msg_content + "</p>";
+						str += "<span class='time_date'>" + chatService.displayTime(list[i].msg_date) + "</span></div></div></div>";
+					}
+						
+				}
+
+				msgHistory.html(str);
+			});
+		};
+
+		/* 메세진 send 버튼 클릭시  */
+		$(".msg_send_btn").on("click",function(e){
+			if(!msgInput.val()){
+				
+			} else {
+				chatService.add({room_num:roomNum,user_id:"${check.user_id}",msg_content:msgInput.val()},function(result){
+					sendMessage();
+					msgHistory.animate({scrollTop:9999},'slow');
+					msgInput.val("");
+				});	
+			}		
+		});
+		
+
+		// 엔터입력시 메세지 보내기
+		msgInput.keypress(function(event){
+			var kcode=event.keyCode;
+			if(!msgInput.val()){
+			} else {
+				if(kcode=='13'){
+					chatService.add({room_num:roomNum,user_id:"${check.user_id}",msg_content:msgInput.val()},function(result){
+						sendMessage();
+						msgHistory.animate({scrollTop:9999},'slow');
+						msgInput.val("");
+					});	
+				}	
+			}
+		});
+
+		/* 소켓 통신  */
+		let sock = new SockJS("http://localhost:8080/management2");
+		sock.onmessage = onMessage;
+		sock.onclose = onClose;
+
+		// 메시지 전송
+		function sendMessage() {				
+			sock.send(msgInput.val()+",${check.user_id}");
+		}
+		// 서버로부터 메시지를 받았을 때
+		function onMessage(msg) {
+			var data = msg.data;
+			var temp = data.split(",");
+			var time = new Date();
+			var str = "";
+			var selfId = temp[1];
+			
+
+			if("${check.user_id}" == selfId){
+				str += "<div class='outgoing_msg' data-roomNum='" + roomNum + "'>";
+				str += "<div class='sent_msg'>";
+				str += "<p>" + temp[0] + "</p>";
+				str += "<span class='time_date'>" + chatService.displayTime(time) + "</span></div></div>";
+			} else {
+				str += "<div class='incoming_msg' data-roomNum='" + roomNum + "'>";
+				str += "<div class='incoming_msg_img'> <img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'> </div>";
+				str += "<div class='received_msg'>";
+				str += "<div class='received_withd_msg'>";
+				str += "<h5>" + temp[1] + "</h5>";
+				str += "<p>" + temp[0] + "</p>";
+				str += "<span class='time_date'>" + chatService.displayTime(time) + "</span></div></div></div>";
+			}
+
+			msgHistory.append(str);
+			msgHistory.animate({scrollTop:9999},'slow');
+		}
+		// 서버와 연결을 끊었을 때
+		function onClose(evt) {
+			alert("연결실패");
+		}
+
+		
+
+		
+		
+	});
 </script>
 </main>
 </html>

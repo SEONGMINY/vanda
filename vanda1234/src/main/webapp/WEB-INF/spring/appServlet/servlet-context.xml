@@ -25,7 +25,7 @@
 
 	<!-- WebSocket -->
 	<websocket:handlers>
-		<websocket:mapping handler="echoHandler" path="/consulting/chat"/>
+		<websocket:mapping handler="echoHandler" path="/management2"/>
 		<websocket:sockjs/>
 	</websocket:handlers>
 	

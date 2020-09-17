@@ -2,6 +2,7 @@ package com.vanda.service;
 
 import java.util.List;
 
+import com.vanda.domain.DoctorVO;
 import com.vanda.domain.MessageVO;
 import com.vanda.domain.RoomVO;
 
@@ -16,5 +17,6 @@ public interface ChatService {
 	public RoomVO getRoom(int room_num);
 	public List<MessageVO> msgList(int room_num);
 	public int insertMsg(MessageVO msg);
+	public List<DoctorVO> selectDoc(String hosp_tel);
 	
 }

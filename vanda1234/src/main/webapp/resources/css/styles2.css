@@ -1,7 +1,7 @@
 /*---------chat window---------------*/
-.container{
-    max-width:900px;
-}
+/* .container{
+    max-width:9000px;
+} */
 .inbox_people {
 	background: #fff;
 	float: left;
@@ -114,7 +114,7 @@
 }
 
 .inbox_chat {
-	height: 550px;
+	height: 400px;
 	overflow-y: scroll;
 }
 
@@ -219,6 +219,6 @@
 }
 
 .msg_history {
-	height: 516px;
+	height: 400px;
 	overflow-y: auto;
 }

@@ -24,9 +24,11 @@
 	select * from message where room_num = #{room_num} order by msg_date
 	</select>
 	
-	<insert id="insertMsg">
-	insert into message(room_num,user_id,msg_content) values(1,'TEST',#{msg_content})
-	</insert>
+<insert id="insertMsg">insert into message(room_num,user_id,msg_content) values(1,'TEST',#{msg_content}) </insert>
+	
+	<select id="selectDoc" resultType="DoctorVO">
+	select * from doctor where hosp_tel=#{hosp_tel}
+	</select>
 	
 	
 	
