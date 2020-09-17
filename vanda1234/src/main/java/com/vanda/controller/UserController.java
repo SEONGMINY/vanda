@@ -107,21 +107,27 @@ public class UserController {
 
    //일반 회원가입 처리
    @RequestMapping(value = "geSignUp", method = RequestMethod.POST)
+   @ResponseBody
    public String gesignUp(UserVO userVO) throws Exception {
-
+	  System.out.println("들어 왔나?");
+	  System.out.println(userVO.toString());
+	  
       System.out.println("가입 성공");
       int result = userService.idChk(userVO);
 
       if (result == 1) {
          System.out.println("중복된 아이디");
 
-         return "redirect:/user/geSignup";
+         return "fail";
       } else if (result == 0) {
          System.out.println("사용가능한 아이디");
          userService.geInsert(userVO);
+         
+         return "success";
 
-   }
-      return "redirect:/";
+      }
+      
+      return "";
 
    }
 
@@ -136,23 +142,26 @@ public class UserController {
 
    //수의사 회원가입 처리
    @RequestMapping(value = "docSignUp", method = RequestMethod.POST)
+   @ResponseBody
    public String docsignUp(UserVO userVO) throws Exception {
+	  
+	   System.out.println("들어 왔나?");
+	   System.out.println(userVO.toString());
+	  
+	   System.out.println("가입 성공");
+	   int result = userService.idChk(userVO);
 
-      System.out.println("가입 성공");
-      int result = userService.idChk(userVO);
+	   if (result == 1) {
+		   System.out.println("중복된 아이디");
+
+		   return "fail";
+	   } else if (result == 0) {
+		   System.out.println("사용가능한 아이디");
+		   userService.docInsert(userVO);
+		   return "success";
+	   }
       
-      if (result == 1) {
-         System.out.println("중복된 아이디");
-         
-         return "redirect:/user/docSignUp";
-      } else if (result == 0) {
-         
-         System.out.println("사용가능한 아이디");
-         userService.docInsert(userVO);
-         
-      }
-      
-      return "redirect:/";
+	   return "";
       
    }
 

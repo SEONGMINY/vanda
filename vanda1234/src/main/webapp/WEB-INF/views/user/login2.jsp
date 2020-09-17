@@ -204,7 +204,7 @@ body {
 		<img width="24" height="24" src="../resources/images/login/gl.png" alt="google">
 		</div>
 		<div style="float:right;">
-	    	<button type="button" class="btn btn-outline-info btn-sm">회원가입</button>
+	    	<button type="button" class="btn btn-outline-info btn-sm" onclick="location.href='http://localhost:8080/user/signup'">회원가입</button>
 		</div>
 	 </div> 
 	</form>

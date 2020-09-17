@@ -197,6 +197,10 @@ body {
 	 <div class="tab-content" id="pills-tabContent">
 	   <!-- 일반 회원가입  -->
 	   <div class="tab-pane fade show active" id="pills-member" role="tabpanel" aria-labelledby="pills-member-tab">
+	   	 <div class="form-label-group">
+		   	<input type="text" id="user_name" name="user_name" class="form-control" placeholder="Name" required>
+		   	<label for="user_name">이름</label>
+		 </div>
 	   	 <div class="form-label-group input-group">
 		   <input type="text" id="user_id" name="user_id" class="form-control" placeholder="Email address" required autofocus>
 		   <div class="input-group-append">
@@ -229,10 +233,10 @@ body {
 		 
 		 <div class="form-group btn-group btn-group-toggle" data-toggle="buttons">
 			 <label class="btn btn-info">
-				 <input type="radio" name="user-gender" id="user-female" value="M"> 남성
+				 <input type="radio" name="user-gender" id="user-gender" value="M"> 남성
 			 </label>
 			 <label class="btn btn-info">
-				 <input type="radio" name="user-gender" id="user-female" value="F"> 여성
+				 <input type="radio" name="user-gender" id="user-gender" value="F"> 여성
 			 </label>
 		 </div>
 		 
@@ -246,6 +250,10 @@ body {
 	   
 	   <!-- 수의사 회원가입  -->
 	   <div class="tab-pane fade" id="pills-doctor" role="tabpanel" aria-labelledby="pills-doctor-tab">
+	   	<div class="form-label-group">
+		   <input type="text" id="doc_name" name="doc_name" class="form-control" placeholder="Name" required>
+		   <label for="doc_name">이름</label>
+		</div>
 	   	<div class="form-label-group input-group">
 		   <input type="text" id="doc_id" name="doc_id" class="form-control" placeholder="Email address" required autofocus>
 		   <label for="doc_id">아이디</label>
@@ -278,10 +286,10 @@ body {
 		 
 		 <div class="form-group btn-group btn-group-toggle" data-toggle="buttons">
 			 <label class="btn btn-info">
-				 <input type="radio" name="doc-gender" id="doc-male" value="M"> 남성
+				 <input type="radio" name="doc-gender" id="doc-gender" value="M"> 남성
 			 </label>
 			 <label class="btn btn-info">
-				 <input type="radio" name="doc-gender" id="doc-female" value="F"> 여성
+				 <input type="radio" name="doc-gender" id="doc-gender" value="F"> 여성
 			 </label>
 		 </div>
 		 
@@ -297,11 +305,61 @@ body {
 </body>
 <script>
 	function userSignUp() {
+		var formData = {
+				"user_name" : $("#user_name").val(),
+				"user_id" : $("#user_id").val(),
+				"user_pass" : $("#user_pass").val(),
+				"user_sex" : $("#user-gender").val(),
+				"user_tel" : $("#user_tel").val()		
+		}
 		
+		$.ajax ({
+			url: "/user/geSignUp",
+			type: "post",
+			data: formData,
+			success: function(data){
+				if(data=="success"){
+					alert("회원가입 되었습니다.");
+					window.location.href = "http://localhost:8080/login";
+				} else if(data=="fail"){
+					alert("입력창을 다시 확인해 주세요.");
+					window.location.reload();
+				}
+				
+			},
+			error: function(err){
+				alert("접속할수없음"+err);
+			}
+		});
 	}
 
 	function docSignUp() {
+		var formData = {
+				"user_name" : $("#doc_name").val(),
+				"user_id" : $("#doc_id").val(),
+				"user_pass" : $("#doc_pass").val(),
+				"user_sex" : $("#doc-gender").val(),
+				"user_tel" : $("#doc_tel").val()		
+		}
 		
+		$.ajax ({
+			url: "/user/docSignUp",
+			type: "post",
+			data: formData,
+			success: function(data){
+				if(data=="success"){
+					alert("회원가입 되었습니다.");
+					window.location.href = "http://localhost:8080/login";
+				} else if(data=="fail"){
+					alert("입력창을 다시 확인해 주세요.");
+					window.location.reload();
+				}
+				
+			},
+			error: function(err){
+				alert("접속할수없음"+err);
+			}
+		});
 	}
 
 	function userIdCheck() {
@@ -406,24 +464,6 @@ body {
 		}
 	}
 	
-	function login() {
-		var formData = $("#loginForm").serialize();
-		
-		$.ajax ({
-			url: "/user/login",
-			type: "post",
-			data: formData,
-			success: function(data){
-				if(data == "success"){
-					window.location.href = "http://localhost:8080/management2";
-				} else if(data == "fail"){
-					$("#alert").show();
-				}
-			},
-			error: function(err){
-				alert("접속할수없음"+err);
-			}
-		});
-	}
+	
 </script>
 </html>
