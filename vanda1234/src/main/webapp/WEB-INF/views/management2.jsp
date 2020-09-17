@@ -40,17 +40,13 @@
 		body {
 			font-family: 'Noto Sans KR', sans-serif;
 		}
-		nav a{
-         
-         	color : #d4d4d4;
-         	font-size : 14px;
-      	}
-      
-      	nav a:hover {
-         	text-decoration:none;
-         	color : #eeeeee;
-      	}
-      	
+		.navbar-nav > li{
+			/* padding-left:50px;
+			padding-right:50px; */
+			width : 180px;
+			/* line-height: 15px; */
+		}
+		
 		#weight{
 			width:250px;
 			height:250px;
@@ -290,22 +286,22 @@
 	      <div class="col-lg-4">
 	        <div id="weight">
 	           	<p style="line-height: 30px" >체중</p>
-	        	<p style="font-size:40px;">0kg</p>
-	        	<p style="font-size:20px; color:#8C8C8C">/0kg</p>
+	        	<p style="font-size:40px;">${nonSelectedPet.pet_weight}</p>
+	        	<p style="font-size:20px; color:#8C8C8C">/${nonSelectedPet.avg}KG</p>
 	        </div>
 	      </div><!-- /.col-lg-4 -->
 	      <div class="col-lg-4">
 	        <div id="eat">
 	            <p style="line-height: 30px">배식</p>
-	         	<p style="font-size:40px;">0g</p>
-	         	<p style="font-size:20px; color:#8C8C8C">/0g</p>
+	         	<p style="font-size:40px;">${nonSelectedPet.eat_gram}g</p>
+	         	<p style="font-size:20px; color:#8C8C8C">/${nonSelectedPet.gram}g</p>
 	        </div>
 	      </div><!-- /.col-lg-4 -->
 	      <div class="col-lg-4">
 	        <div id="activity">
 		        <p style="line-height: 30px">활동</p>
-		        <p style="font-size:40px;">0Kal</p>
-		        <p style="font-size:20px; color:#8C8C8C">/0kal</p>
+		        <p style="font-size:40px;">${nonSelectedPet.total_distance}Kcal</p>
+		        <p style="font-size:20px; color:#8C8C8C">/${nonSelectedPet.recomand_distance}Kcal</p>
 	        </div>
 	      </div>
 	    </div>
