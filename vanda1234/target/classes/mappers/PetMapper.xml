@@ -36,7 +36,68 @@
 		values
 		(#{pet_num},#{act_path},#{act_name},#{total_distance},#{timer})
 	</insert>
+<select id="standardEat" resultType="FoodWeightVO">
+		select a.food_num,
+		a.food_name, b.low_weight, b.high_weight, b.gram
+		from food a, (select
+		food_num, substr(weight, 0, instr(weight, '~') -1) as
+		low_weight,
+		substr(weight, instr(weight, '~')+1) as high_weight, gram
+		from
+		food_weight) b
+		where a.food_num = b.food_num
+		and a.food_num = #{food_num}
+	</select>
 
+	<select id="eatListAndroid" resultType="EatVO">
+		SELECT * FROM eat
+		WHERE pet_num = #{pet_num} order by eat_time desc
+	</select>
+
+	<select id="weightListAndroid" resultType="WeightVO">
+		SELECT * FROM weight
+		WHERE pet_num = #{pet_num} order by weight_date desc
+	</select>
+
+	<select id="todayWeightAndroid" resultType="WeightVO">
+		select a.pet_num,
+		b.pet_weight,b.weight_date
+		from pet a, weight b
+		where a.pet_num = b.pet_num
+		and a.pet_num = #{pet_num}
+		and to_char(b.weight_date, 'YY/MM/DD') =
+		to_char(sysdate, 'YY/MM/DD')
+		and rownum = 1
+		order by b.weight_date desc
+	</select>
+
+	<select id="todayEatAndroid" resultType="EatVO">
+		select a.pet_num,
+		b.eat_gram
+		from pet a, eat b
+		where a.pet_num = b.pet_num
+		and a.pet_num =	#{pet_num}
+		and to_char(b.eat_time, 'YY/MM/DD') = to_char(sysdate,
+		'YY/MM/DD')
+		and rownum = 1
+		order by b.eat_time desc
+	</select>
+
+	<select id="todayActAndroid" resultType="ActivityVO">
+		select
+		pet_num,act_num,act_path,act_name,total_distance,timer,act_date
+		from activity
+		where pet_num = #{pet_num}
+		and to_char(act_date, 'YY/MM/DD') = to_char(sysdate, 'YY/MM/DD')
+		and rownum = 1
+		order by act_date desc
+	</select>
+
+	<select id="recentlyWeightAndroid" resultType="WeightVO">
+		SELECT * FROM
+		WEIGHT WHERE pet_num = #{pet_num} AND ROWNUM = 1 ORDER BY WEIGHT_DATE
+		DESC
+	</select>
 
 	<select id="getPetNum" resultType="int">
 		select pet_num from member,pet
