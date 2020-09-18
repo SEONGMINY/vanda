@@ -154,6 +154,75 @@
 </body>
 <script>
 
+function hospModify() {
+	var formData = {
+
+			"hosp_name" : $('#hosp_name').val(),
+			"hosp_tel" : $('#hosp_tel').val(),
+			"hosp_add" : $('#hosp_add').val(),
+			"hosp_content" : $('#hosp_content').val(),
+			"himg_name" : $('#himg_name').val()
+			}
+
+	$.ajax ({
+		url: "/user/hospModify",
+		type: "post",
+		data: formData,
+		success: function(data){
+			if(data == 'success'){
+				alert("수정되었습니다.");
+				window.location.href = "http://localhost:8080/user/logout";
+				
+			} else {
+				alert("오류발생");
+			}		
+		},
+		error: function(request, status, error){
+			alert("접속할수없음");
+			alert("code = " + request.status + " message = "
+	                  + request.responseText + " error = " + error);
+		}
+	});
+	
+}
+
+function hospReg() {
+	
+
+	var formData = {
+
+			"hosp_name" : $('#hosp_name').val(),
+			"hosp_tel" : $('#hosp_tel').val(),
+			"hosp_add" : $('#hosp_add').val(),
+			"hosp_content" : $('#hosp_content').val(),
+			"himg_name" : $('#himg_name').val()
+			}
+
+	$.ajax ({
+		url: "/user/hospReg",
+		type: "post",
+		data: formData,
+		success: function(data){
+			if(data == 'success'){
+				alert("병원이 등록되었습니다.");
+				window.location.href = "http://localhost:8080/user/logout";
+				
+			} else {
+				alert("오류발생");
+			}		
+		},
+		error: function(request, status, error){
+			alert("접속할수없음");
+			alert("code = " + request.status + " message = "
+	                  + request.responseText + " error = " + error);
+		}
+	});
+			 	
+			
+	
+	
+	
+}
 	function register() {
 		
 	};

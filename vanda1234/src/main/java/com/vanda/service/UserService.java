@@ -3,7 +3,7 @@ package com.vanda.service;
 
 import java.util.List;
 
-import com.vanda.domain.DoctorVO;
+import com.vanda.domain.HospitalVO;
 import com.vanda.domain.KakaoVO;
 import com.vanda.domain.UserVO;
 
@@ -48,11 +48,18 @@ public interface UserService {
 
 	public List<Integer> selectPetnum(String user_id);
 
-
-
 	public void registerMemdev(String user_id, String device_id, Integer integer);
 
 	public List<Integer> oldPetnum(String user_id);
 
+	public int hospChk(String user_id);
+
+	public HospitalVO selHosp(String user_id);
+
+	public void hospInsert(HospitalVO hosp);
+
+	public void setDoc(String user_id, String hosp_tel);
+
+	public void hospModify(HospitalVO hosp);
 
 }

@@ -8,16 +8,19 @@
 
 	<select id="idChk" resultType="int">
 		SELECT COUNT(*) FROM member
-		WHERE user_id = #{user_id}
+		WHERE
+		user_id = #{user_id}
 	</select>
 	<insert id="geInsert" parameterType="UserVO">
-		INSERT INTO member(user_id,user_name, user_pass,user_tel,user_sex,user_rule)
+		INSERT INTO
+		member(user_id,user_name, user_pass,user_tel,user_sex,user_rule)
 		VALUES (#{user_id},#{user_name}, #{user_pass}, #{user_tel},
 		#{user_sex},'member')
 	</insert>
 
 	<insert id="docInsert" parameterType="UserVO">
-		INSERT INTO member(user_id,user_name, user_pass,user_tel,user_sex,user_rule)
+		INSERT INTO
+		member(user_id,user_name, user_pass,user_tel,user_sex,user_rule)
 		VALUES (#{user_id},#{user_name}, #{user_pass},
 		#{user_tel},#{user_sex},'doctor')
 	</insert>
@@ -25,60 +28,104 @@
 
 	<!-- 소셜 회원가입 -->
 	<insert id="soInsert" parameterType="KakaoVO">
-		INSERT INTO member(user_id,user_pass,user_sex,user_name,user_rule) VALUES
+		INSERT INTO
+		member(user_id,user_pass,user_sex,user_name,user_rule) VALUES
 		(#{user_id},#{user_pass},#{user_sex},#{user_name},'member')
 	</insert>
 
 
 	<select id="login" resultType="UserVO">
-		SELECT user_id,user_name, user_pass,user_tel,user_sex,user_rule FROM member
-		WHERE user_id = #{user_id} AND user_pass = #{user_pass}
+		SELECT user_id,user_name,
+		user_pass,user_tel,user_sex,user_rule FROM member
+		WHERE user_id =
+		#{user_id} AND user_pass = #{user_pass}
 	</select>
-	
+
 	<select id="autoLogin" resultType="UserVO">
-		SELECT user_id,user_name, user_pass,user_tel,user_sex,user_rule FROM member
-		WHERE user_id = #{user_id}
+		SELECT user_id,user_name,
+		user_pass,user_tel,user_sex,user_rule FROM member
+		WHERE user_id =
+		#{user_id}
 	</select>
-	
+
 	<select id="kakaoLogin" resultType="UserVO">
-		SELECT user_id,user_name, user_pass,user_tel,user_sex,user_rule FROM member
-		WHERE user_id = #{user_id}
+		SELECT user_id,user_name,
+		user_pass,user_tel,user_sex,user_rule FROM member
+		WHERE user_id =
+		#{user_id}
 	</select>
 
 	<update id="editINFO" parameterType="UserVO">
-		UPDATE member SET user_tel = #{user_tel}, user_pass = #{user_pass}, user_name= #{user_name} WHERE user_id = #{user_id}
+		UPDATE member SET user_tel =
+		#{user_tel}, user_pass = #{user_pass}, user_name= #{user_name} WHERE
+		user_id = #{user_id}
 	</update>
 
 	<update id="myPage" parameterType="UserVO">
-		UPDATE member SET user_pass = #{user_pass} WHERE user_id = #{user_id}
+		UPDATE member SET user_pass =
+		#{user_pass} WHERE user_id = #{user_id}
 	</update>
 
 	<delete id="bye" parameterType="UserVO">
-		DELETE FROM member WHERE user_id = #{user_id}
+		DELETE FROM member WHERE user_id
+		= #{user_id}
 	</delete>
-	
+
 	<update id="tokenUpdate" parameterType="UserVO">
-		UPDATE member SET token = #{token} WHERE user_id = #{user_id}
+		UPDATE member SET token =
+		#{token} WHERE user_id = #{user_id}
 	</update>
-	
+
 	<select id="tokenGet" resultType="UserVO">
-		select * from member where user_id = (select user_id from memdevice where device_id = #{device_id})
+		select * from member where
+		user_id = (select user_id from memdevice where device_id =
+		#{device_id})
 	</select>
 
-	<insert id="registerDev" >
-		INSERT INTO device(device_id,device_type) VALUES
+	<insert id="registerDev">
+		INSERT INTO
+		device(device_id,device_type) VALUES
 		(#{device_id},#{device_type})
 	</insert>
 	<select id="selectPetnum" resultType="int">
-		select pet_num from register where user_id = #{user_id}
+		select pet_num from
+		register where user_id = #{user_id}
 	</select>
-	<insert id="registerMemdev" >
-		INSERT INTO memdevice(user_id,device_id,pet_num) VALUES
+	<insert id="registerMemdev">
+		INSERT INTO
+		memdevice(user_id,device_id,pet_num) VALUES
 		(#{user_id},#{device_id},#{is})
 	</insert>
-	
-		<select id="oldPetnum" resultType="int">
-		select pet.pet_num from pet,register where pet.pet_num=register.pet_num order by pet.pet_regdate
-	</select>
 
+	<select id="oldPetnum" resultType="int">
+		select pet.pet_num from
+		pet,register where pet.pet_num=register.pet_num order by
+		pet.pet_regdate
+	</select>
+	<select id="hospChk" resultType="int">
+		select count(*) from doctor
+		where user_id = #{user_id}
+	</select>
+	<select id="selHosp" resultType="HospitalVO">
+		select * from hospital where
+		hosp_tel = (select hosp_tel from doctor where user_id=#{user_id})
+	</select>
+	<insert id="hospInsert">
+		insert into
+		hospital(hosp_tel,hosp_name,hosp_add,hosp_content,himg_name) values
+		(#{hosp_tel},#{hosp_name},#{hosp_add},#{hosp_content},#{himg_name})
+
+	</insert>
+	<insert id="setDoc">
+		insert into doctor(user_id,hosp_tel,dimg_name) values
+		(#{user_id},#{hosp_tel},'/resources/images/doctor/doc_img.png')
+
+	</insert>
+
+	<update id="hospModify" parameterType="HospitalVO">
+		UPDATE hospital SET
+		hosp_tel = #{hosp_tel}, hosp_add=
+		#{hosp_add},hosp_content=#{hosp_content},himg_name=#{himg_name} WHERE
+		hosp_name=#{hosp_name}
+	</update>
 </mapper>

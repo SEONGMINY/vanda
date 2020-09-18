@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.vanda.domain.DoctorVO;
+import com.vanda.domain.HospitalVO;
 import com.vanda.domain.KakaoVO;
 import com.vanda.domain.UserVO;
 
@@ -52,6 +52,15 @@ public interface UserMapper {
 
 	public List<Integer> oldPetnum(String user_id);
 	
+	public int hospChk(String user_id);
+
+	public HospitalVO selHosp(String user_id);
+
+	public void hospInsert(HospitalVO hosp);
+
+	public void setDoc(@Param("user_id") String user_id,@Param("hosp_tel") String hosp_tel);
+
+	public void hospModify(HospitalVO hosp);
 
 
 }

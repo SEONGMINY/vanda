@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,8 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.vanda.domain.DoctorVO;
 import com.vanda.domain.EatVO;
+import com.vanda.domain.HospitalVO;
 import com.vanda.domain.KakaoVO;
 import com.vanda.domain.PetVO;
 import com.vanda.domain.UserVO;
@@ -399,6 +400,33 @@ public class UserController {
 	   
 	   return "home";
    
+   }
+   
+   @ResponseBody
+   @PostMapping(value="/hospReg")
+   public String hospReg(HospitalVO hosp,HttpSession session) {
+	   UserVO loginUser = (UserVO) session.getAttribute("check");
+	   String user_id = loginUser.getUser_id();
+	   
+	   System.out.println("등록한 병원 정보 : " + hosp.toString());
+	   
+	   userService.hospInsert(hosp);
+	   
+	   userService.setDoc(user_id,hosp.getHosp_tel());
+	   
+	   return "success";
+   }
+   
+   // 병원정보 수정
+   @ResponseBody
+   @PostMapping(value="/hospModify")
+   public String hospModify(HospitalVO hosp,HttpSession session) throws Exception {
+	   
+	   
+      userService.hospModify(hosp);
+      
+      return "success";
+      
    }
 
 }
