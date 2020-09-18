@@ -12,7 +12,7 @@ nav {
 
 <main>
 
-	<div class="container-fluid" style="margin-top: 150px">
+	<div class="card mb-4" style="margin-top: 150px">
 		<div class="card mb-4">
 			<div class="card-header">
 				<i class="fas fa-table mr-1"></i>홈트레이닝
@@ -39,8 +39,8 @@ nav {
 								<tr>
 									<td><c:out value="${post.postNum}" /></td>
 									<td><a class="move"
-										href="<c:out value='${post.postNum}'/>"> <c:out
-												value="${post.postTitle}" />
+										href="<c:out value='${post.postNum}'/>">
+										 <c:out value="${post.postTitle}" />
 									</a></td>
 									<td><c:out value="${post.postContent}" /></td>
 									<td><c:out value="${post.postDate}" /></td>

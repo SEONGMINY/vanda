@@ -8,8 +8,6 @@
 <main>
 	<div class="container-fluid">
 		<h1 class="mt-4">VANDA</h1>
-
-
 		<div class="card mb-4">
 			<div class="card-header">
 				<i class="fas fa-table mr-1"></i>게시글 작성 페이지

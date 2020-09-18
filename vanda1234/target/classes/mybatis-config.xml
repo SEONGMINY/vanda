@@ -26,6 +26,7 @@
 		<typeAlias type="com.vanda.domain.OrderListVO" alias="OrderListVO" />
 		<typeAlias type="com.vanda.domain.HospitalVO" alias="HospitalVO" />
 		<typeAlias type="com.vanda.domain.DoctorVO" alias="DoctorVO" />
+		<typeAlias type="com.vanda.domain.GgVO" alias="GgVO" />
 		
 
 	</typeAliases>

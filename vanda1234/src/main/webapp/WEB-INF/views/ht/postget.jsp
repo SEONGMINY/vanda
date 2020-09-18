@@ -111,7 +111,7 @@
 
 
 
-
+<div class="container-fluid">
 <div class="card mb-4">
   <div class="card-header">
     <div class="panel panel-default">
@@ -127,7 +127,7 @@
     </div>
   </div>
 </div>
-
+</div>
 
 	<div class='container-fluid'>
 		<div class="col-lg-12">

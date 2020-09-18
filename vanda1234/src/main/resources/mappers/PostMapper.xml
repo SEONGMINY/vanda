@@ -84,6 +84,10 @@
 			SELECT * FROM POST WHERE POST_NUM = #{postNum}
 		</select>
 		
+		<select id="ggread" resultType="GgVO">
+			SELECT * FROM GG WHERE GG_NUM = #{gg_Num}
+		</select>
+		
 		<delete id="delete">
 			DELETE FROM POST WHERE POST_NUM = #{postNum}
 		</delete>
@@ -100,10 +104,6 @@
 				WHERE POST_NUM=#{postNum}
 		</update>
 		
-		<select id="gggetTotalCount" resultType="int">
-		select count(*) from POST where class_num = 2
-		<include refid="criteria"></include>
-		</select>
 			<select id="getTotalCount" resultType="int">
 		select count(*) from POST where class_num = 1
 		<include refid="criteria"></include>
@@ -138,30 +138,6 @@
 	
 	</select>
 	
-	
-			<select id="gggetListWithPaging" resultType="PostDTO">
-		
-		SELECT * FROM
-		(
-			SELECT ROWNUM RNUM, A.* FROM
-			(
-				SELECT
-					POST_NUM,
-					CLASS_NUM,
-					POST_TITLE,
-					POST_CONTENT,
-					TO_CHAR(POST_DATE, 'YYYY-MM-DD HH24:mm:ss') POST_DATE,
-					POST_COUNT,
-					SER_CATEGORY
-				FROM POST
-				<include refid="criteria"></include>
-				ORDER BY POST_NUM DESC
-			) A
-			WHERE <![CDATA[ ROWNUM <= #{pageNum} * #{amount}  ]]>
-		)
-		WHERE <![CDATA[ RNUM > (#{pageNum}-1)* #{amount} ]]> and class_num = 2
-	
-	</select>
 	
 	<select id="htgetListWithPaging" resultType="PostDTO">
 		
@@ -209,4 +185,51 @@
 		SET POST_COUNT = POST_COUNT + 1
 		WHERE POST_NUM = #{postNum}
 	</update>
+	
+	<select id="getggList" resultType="GgVO">
+		select * from GG 
+	</select>
+	
+	<insert id="gginsert">
+	<![CDATA[
+		INSERT INTO GG
+		(
+		USER_ID,
+		GG_TITLE,
+		GG_CONTENT,
+		GG_YOUTUBESUM,
+		GG_YOUTUBELINK
+				)
+		VALUES
+		(
+		#{user_Id}
+		, #{gg_Title}
+		, #{gg_Content}
+		, #{gg_Youtubesum}
+		, #{gg_Youtubelink}
+		)
+	]]>
+</insert>
+
+		<update id="ggmodify" parameterType="GgVO">
+			UPDATE GG
+				SET
+				GG_TITLE=#{gg_Title, jdbcType=VARCHAR}, 
+				GG_CONTENT=#{gg_Content},
+				GG_YOUTUBELINK=#{gg_Youtubelink},
+				GG_YOUTUBESUM=#{gg_Youtubesum},
+				GG_LINK=#{gg_Link}
+				WHERE GG_NUM=#{gg_Num}
+		</update>
+		
+		<select id="ggremove" >
+			DELETE FROM GG WHERE GG_NUM = #{gg_Num}
+		</select>
+
+		<select id="selectYoutube" resultType="String">
+			select GG_YOUTUBELINK,GG_YOUTUBESUM from GG 
+		</select>
+
+
+	
 </mapper>

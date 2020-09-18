@@ -12,9 +12,9 @@
     <div class="dropdown">
 	    <a class="nav-link py-2 d-none d-md-inline-block" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">커뮤니티</a>
 	    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	      <a class="dropdown-item" href="#">Before & After</a>
-	      <a class="dropdown-item" href="#">홈 트레이닝</a>
-	      <a class="dropdown-item" href="#">공식정보</a>
+	      <a class="dropdown-item" href="http://localhost:8080/post/postlist">Before & After</a>
+	      <a class="dropdown-item" href="http://localhost:8080/ht/postlist">홈 트레이닝</a>
+	      <a class="dropdown-item" href="http://localhost:8080/gg/gglist">공식정보</a>
 	    </div>
     </div>
     

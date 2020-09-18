@@ -111,7 +111,7 @@
 
 
 
-
+<div class="container-fluid">
 <div class="card mb-4">
   <div class="card-header">
     <div class="panel panel-default">
@@ -119,15 +119,21 @@
       <div class="panel-heading">파일</div>
       <div class="panel-body">
         
-        <div class='uploadResult'> 
+        <div class='uploadResult' style="float:left; width:50%;"> 
           <ul>
           </ul>
         </div>
+        
+        <div class='uploadResult' style="float:left; width:50%;"> 
+          <ul>
+          </ul>
+        </div>
+        
       </div>
     </div>
   </div>
 </div>
-
+</div>
 
 	<div class='container-fluid'>
 		<div class="col-lg-12">

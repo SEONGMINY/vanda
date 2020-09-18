@@ -55,8 +55,6 @@
 
 <main>
 	<div class="container-fluid">
-
-
 		<div class="card mb-4">
 			<div class="card-header">
 				<i class="fas fa-table mr-1"></i>변경 페이지

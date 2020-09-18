@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.vanda.common.Criteria;
+import com.vanda.domain.GgVO;
 import com.vanda.domain.PostDTO;
 import com.vanda.domain.PostImgVO;
 import com.vanda.mapper.PostImgMapper;
@@ -87,10 +88,6 @@ public class PostServiceImpl implements PostService {
 		return mapper.getListWithPaging(crt);
 	}
 	@Override
-	public List<PostDTO> gggetList(Criteria crt) {
-		return mapper.gggetListWithPaging(crt);
-	}
-	@Override
 	public List<PostDTO> htgetList(Criteria crt) {
 		return mapper.htgetListWithPaging(crt);
 	}
@@ -100,10 +97,7 @@ public class PostServiceImpl implements PostService {
 	public int getTotal(Criteria crt) {
 		return mapper.getTotalCount(crt);
 	}
-	@Override
-	public int gggetTotal(Criteria crt) {
-		return mapper.gggetTotalCount(crt);
-	}
+
 	@Override
 	public int htgetTotal(Criteria crt) {
 		return mapper.htgetTotalCount(crt);
@@ -116,6 +110,37 @@ public class PostServiceImpl implements PostService {
 	
 	public List<PostDTO> getListWithPaging(Criteria crt){
 		return mapper.getListWithPaging(crt);
+	}
+
+	@Override
+	public List<GgVO> getggList() {
+		return mapper.getggList();
+	}
+
+	@Override
+	public void ggregister(GgVO gg) {
+		mapper.gginsert(gg);
+		
+	}
+
+	@Override
+	public GgVO ggget(int gg_Num) {
+		return mapper.ggread(gg_Num);
+	}
+	
+	@Override
+	public void ggremove(int gg_Num) {
+		mapper.ggremove(gg_Num);
+	}
+	
+	@Override
+	public void ggmodify(GgVO gg) {
+		mapper.ggmodify(gg);
+	}
+
+	@Override
+	public List<String> selectYoutube(int gg_Num) {
+		return mapper.selectYoutube(gg_Num);
 	}
 
 }

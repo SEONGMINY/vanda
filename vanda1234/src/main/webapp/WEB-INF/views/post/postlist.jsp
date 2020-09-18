@@ -102,7 +102,7 @@
 									</button>
 								</div>
 								<div class="modal-body">
-									<p>modal-body 는 postlist에 105번쨰줄</p>
+									<p></p>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary"
