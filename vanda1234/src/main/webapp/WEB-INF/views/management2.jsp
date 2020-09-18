@@ -404,7 +404,7 @@
 	  </div>
 	  
 	  
-	  <div class="tab-pane fade active" id="consult">
+	 <div class="tab-pane fade active" id="consult">
 	  	<div class="row" >
 	  	
 	  		<div class="col-md-12">
@@ -519,6 +519,13 @@
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7c08f314710cd5f7bdb6ccee17bbd24f&libraries=services"></script>
 
 <script type="text/javascript">
+//수의사가 상담 클릭시
+function test() {
+	var id = $('#user_id').val();
+	startCon(id);
+	
+}
+
 /* 채팅 스크립트 */
 
 function chatOpen() {
@@ -546,6 +553,7 @@ var chat=[];
 function startCon(docId){
 
 	
+	
 	$.ajax({
 		url : "/consulting/roomRegist",
 		type : "post",
@@ -570,7 +578,7 @@ function startCon(docId){
 					'<div class="chat_ib">'+
 					'<div><h5>'+chat[z].doc_id+' 수의사님과 상담<span class="chat_date"></span></h5>'+
 		  			'<p>'+theTime.toLocaleString()+'</p>'+
-		  			'<input type="hidden" id="roomNum" value='+chat[z].room_num+'/></div>'+ 
+		  			'<input type="hidden" id="roomNum" value='+chat[z].room_num+'></div>'+ 
 					'</div></div></div>';
 					
 
@@ -998,8 +1006,13 @@ function removeAllChildNods(el) {
 }
 
 </script>
+<script type="text/javascript" src="/resources/js/chat.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		/* 소켓 통신  */
+		let sock = new SockJS("http://localhost:8080/management2");
+		sock.onmessage = onMessage;
+		sock.onclose = onClose;
 		var userId = "${check.user_id}"; // 유저 아이디
 		var roomNum; // 방 번호
 		var roomBox = $(".inbox_chat"); // 상당 내역 DIV
@@ -1054,7 +1067,7 @@ function removeAllChildNods(el) {
 			if(!msgInput.val()){
 				
 			} else {
-				chatService.add({room_num:roomNum,user_id:"${check.user_id}",msg_content:msgInput.val()},function(result){
+				chatService.add({room_num:$('#roomNum').val(),user_id:"${check.user_id}",msg_content:msgInput.val()},function(result){
 					sendMessage();
 					msgHistory.animate({scrollTop:9999},'slow');
 					msgInput.val("");
@@ -1069,7 +1082,7 @@ function removeAllChildNods(el) {
 			if(!msgInput.val()){
 			} else {
 				if(kcode=='13'){
-					chatService.add({room_num:roomNum,user_id:"${check.user_id}",msg_content:msgInput.val()},function(result){
+					chatService.add({room_num:$('#roomNum').val(),user_id:"${check.user_id}",msg_content:msgInput.val()},function(result){
 						sendMessage();
 						msgHistory.animate({scrollTop:9999},'slow');
 						msgInput.val("");
@@ -1078,10 +1091,7 @@ function removeAllChildNods(el) {
 			}
 		});
 
-		/* 소켓 통신  */
-		let sock = new SockJS("http://localhost:8080/management2");
-		sock.onmessage = onMessage;
-		sock.onclose = onClose;
+
 
 		// 메시지 전송
 		function sendMessage() {				

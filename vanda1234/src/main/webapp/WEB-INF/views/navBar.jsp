@@ -19,7 +19,9 @@
     </div>
     
     <a class="py-2 d-none d-md-inline-block" href="http://localhost:8080/mypage">마이페이지</a>
-    
+        <c:if test="${check.user_rule eq 'doctor'}">
+    <a class="py-2 d-none d-md-inline-block" href="javascript:test()">상담기록</a>
+    </c:if>
     <a class="py-2 d-none d-md-inline-block" href="http://localhost:8080/user/logout">로그아웃</a>
   </div>
 </nav>

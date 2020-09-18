@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MessageVO {
 	private int msg_num;
-	private int room_num;
+	private String room_num;
 	private String user_id;
 	private String msg_content;
 	private Date msg_date;
@@ -15,10 +15,10 @@ public class MessageVO {
 	public void setMsg_num(int msg_num) {
 		this.msg_num = msg_num;
 	}
-	public int getRoom_num() {
+	public String getRoom_num() {
 		return room_num;
 	}
-	public void setRoom_num(int room_num) {
+	public void setRoom_num(String room_num) {
 		this.room_num = room_num;
 	}
 	public String getUser_id() {
