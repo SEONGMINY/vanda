@@ -46,10 +46,8 @@
 	</select>
 
 	<update id="editINFO" parameterType="UserVO">
-		UPDATE member SET user_tel = #{user_tel} WHERE user_id = #{user_id} AND
-		user_pass = #{user_pass}
+		UPDATE member SET user_tel = #{user_tel}, user_pass = #{user_pass}, user_name= #{user_name} WHERE user_id = #{user_id}
 	</update>
-
 
 	<update id="myPage" parameterType="UserVO">
 		UPDATE member SET user_pass = #{user_pass} WHERE user_id = #{user_id}
@@ -66,7 +64,6 @@
 	<select id="tokenGet" resultType="UserVO">
 		select * from member where user_id = (select user_id from memdevice where device_id = #{device_id})
 	</select>
-
 
 	<insert id="registerDev" >
 		INSERT INTO device(device_id,device_type) VALUES

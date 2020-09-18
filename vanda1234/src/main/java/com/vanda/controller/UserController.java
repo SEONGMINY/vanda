@@ -331,44 +331,13 @@ public class UserController {
 
    // 회원정보 수정
    @RequestMapping(value = "/editINFO", method = RequestMethod.POST)
-   public String editINFO(UserVO userVO, HttpSession session, RedirectAttributes rttr) throws Exception {
-      UserVO loginUser = (UserVO) session.getAttribute("check");
-      /*
-        System.out.println("현재 로그인 유저 : " + loginUser);
-       System.out.println("myPage에서 입력된 아이디 정보 : " + userVO);
-       */
-
-      // user_id를 세션에 저장되어있는 아이디,이름으로 선언
-      String user_id = loginUser.getUser_id();
-      String user_sex = loginUser.getUser_sex();
-      String user_pass = loginUser.getUser_pass();
-      String user_name = loginUser.getUser_name();
-
-      // myPage에서 입력된 아이디정보를 세션에 저장되어있는 아이디로 다시 넣어줌. -> myPage에서는 입력을 해주지않기때문에 그렇지않으면
-      // null됨.
-      userVO.setUser_id(user_id);
-      userVO.setUser_sex(user_sex);
-      userVO.setUser_pass(user_pass);
-      userVO.setUser_name(user_name);
-      // 위의 두가지는 변하지 않는 정보.
-
-      // 폰번호,또는 주소에서 입력값이 없을때 현재 로그인된 정보를 다시 넣어줌. -> 하나만 변경할수 있기때문에 이 조건문이 없다면 null발생.
-      if (userVO.getUser_tel() == null) {
-         userVO.setUser_tel(loginUser.getUser_tel());
-      }
-
-      // userVO에 담긴 정보들을 보내줌.
-/*      int check = userService.editINFO(userVO);
-
-      if (check == 1) {
-         session.setAttribute("check", userVO);
-         System.out.println(check);
-      }
-*/
+   @ResponseBody
+   public String editINFO(UserVO userVO, HttpSession session) throws Exception {
+      
+	  System.out.println("왓다");
       userService.editINFO(userVO);
-      session.setAttribute("check", userVO);
-      rttr.addFlashAttribute("msg", "회원정보 수정 완료");
-      return "redirect:/user/myPage";
+      
+      return "success";
       
    }
    

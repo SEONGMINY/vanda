@@ -9,13 +9,18 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>Checkout example · Bootstrap</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/checkout/">
+    <title>마이페이지</title>
     
     <!-- 부트 스크립트 필수 링크 및 스크립트 -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	
+	<!-- jQuery 필수 스크립트 -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script> 
 	<meta name="theme-color" content="#563d7c">
 	
 	<!-- Noto Sans 글씨체 -->
@@ -27,9 +32,16 @@
 			font-family: 'Noto Sans KR', sans-serif;
 		}
 		
-		.navbar-nav > li{
-			width : 180px;
-		}
+		nav a{
+         
+         	color : #d4d4d4;
+         	font-size : 14px;
+      	}
+      
+      	nav a:hover {
+         	text-decoration:none;
+         	color : #eeeeee;
+      	}
 		
 		.list-group a {
 			color : black;
@@ -50,22 +62,33 @@
 		    font-size: 3.5rem;
 		  }
 		}
+		
+		
 	</style>
 	
 	<script>
 		function includeChange(page) {
-			alert(page);
-			 $.ajax({
-		         url : "/mypage",
-		         type : "post",
-		         data : {
-		            "page" : page
-		         },
-		         success : function() {
-			         location.reload();
-		         }
-	
-		      })
+			if(page == 'info'){
+				$("#info-page").show();
+				$("#pet-page").hide();
+				$("#device-page").hide();
+				$("#hospital-page").hide();
+			} else if (page == 'pet'){
+				$("#info-page").hide();
+				$("#pet-page").show();
+				$("#device-page").hide();
+				$("#hospital-page").hide();				
+			} else if (page == 'device') {
+				$("#info-page").hide();
+				$("#pet-page").hide();
+				$("#device-page").show();
+				$("#hospital-page").hide();
+			} else if (page == 'hospital'){
+				$("#info-page").hide();
+				$("#pet-page").hide();
+				$("#device-page").hide();
+				$("#hospital-page").show();
+			}
 		}
 	</script>
     
@@ -77,54 +100,104 @@
 
   <body class="bg-light">
     <div class="container">
-	  <div class="row">
-	    <div class="col-md-4 order-md-2 mb-4" style="margin-top:10px;">
-	      <!-- <h4 class="d-flex justify-content-between align-items-center mb-3">
-	        <span class="text-muted">Your cart</span>
-	        <span class="badge badge-secondary badge-pill">3</span>
-	      </h4> -->
-	      <ul class="list-group mb-3">
-	        <li class="list-group-item d-flex justify-content-between lh-condensed">
-	          <div class="">
-	            <h6 class="my-0"><a href="#" onclick="includeChange('info');">회원정보 관리</a></h6>
-	          </div>
-	        </li>
-	        <li class="list-group-item d-flex justify-content-between lh-condensed">
-	          <div>
-	            <h6 class="my-0"><a href="#" onclick="includeChange('pet');">반려견 등록</a></h6>
-	          </div>
-	        </li>
-	        <li class="list-group-item d-flex justify-content-between lh-condensed">
-	          <div>
-	            <h6 class="my-0"><a href="#" onclick="includeChange('device');">기기 등록</a></h6>
-	          </div>
-	        </li>
-	      </ul>
-	    </div>
-	    
-	    <div class="col-md-8 order-md-1" id="include" style="margin-top:10px;">
-	    	<c:choose>
-	    		<c:when test="${page eq 'info'}">
-	    		${page }
-	    		
-	    			<%@include file="./info.jsp" %>
-	    		</c:when>
-	    		<c:when test="${page eq 'device'}">
-	    		${page }
-	    			<%@include file="./device.jsp" %>
-	    		</c:when>
-	    		<c:when test="${page eq 'pet'}">
-	    		${page }
-	    		<h1>44</h1>
-	    			<%@include file="./pet.jsp" %>
-	    		</c:when>
-	    	</c:choose>
-	    </div>    
-	  </div>
-	</body>
+
+  <div class="row">
+    <div class="col-md-4 order-md-2 mb-4" style="margin-top:10px;">
+      <ul class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div class="">
+            <h6 class="my-0"><a href="#" onclick="includeChange('info');">회원정보 관리</a></h6>
+          </div>
+        </li>
+        <c:if test="${check.user_rule == 'member'}">
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0"><a href="#" onclick="includeChange('pet');">반려견 등록</a></h6>
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0"><a href="#" onclick="includeChange('device');">기기 등록</a></h6>
+          </div>
+        </li>
+        </c:if>
+        <c:if test="${check.user_rule == 'doctor'}">
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0"><a href="#" onclick="includeChange('hospital');">병원등록 및 관리</a></h6>
+          </div>
+        </li>
+        </c:if>
+      </ul>
+    </div>
+    
+    <div class="col-md-8 order-md-1" style="margin-top:20px;">
+    	<div id="info-page">
+    		<%@include file="./info.jsp" %>
+    	</div>
+    	<div id="pet-page" style="display:none;">
+    		<%@include file="./pet.jsp" %>
+    	</div>
+    	<div id="device-page" style="display:none;">
+    		<%@include file="./device.jsp" %>
+    	</div>
+    	<div id="hospital-page" style="display:none;">
+    		<%@include file="./hospital.jsp" %>
+    	</div>
+    </div>
+  </div>
 
   <footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">&copy; 2019-2020 반다</p>
+    
   </footer>
 </div>
+</body>
+<script>
+
+	function register() {
+		
+	};
+	function modify() {
+		var formData = {
+				"user_name" : $("#user_name").val(),
+				"user_id" : $("#user_id").val(),
+				"user_pass" : $("#user_pass").val(),
+				"user_sex" : $("#user_gender").val(),
+				"user_tel" : $("#user_tel").val()		
+		}
+		
+		$.ajax ({
+			url: "/user/editINFO",
+			type: "post",
+			data: formData,
+			success: function(data){
+				if(data == 'success'){
+					alert("회원정보가 수정되었습니다.");
+					window.location.href = "http://localhost:8080/user/logout";
+				} else {
+					alert("회원정보 수정이 실패하였습니다.");
+				}		
+			},
+			error: function(err){
+				alert("접속할수없음"+err);
+			}
+		});
+	}
+	function userPassCheck() {
+		var pass1 = $("#user_pass").val();
+		var pass2 = $("#user_pass_check").val();
+	
+		if(pass1==pass2) {
+			$("#user_pass_check").removeClass("is-invalid");
+			$("#user_pass_check").addClass("is-valid");
+			$("#user-invalid-feedback").hide();
+			$("#user-valid-feedback").show();
+		} else {
+			$("#user_pass_check").addClass("is-invalid");
+			$("#user_pass_check").removeClass("is-valid");
+			$("#user-invalid-feedback").show();
+			$("#user-valid-feedback").hide();
+		}
+	}
+</script>
 </html>
