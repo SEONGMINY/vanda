@@ -224,6 +224,33 @@ function hospReg() {
 	
 }
 	function register() {
+		var formData = {
+				"pet_name" : $("#pet_name").val(),
+				"pet_age" : $("#pet_age").val(),
+				"kind_num" : $("#kind").val(),
+				"food_num" : $("#food").val(),
+				"pet_sex" : $("#pet_sex").val(),
+				"pet_check" : $("#check").val()	
+		}
+
+		$.ajax ({
+			url: "/user/petRegister",
+			type: "post",
+			data: formData,
+			success: function(data){
+				if(data == 'success'){
+					alert("펫 등록이 되었습니다..");
+					window.location.href = "http://localhost:8080/user/logout";
+				} else {
+					alert("펫 등록에 실패했습니다..");
+				}		
+			},
+			error: function(err){
+				alert("접속할수없음"+err);
+			}
+		});
+
+		
 		
 	};
 	function modify() {

@@ -19,82 +19,82 @@
     <link href="https://fonts.googleapis.csom/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
     <!-- 부트 스크립트 필수 링크 및 스크립트 -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  	<link href="/resources/css/styles2.css" rel="stylesheet" /> 
-	
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-	 <script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
-	<!-- jQuery 필수 스크립트 -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	  <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script> 
-	<!-- slider 필수 스크립트  -->
-	<link rel="stylesheet" href="/resources/slick/slick.css">
-	<link rel="stylesheet" href="/resources/slick/slick-theme.css">
-	<script type="text/javascript" src="/resources/slick/slick.min.js"></script>
-	<meta name="theme-color" content="#563d7c">
-	
-	<style>
-		
-		body {
-			font-family: 'Noto Sans KR', sans-serif;
-		}
-		
-		nav a{
-         
-         	color : #d4d4d4;
-         	font-size : 14px;
-      	}
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link href="/resources/css/styles2.css" rel="stylesheet" /> 
+   
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+   <!-- jQuery 필수 스크립트 -->
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+     <script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script> 
+   <!-- slider 필수 스크립트  -->
+   <link rel="stylesheet" href="/resources/slick/slick.css">
+   <link rel="stylesheet" href="/resources/slick/slick-theme.css">
+   <script type="text/javascript" src="/resources/slick/slick.min.js"></script>
+   <meta name="theme-color" content="#563d7c">
+   
+   <style>
       
-      	nav a:hover {
-         	text-decoration:none;
-         	color : #eeeeee;
-      	}
-		
-		#weight{
-			width:250px;
-			height:250px;
-			border-radius: 50%;
-			background: #FFFFFF;
-			font-size: 16px;
-			text-align: center;
-			color:#000000;
-			font-weight:bold;
-			float:left;
-			margin: 10px 45px 10px 45px;
-			border:10px solid #BC2424;
-		}
-		#eat{
-			width:250px;
-			height:250px;
-			border-radius: 50%;
-			background: #FFFFFF;
-			font-size: 16px;
-			text-align: center;
-			color:#000000;
-			font-weight:bold;
-			float:left;
-			margin: 10px 45px 10px 45px;
-			border:10px solid #00bba7;
-		}
-		#activity{
-			width:250px;
-			height:250px;
-			border-radius: 50%;
-			background: #FFFFFF;
-			font-size: 16px;
-			text-align: center;
-			color:#000000;
-			font-weight:bold;
-			float:left;
-			margin: 10px 45px 10px 45px;
-			border:10px solid #ffea00;
-		}
-		
+      body {
+         font-family: 'Noto Sans KR', sans-serif;
+      }
+      
+      nav a{
+         
+            color : #d4d4d4;
+            font-size : 14px;
+         }
+      
+         nav a:hover {
+            text-decoration:none;
+            color : #eeeeee;
+         }
+      
+      #weight{
+         width:250px;
+         height:250px;
+         border-radius: 50%;
+         background: #FFFFFF;
+         font-size: 16px;
+         text-align: center;
+         color:#000000;
+         font-weight:bold;
+         float:left;
+         margin: 10px 45px 10px 45px;
+         border:10px solid #BC2424;
+      }
+      #eat{
+         width:250px;
+         height:250px;
+         border-radius: 50%;
+         background: #FFFFFF;
+         font-size: 16px;
+         text-align: center;
+         color:#000000;
+         font-weight:bold;
+         float:left;
+         margin: 10px 45px 10px 45px;
+         border:10px solid #00bba7;
+      }
+      #activity{
+         width:250px;
+         height:250px;
+         border-radius: 50%;
+         background: #FFFFFF;
+         font-size: 16px;
+         text-align: center;
+         color:#000000;
+         font-weight:bold;
+         float:left;
+         margin: 10px 45px 10px 45px;
+         border:10px solid #ffea00;
+      }
+      
 /* 지도 css */
 .map_wrap {position:relative;overflow:hidden;width:100%;height:350px;}
 .radius_border{border:1px solid #919191;border-radius:5px;}     
@@ -247,194 +247,245 @@
     </style>
     
     <script>
-	    $(document).ready(function(){
-	    	$('.multiple-items').slick({
-	    		  /* infinite: true, //양방향 무한 모션
-	    		  speed:300, // 슬라이드 스피드
-	    		  slidesToShow: 3, //한 화면에 보여줄 아이템수
-	    		  slidesToScroll: 3, // 한번에 슬라이드 시킬 아이템 개수
-	    		  arrows: true //좌우 화살 버튼 노출 여부 ( false 시 안보임 ) */
+       $(document).ready(function(){
+          $('.multiple-items').slick({
+               /* infinite: true, //양방향 무한 모션
+               speed:300, // 슬라이드 스피드
+               slidesToShow: 3, //한 화면에 보여줄 아이템수
+               slidesToScroll: 3, // 한번에 슬라이드 시킬 아이템 개수
+               arrows: true //좌우 화살 버튼 노출 여부 ( false 시 안보임 ) */
 
-	    		infinite: true,
-	    		slidesToShow: 3,
-	    		slidesToScroll: 3
-    		});		     
-		});
+             infinite: true,
+             slidesToShow: 3,
+             slidesToScroll: 3
+          });           
+      });
+
+       function changePetList(petNum) {
+
+    	     alert(petNum);
+    	      $.ajax({
+    	         url : "/pet/selectedPet",
+    	         type : "post",
+    	         dataType : "json",
+    	         data : {
+    	            "pet_num" : petNum
+    	            
+    	         },
+    	         success : function(data) {
+
+    	            alert("성공");
+    	             $("#weightValue").text(data.pet_weight+"kg");   // 현재 펫 몸무게
+    	             $("#gramValue").text(data.eat_gram+"g");   // 현재 펫 배식량
+    	             $("#distanceValue").text(data.total_distance+"kcal");   // 현재 펫 활동량
+    	             $("#avg").text("/"+data.avg+"kg");   // 권장 펫 몸무게
+    	             $("#gram").text("/"+data.gram+"g");   // 권장 펫 배식량
+    	             $("#recomand_distance").text("/"+data.recomand_distance+"kcal");   // 권장 펫 활동량
+
+    	            
+    	         },
+    	         error : function(request, status, error) {
+    	            /* alert("code = " + request.status + " message = "
+    	                  + request.responseText + " error = " + error); */
+    	                  alert("금일 측정된 데이터가 존재하지않습니다.");
+    	                  $("#weightValue").text(0+"kg");   // 현재 펫 몸무게
+    	                  $("#gramValue").text(0+"g");   // 현재 펫 배식량
+    	                  $("#distanceValue").text(0+"kcal");   // 현재 펫 활동량
+    	                  $("#avg").text("/"+0+"kg");   // 권장 펫 몸무게
+    	                  $("#gram").text("/"+0+"g");   // 권장 펫 배식량
+    	                  $("#recomand_distance").text("/"+0+"kcal");   // 권장 펫 활동량
+    	                  
+    	                  return;
+    	            // 실패 시 처리
+    	         }
+
+    	      });
+
+    	   }
+
+       function walkList(petNum) {
+           var arrData = [];
+           $('.multiple-items').slick('slickRemove', null, null, true);
+           $.ajax({
+              url: "/pet/walksList",
+              type: "post",
+              dataType: "json",
+              data : {
+                 "pet_num" : petNum,
+              }, success : function(data) {
+            	  
+                 var str = "";
+                    var idx = 0;
+                    $.each(data, function( index, value ) {
+                       arrData[index] = data[index];
+                       var leng = arrData[index].walks.length;
+                       
+                       $('.multiple-items').slick('slickAdd',"<div class='card' style='width: 18rem;'><div class='map' id='walk" + index + "' index style='width:100%; height:300px;'></div><div class='card-body'><p class='card-text'><h5>"+arrData[index].walks[leng-1].date+"</h5>"+arrData[index].walks[leng-1].total+"m"+"<br>"+arrData[index].walks[leng-1].timer+"</p></div></div>");
+                       //$('.multiple-items').slick('slickAdd',"<div>ㅎㅇ</div>");
+                       
+                        //console.log(index + " : " + data[index].walks);
+                        var leng = arrData[index].walks.length;
+                        console.log(arrData[index].walks[leng-1].timer);
+                        //console.log(arrData[index].walks[arrData[i].walks.lenn].total);
+                        
+                    });
+
+
+                    for(var i = 0; i<arrData.length;i++){
+                        var path = [];
+                       var mapOptin = {
+                                center : new kakao.maps.LatLng(arrData[i].walks[0].lat, arrData[i].walks[0].lon), // 지도의 중심좌표
+                                level:3
+                            }
+                        var container = document.getElementById('walk'+i);
+
+                        // 폴리 라인
+                        for(var j = 0;j<arrData[i].walks.length;j++){
+                            path[j] = new kakao.maps.LatLng(arrData[i].walks[j].lat, arrData[i].walks[j].lon);
+                           
+                        }
+
+                       var map = new kakao.maps.Map(container, mapOptin);
+                    var polyline = new kakao.maps.Polyline({
+                          map: map,
+                          path: path,
+                          strokeWeight: 2, // 두께
+                          strokeColor: '#FF00FF',//색
+                          strokeOpacity: 0.8 // 투명도
+                    });
+                    }
+                   
+                 },
+                 error : function(request, status, error) {
+                    alert("code = " + request.status + " message = "
+                          + request.responseText + " error = " + error);
+                    // 실패 시 처리
+                 }            
+           });
+        }
+  	   
+    	       
+
+       
     </script>
 
   </head>
   <body>
     <header>
-    	<%@include file="./navBar.jsp" %>	    
-	</header>
-	
+       <%@include file="./navBar.jsp" %>       
+   </header>
+   
   
   <!-- =========================================================================================-->
   <main role="main">
   
   <!-- 탭 기능 -->
   <div class="container marketing" >
-  	<ul class="nav nav-tabs" style="margin-top:30px;">
-	  <li class="nav-item">
-	    <a class="nav-link active" data-toggle="tab" href="#management">매니지먼트</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" data-toggle="tab" href="#consult">상담</a>
-	  </li>
-	</ul>
-	
-	<div class="tab-content" style="margin-top:10px;">
-	  <div class="tab-pane fade show active" id="management">
-	    <div class="row" >
-		    
-		    <!-- 비만 매니지먼트  -->
-		    
-		    <div class="col-lg-4" style="margin-bottom: 10px">
-			    <div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <h5 class="card-title">이름</h5>
-				    <p class="card-text">나이:1살</p>
-				    <p class="card-text">성별:암컷</p>
-				    <a href="#" class="btn btn-info">상세정보</a>
-				  </div>
-				</div>
-		    </div>
-		    
-		    <div class="col-lg-4" style="margin-bottom: 10px">
-			    <div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <h5 class="card-title">이름</h5>
-				    <p class="card-text">나이:1살</p>
-				    <p class="card-text">성별:암컷</p>
-				    <a href="#" class="btn btn-info">상세정보</a>
-				  </div>
-				</div>
-		    </div>
-		    
-		    <div class="col-lg-4" style="margin-bottom: 10px">
-			    <div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <h5 class="card-title">이름</h5>
-				    <p class="card-text">나이:1살</p>
-				    <p class="card-text">성별:암컷</p>
-				    <a href="#" class="btn btn-info">상세정보</a>
-				  </div>
-				</div>
-		    </div>    
-		    
-	    </div>
-	    
-	    <hr class="featurette-divider">
-	    
-	    <!-- 체중, 배식, 활동량 정보 -->
-	    <div class="row">
-	      <div class="col-lg-4">
-	        <div id="weight">
-	           	<p style="line-height: 30px" >체중</p>
-	        	<p style="font-size:40px;">${nonSelectedPet.pet_weight}</p>
-	        	<p style="font-size:20px; color:#8C8C8C">/${nonSelectedPet.avg}KG</p>
-	        </div>
-	      </div><!-- /.col-lg-4 -->
-	      <div class="col-lg-4">
-	        <div id="eat">
-	            <p style="line-height: 30px">배식</p>
-	         	<p style="font-size:40px;">${nonSelectedPet.eat_gram}g</p>
-	         	<p style="font-size:20px; color:#8C8C8C">/${nonSelectedPet.gram}g</p>
-	        </div>
-	      </div><!-- /.col-lg-4 -->
-	      <div class="col-lg-4">
-	        <div id="activity">
-		        <p style="line-height: 30px">활동</p>
-		        <p style="font-size:40px;">${nonSelectedPet.total_distance}Kcal</p>
-		        <p style="font-size:20px; color:#8C8C8C">/${nonSelectedPet.recomand_distance}Kcal</p>
-	        </div>
-	      </div>
-	    </div>
-	    
-	    <hr class="featurette-divider">
-	    
-	    <!-- 산책  -->
-	    <div class="row">
-		    <div class="col-md-12">
-			    <div class="multiple-items">
-			    	<div class="card" style="width: 18rem;">
-					  <div id="map" style="width: 100%; height:300px; border:solid 1px black;"></div>
-					  <div class="card-body">
-					    <p class="card-text">
-					    	거리 0m <br>
-					    	소요시간  09:30초
-					    </p>
-					  </div>
-					</div>
-					<div class="card" style="width: 18rem;">
-					  <div id="map" style="width: 100%; height:300px; border:solid 1px black;"></div>
-					  <div class="card-body">
-					    <p class="card-text">
-					    	거리 0m <br>
-					    	소요시간  09:30초
-					    </p>
-					  </div>
-					</div>
-			    	<div class="card" style="width: 18rem;">
-					  <div id="map" style="width: 100%; height:300px; border:solid 1px black;"></div>
-					  <div class="card-body">
-					    <p class="card-text">
-					    	거리 0m <br>
-					    	소요시간  09:30초
-					    </p>
-					  </div>
-					</div>
-			    	<div class="card" style="width: 18rem;">
-					  <div id="map" style="width: 100%; height:300px; border:solid 1px black;"></div>
-					  <div class="card-body">
-					    <p class="card-text">
-					    	거리 0m <br>
-					    	소요시간  09:30초
-					    </p>
-					  </div>
-					</div>			    	
-			    </div>
-		
-			</div>
-	    </div>
-	    
-	  </div>
-	  
-	  
-	 <div class="tab-pane fade active" id="consult">
-	  	<div class="row" >
-	  	
-	  		<div class="col-md-12">
+     <ul class="nav nav-tabs" style="margin-top:30px;">
+     <li class="nav-item">
+       <a class="nav-link active" data-toggle="tab" href="#management">매니지먼트</a>
+     </li>
+     <li class="nav-item">
+       <a class="nav-link" data-toggle="tab" href="#consult">상담</a>
+     </li>
+   </ul>
+   
+   <div class="tab-content" style="margin-top:10px;">
+     <div class="tab-pane fade show active" id="management">
+       <div class="row" >
+          
+          <!-- 비만 매니지먼트  -->
+          
+          <c:forEach var="pet" items="${pet}" varStatus="status">
+	          <div class="col-lg-4" style="margin-bottom: 10px">
+	             <div class="card" style="width: 18rem;">
+	              <img src="..." class="card-img-top" alt="...">
+	              <div class="card-body">
+	                <h5 id="pet_name" value="${pet.pet_num}">이름 : ${pet.pet_name}</h5>
+	                <p class="petValue" id="pet_age" value="${pet.pet_age}">나이 : ${pet.pet_age}살</p>
+	                <p class="petValue" id="pet_sex" value="${pet.pet_sex}">성별 : ${pet.pet_sex}</p>
+	                <button id ="select_box " onclick="changePetList(${pet.pet_num}),walkList(${pet.pet_num});"  class="btn btn-info">상세정보</button>
+	              </div>
+	            </div>
+	          </div>
+	     </c:forEach>
+              
+          
+       </div>
+       
+       <hr class="featurette-divider">
+       
+        <!-- 체중, 배식, 활동량 정보 -->
+       <div class="row">
+         <div class="col-lg-4">
+           <div id="weight">
+                 <p style="line-height: 30px" >체중</p>
+              <p id="weightValue" style="font-size:40px;">${nonSelectedPet.pet_weight}KG</p>
+              <p style="font-size:20px; color:#8C8C8C" id = "avg">/${nonSelectedPet.avg}KG</p>
+           </div>
+         </div><!-- /.col-lg-4 -->
+         <div class="col-lg-4">
+           <div id="eat">
+               <p style="line-height: 30px">배식</p>
+               <p id="gramValue"style="font-size:40px;">${nonSelectedPet.eat_gram}g</p>
+               <p style="font-size:20px; color:#8C8C8C" id="gram">/${nonSelectedPet.gram}g</p>
+           </div>
+         </div><!-- /.col-lg-4 -->
+         <div class="col-lg-4">
+           <div id="activity">
+              <p style="line-height: 30px">활동</p>
+              <p id="distanceValue"style="font-size:40px;"id ="walk">${nonSelectedPet.total_distance}Kcal</p>
+              <p style="font-size:20px; color:#8C8C8C" id="recomand_distance">/${nonSelectedPet.recomand_distance}Kcal</p>
+           </div>
+         </div>
+       </div>
 
-				<div class="map_wrap">
-				
-				<div id="map2" style="width:100%;height:500px;position:relative;overflow:hidden;"></div>
-				
-				  
-				    
-				    <div id="menu_wrap" class="bg_white">
-				
-				        <div class="option">
-				            <div>
-				                <form onsubmit="searchPlaces(); return false;">
-				                    키워드 : <input type="text" value="복현 동물병원" id="keyword" size="15"> 
-				                    <button type="submit">검색하기</button> 
-				                </form>
-				            </div>
-				        </div>
-				        <hr>
-				        <ul id="placesList"></ul>
-				        <div id="pagination"></div>
-				    </div>
-				</div>
-			</div>
-	  		
-	  	</div>
-	  </div>
-	</div>
+       
+       <hr class="featurette-divider">
+       
+       <!-- 산책  -->
+       <div class="row">
+          <div class="col-md-12">
+             <div class="multiple-items">        
+             </div>
+      
+         </div>
+       </div>
+       
+     </div>
+     
+     
+    <div class="tab-pane fade active" id="consult">
+        <div class="row" >
+        
+           <div class="col-md-12">
+
+            <div class="map_wrap">
+            
+            <div id="map2" style="width:100%;height:500px;position:relative;overflow:hidden;"></div>
+            
+              
+                
+                <div id="menu_wrap" class="bg_white">
+            
+                    <div class="option">
+                        <div>
+                            <form onsubmit="searchPlaces(); return false;">
+                                키워드 : <input type="text" value="복현 동물병원" id="keyword" size="15"> 
+                                <button type="submit">검색하기</button> 
+                            </form>
+                        </div>
+                    </div>
+                    <hr>
+                    <ul id="placesList"></ul>
+                    <div id="pagination"></div>
+                </div>
+            </div>
+         </div>
+           
+        </div>
+     </div>
+   </div>
 
     <hr class="featurette-divider">
 
@@ -457,9 +508,9 @@
         <a href="javascript:popupClose();" class="layerpop_close"
             id="layerbox_close">X</a> <br>
         <div class="content">
-	<div class="row" id="docArea">
-			
-		</div>
+   <div class="row" id="docArea">
+         
+      </div>
     <input type="hidden" id="user_id" name="user_id" value="${check.user_id }"/>
         </div>
         </article>
@@ -472,37 +523,37 @@
         <a href="javascript:chatClose();" class="layerpop_close2"
             id="layerbox_close2">X</a> <br>
         <div class="content2" >
-	<div class="messaging">
+   <div class="messaging">
   <div class="inbox_msg">
-	<div class="inbox_people">
-	  <div class="headind_srch">
-		<div class="recent_heading">
-		  <h4>상담 기록</h4>
-		</div>
-		<div class="srch_bar">
-		  <div class="stylish-input-group">
-			<input type="text" class="search-bar"  placeholder="Search" >
-			</div>
-		</div>
-	  </div>
-	  <!-- 상담 내역 -->
-	  <div class="inbox_chat scroll" id="chatHistory">
-	
-	  </div>
-	</div>
-	
-	<!-- 메세지 내용  -->	
-	<div class="mesgs">
-	  <div class="msg_history">
-	
-	  </div>
-	  <div class="type_msg">
-		<div class="input_msg_write">
-		  <input type="text" class="write_msg" placeholder="메세지를 입력하세요." />
-		  <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-		</div>
-	  </div>
-	</div>
+   <div class="inbox_people">
+     <div class="headind_srch">
+      <div class="recent_heading">
+        <h4>상담 기록</h4>
+      </div>
+      <div class="srch_bar">
+        <div class="stylish-input-group">
+         <input type="text" class="search-bar"  placeholder="Search" >
+         </div>
+      </div>
+     </div>
+     <!-- 상담 내역 -->
+     <div class="inbox_chat scroll" id="chatHistory">
+   
+     </div>
+   </div>
+   
+   <!-- 메세지 내용  -->   
+   <div class="mesgs">
+     <div class="msg_history">
+   
+     </div>
+     <div class="type_msg">
+      <div class="input_msg_write">
+        <input type="text" class="write_msg" placeholder="메세지를 입력하세요." />
+        <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+      </div>
+     </div>
+   </div>
   </div>
 </div>
 
@@ -521,9 +572,9 @@
 <script type="text/javascript">
 //수의사가 상담 클릭시
 function test() {
-	var id = $('#user_id').val();
-	startCon(id);
-	
+   var id = $('#user_id').val();
+   startCon(id);
+   
 }
 
 /* 채팅 스크립트 */
@@ -542,7 +593,7 @@ function chatClose() {
 }
 
 function chatStart() {
-	chatOpen(); //레이어 팝업창 오픈 
+   chatOpen(); //레이어 팝업창 오픈 
 
     }
 
@@ -552,52 +603,52 @@ var chat=[];
 
 function startCon(docId){
 
-	
-	
-	$.ajax({
-		url : "/consulting/roomRegist",
-		type : "post",
-		dataType:"json",
-		data : {
-			"user_id" : $('#user_id').val(),
-			"doc_id" : docId
-		},
-		success : function(data) {
-			
-			$.each(data, function(index,item){
-				chat[index] = data[index];
-					
-				})
-				const theTime = new Date(chat[0].room_date);
+   
+   
+   $.ajax({
+      url : "/consulting/roomRegist",
+      type : "post",
+      dataType:"json",
+      data : {
+         "user_id" : $('#user_id').val(),
+         "doc_id" : docId
+      },
+      success : function(data) {
+         
+         $.each(data, function(index,item){
+            chat[index] = data[index];
+               
+            })
+            const theTime = new Date(chat[0].room_date);
 
-			for(var z=0; z<data.length; z++){
+         for(var z=0; z<data.length; z++){
 
-					var test = '<div class="chat_list" >'+
-		  		'<div class="chat_people">'+
-				'<div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>'+
-					'<div class="chat_ib">'+
-					'<div><h5>'+chat[z].doc_id+' 수의사님과 상담<span class="chat_date"></span></h5>'+
-		  			'<p>'+theTime.toLocaleString()+'</p>'+
-		  			'<input type="hidden" id="roomNum" value='+chat[z].room_num+'></div>'+ 
-					'</div></div></div>';
-					
+               var test = '<div class="chat_list" >'+
+              '<div class="chat_people">'+
+            '<div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>'+
+               '<div class="chat_ib">'+
+               '<div><h5>'+chat[z].doc_id+' 수의사님과 상담<span class="chat_date"></span></h5>'+
+                 '<p>'+theTime.toLocaleString()+'</p>'+
+                 '<input type="hidden" id="roomNum" value='+chat[z].room_num+'></div>'+ 
+               '</div></div></div>';
+               
 
-				$('#chatHistory').append(test);
-			}
-		popupClose();
-		chatStart();
-			
-			
-		},
-		error : function(request, status, error) {
-			alert("해당병원이 없습니다. 다시선택해주세요 !");
-		 	alert("code = " + request.status + " message = "
-					+ request.responseText + " error = " + error); 
-			// 실패 시 처리
-		}
+            $('#chatHistory').append(test);
+         }
+      popupClose();
+      chatStart();
+         
+         
+      },
+      error : function(request, status, error) {
+         alert("해당병원이 없습니다. 다시선택해주세요 !");
+          alert("code = " + request.status + " message = "
+               + request.responseText + " error = " + error); 
+         // 실패 시 처리
+      }
 
-	})
-	}
+   })
+   }
 /* 팝업스크립트 */
 
 function wrapWindowByMask() {
@@ -642,51 +693,51 @@ var arr= [];
 
 function goDetail() {
 
-	 var hosp_tel = glb_hosp_tel;
-		
-	
+    var hosp_tel = glb_hosp_tel;
+      
+   
     /*팝업 오픈전 별도의 작업이 있을경우 구현*/ 
-	/* 해당 병원에 해당하는 의사 보여줘야함.*/
-	    		$.ajax({
-				url : "/consulting/selectDoc",
-				type : "post",
-				dataType: "json",
-				data : {
-					"hosp_tel" : hosp_tel
-				},
-				success : function(data) {
+   /* 해당 병원에 해당하는 의사 보여줘야함.*/
+             $.ajax({
+            url : "/consulting/selectDoc",
+            type : "post",
+            dataType: "json",
+            data : {
+               "hosp_tel" : hosp_tel
+            },
+            success : function(data) {
 
-					$.each(data, function(index,item){
-						arr[index] = data[index];
-							
-						})
-				
-						for(var i=0; i<data.length; i++) {
+               $.each(data, function(index,item){
+                  arr[index] = data[index];
+                     
+                  })
+            
+                  for(var i=0; i<data.length; i++) {
 
-							var divHosp='<div class="col-md-12"><a href=javascript:startCon("'+arr[i].user_id+'"); class="list-group-item" style="float:left;width:450px;height:100px;"><img src='+ arr[i].dimg_name + ' style="width:100px;height:60px;"/>'+ arr[i].user_id +' 수의사님과 상담하기</a></div>'
+                     var divHosp='<div class="col-md-12"><a href=javascript:startCon("'+arr[i].user_id+'"); class="list-group-item" style="float:left;width:450px;height:100px;"><img src='+ arr[i].dimg_name + ' style="width:100px;height:60px;"/>'+ arr[i].user_id +' 수의사님과 상담하기</a></div>'
 
-							
-							$('#docArea').append(divHosp);	
-							}
-					
-			
+                     
+                     $('#docArea').append(divHosp);   
+                     }
+               
+         
 
-				
-					 popupOpen(); //수의사 선택화면 오픈 
-				     wrapWindowByMask(); //화면 마스크 효과 
-					
-				},
-				error : function(request, status, error) {
-					alert("해당병원이 없습니다. 다시선택해주세요 !");
-				 	alert("code = " + request.status + " message = "
-							+ request.responseText + " error = " + error); 
-					// 실패 시 처리
-				}
+            
+                popupOpen(); //수의사 선택화면 오픈 
+                 wrapWindowByMask(); //화면 마스크 효과 
+               
+            },
+            error : function(request, status, error) {
+               alert("해당병원이 없습니다. 다시선택해주세요 !");
+                alert("code = " + request.status + " message = "
+                     + request.responseText + " error = " + error); 
+               // 실패 시 처리
+            }
 
-			})
-	
-	
-	
+         })
+   
+   
+   
     
    
 }
@@ -757,14 +808,14 @@ function placesSearchCB(data, status, pagination) {
 var delOverlay = [];
 
   function closeOverlay() {
-	  delOverlay[0].setMap(null);
-	  delOverlay.shift();
-	}
+     delOverlay[0].setMap(null);
+     delOverlay.shift();
+   }
 // 검색 결과 목록과 마커를 표출하는 함수입니다
 function displayPlaces(places) {
 
-	
-	
+   
+   
     var listEl = document.getElementById('placesList'), 
     menuEl = document.getElementById('menu_wrap'),
     fragment = document.createDocumentFragment(), 
@@ -776,7 +827,7 @@ function displayPlaces(places) {
 
     // 지도에 표시되고 있는 마커를 제거합니다
     removeMarker();
-	
+   
 
 
   //커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
@@ -785,7 +836,7 @@ function displayPlaces(places) {
     for ( var i=0; i<places.length; i++ ) {
 
 
-		
+      
         // 마커를 생성하고 지도에 표시합니다
         var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
             marker = addMarker(placePosition, i), 
@@ -800,83 +851,83 @@ function displayPlaces(places) {
         
 
 
-		
+      
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
         (function(marker,title) {
-        	
+           
             kakao.maps.event.addListener(marker, 'mouseover', function() {
 
-            	
-            	
-            		            	 
+               
+               
+                                  
             });
             
             kakao.maps.event.addListener(marker, 'click', function() {
             
 
-        		$.ajax({
-					url : "/consulting/selectHospital",
-					type : "post",
-					dataType : "json",
-					data : {
-						"hosp_name" : title
-					},
-					success : function(data) {
+              $.ajax({
+               url : "/consulting/selectHospital",
+               type : "post",
+               dataType : "json",
+               data : {
+                  "hosp_name" : title
+               },
+               success : function(data) {
 
-						glb_hosp_tel=data.hosp_tel;
-				 		
-										
-				        var content = '<div class="wrap">' + 
-				        '    <div class="info">' + 
-				        '        <div class="title">' + 
-				        title + 
-				        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-				        '        </div>' + 
-				        '        <div class="body">' + 
-				        '            <div class="img">' +
-				        '                <img src=' + data.himg_name + ' width="73" height="70">' +
-				        '           </div>' + 
-				        '            <div class="desc">' + 
-				        '                <div class="ellipsis">' +data.hosp_add + '</div>' + 
-				        '                <div class="jibun ellipsis" style="margin-bottom:10px;">'+data.hosp_tel +'</div>' + 
-				        '                <div><button class="btn btn-outline-secondary btn-sm" style="width:60px;" onClick="goDetail()">예약</button></div>' + 
-				        '            </div>' + 
-				        '        </div>' + 
-				        '    </div>' +    
-				        '</div>';
+                  glb_hosp_tel=data.hosp_tel;
+                   
+                              
+                    var content = '<div class="wrap">' + 
+                    '    <div class="info">' + 
+                    '        <div class="title">' + 
+                    title + 
+                    '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+                    '        </div>' + 
+                    '        <div class="body">' + 
+                    '            <div class="img">' +
+                    '                <img src=' + data.himg_name + ' width="73" height="70">' +
+                    '           </div>' + 
+                    '            <div class="desc">' + 
+                    '                <div class="ellipsis">' +data.hosp_add + '</div>' + 
+                    '                <div class="jibun ellipsis" style="margin-bottom:10px;">'+data.hosp_tel +'</div>' + 
+                    '                <div><button class="btn btn-outline-secondary btn-sm" style="width:60px;" onClick="goDetail()">예약</button></div>' + 
+                    '            </div>' + 
+                    '        </div>' + 
+                    '    </div>' +    
+                    '</div>';
 
-				//마커 위에 커스텀오버레이를 표시합니다
-				//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+            //마커 위에 커스텀오버레이를 표시합니다
+            //마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
 
 
 
-				var overlay = new kakao.maps.CustomOverlay({
-				content: content,
-				position: marker.getPosition(),
+            var overlay = new kakao.maps.CustomOverlay({
+            content: content,
+            position: marker.getPosition(),
 
-				});
+            });
 
-			
+         
 
-				
-				  overlay.setMap(map);  
-		
-				  delOverlay.unshift(overlay);
-			
-					
-						
-						
-					},
-					error : function(request, status, error) {
-						alert("해당병원이 없습니다. 다시선택해주세요 !")
-					/* 	alert("code = " + request.status + " message = "
-								+ request.responseText + " error = " + error); */
-						// 실패 시 처리
-					}
+            
+              overlay.setMap(map);  
+      
+              delOverlay.unshift(overlay);
+         
+               
+                  
+                  
+               },
+               error : function(request, status, error) {
+                  alert("해당병원이 없습니다. 다시선택해주세요 !")
+               /*    alert("code = " + request.status + " message = "
+                        + request.responseText + " error = " + error); */
+                  // 실패 시 처리
+               }
 
-				})
+            })
             });
 
             kakao.maps.event.addListener(marker, 'mouseout', function() {
@@ -1008,135 +1059,132 @@ function removeAllChildNods(el) {
 </script>
 <script type="text/javascript" src="/resources/js/chat.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
-		/* 소켓 통신  */
-		let sock = new SockJS("http://localhost:8080/management2");
-		sock.onmessage = onMessage;
-		sock.onclose = onClose;
-		var userId = "${check.user_id}"; // 유저 아이디
-		var roomNum; // 방 번호
-		var roomBox = $(".inbox_chat"); // 상당 내역 DIV
-		var msgHistory = $(".msg_history"); // 채팅 DIV
-		var msgInput = $(".write_msg"); // 채팅 치는 곳
+   $(document).ready(function(){
+      /* 소켓 통신  */
+      let sock = new SockJS("http://localhost:8080/management2");
+      sock.onmessage = onMessage;
+      sock.onclose = onClose;
+      var userId = "${check.user_id}"; // 유저 아이디
+      var roomNum; // 방 번호
+      var roomBox = $(".inbox_chat"); // 상당 내역 DIV
+      var msgHistory = $(".msg_history"); // 채팅 DIV
+      var msgInput = $(".write_msg"); // 채팅 치는 곳
 
-		
+      
 
-		$(".chat_list").on("click", function(e){
-			roomNum = $(this).data('num');
-			msgList();
-		});
+      $(".chat_list").on("click", function(e){
+         roomNum = $(this).data('num');
+         msgList();
+      });
 
-		
+      
 
-		/* 메세지 불러오기  */
-		function msgList(){
-			chatService.msgList({room_num:roomNum},function(list){
-				var str = "";
+      /* 메세지 불러오기  */
+      function msgList(){
+         chatService.msgList({room_num:roomNum},function(list){
+            var str = "";
 
-				if(list == null || list.length == 0){
-					msgHistory.html("");
-					return;
-				}
-
-
-				for(var i = 0;i<list.length;i++){
-					
-					if("${check.user_id}" == list[i].user_id){
-						str += "<div class='outgoing_msg' data-roomNum='" + list[i].msg_num + "'>";
-						str += "<div class='sent_msg'>";
-						str += "<p>" + list[i].msg_content + "</p>";
-						str += "<span class='time_date'>" + chatService.displayTime(list[i].msg_date) + "</span></div></div>";
-					} else {
-						str += "<div class='incoming_msg' data-roomNum='" + list[i].msg_num + "'>";
-						str += "<div class='incoming_msg_img'> <img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'> </div>";
-						str += "<div class='received_msg'>";
-						str += "<div class='received_withd_msg'>";
-						str += "<h5>" + list[i].user_id + "</h5>";
-						str += "<p>" + list[i].msg_content + "</p>";
-						str += "<span class='time_date'>" + chatService.displayTime(list[i].msg_date) + "</span></div></div></div>";
-					}
-						
-				}
-
-				msgHistory.html(str);
-			});
-		};
-
-		/* 메세진 send 버튼 클릭시  */
-		$(".msg_send_btn").on("click",function(e){
-			if(!msgInput.val()){
-				
-			} else {
-				chatService.add({room_num:$('#roomNum').val(),user_id:"${check.user_id}",msg_content:msgInput.val()},function(result){
-					sendMessage();
-					msgHistory.animate({scrollTop:9999},'slow');
-					msgInput.val("");
-				});	
-			}		
-		});
-		
-
-		// 엔터입력시 메세지 보내기
-		msgInput.keypress(function(event){
-			var kcode=event.keyCode;
-			if(!msgInput.val()){
-			} else {
-				if(kcode=='13'){
-					chatService.add({room_num:$('#roomNum').val(),user_id:"${check.user_id}",msg_content:msgInput.val()},function(result){
-						sendMessage();
-						msgHistory.animate({scrollTop:9999},'slow');
-						msgInput.val("");
-					});	
-				}	
-			}
-		});
+            if(list == null || list.length == 0){
+               msgHistory.html("");
+               return;
+            }
 
 
+            for(var i = 0;i<list.length;i++){
+               
+               if("${check.user_id}" == list[i].user_id){
+                  str += "<div class='outgoing_msg' data-roomNum='" + list[i].msg_num + "'>";
+                  str += "<div class='sent_msg'>";
+                  str += "<p>" + list[i].msg_content + "</p>";
+                  str += "<span class='time_date'>" + chatService.displayTime(list[i].msg_date) + "</span></div></div>";
+               } else {
+                  str += "<div class='incoming_msg' data-roomNum='" + list[i].msg_num + "'>";
+                  str += "<div class='incoming_msg_img'> <img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'> </div>";
+                  str += "<div class='received_msg'>";
+                  str += "<div class='received_withd_msg'>";
+                  str += "<h5>" + list[i].user_id + "</h5>";
+                  str += "<p>" + list[i].msg_content + "</p>";
+                  str += "<span class='time_date'>" + chatService.displayTime(list[i].msg_date) + "</span></div></div></div>";
+               }
+                  
+            }
 
-		// 메시지 전송
-		function sendMessage() {				
-			sock.send(msgInput.val()+",${check.user_id}");
-		}
-		// 서버로부터 메시지를 받았을 때
-		function onMessage(msg) {
-			var data = msg.data;
-			var temp = data.split(",");
-			var time = new Date();
-			var str = "";
-			var selfId = temp[1];
-			
+            msgHistory.html(str);
+         });
+      };
 
-			if("${check.user_id}" == selfId){
-				str += "<div class='outgoing_msg' data-roomNum='" + roomNum + "'>";
-				str += "<div class='sent_msg'>";
-				str += "<p>" + temp[0] + "</p>";
-				str += "<span class='time_date'>" + chatService.displayTime(time) + "</span></div></div>";
-			} else {
-				str += "<div class='incoming_msg' data-roomNum='" + roomNum + "'>";
-				str += "<div class='incoming_msg_img'> <img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'> </div>";
-				str += "<div class='received_msg'>";
-				str += "<div class='received_withd_msg'>";
-				str += "<h5>" + temp[1] + "</h5>";
-				str += "<p>" + temp[0] + "</p>";
-				str += "<span class='time_date'>" + chatService.displayTime(time) + "</span></div></div></div>";
-			}
+      /* 메세진 send 버튼 클릭시  */
+      $(".msg_send_btn").on("click",function(e){
+         if(!msgInput.val()){
+            
+         } else {
+            chatService.add({room_num:$('#roomNum').val(),user_id:"${check.user_id}",msg_content:msgInput.val()},function(result){
+               sendMessage();
+               msgHistory.animate({scrollTop:9999},'slow');
+               msgInput.val("");
+            });   
+         }      
+      });
+      
 
-			msgHistory.append(str);
-			msgHistory.animate({scrollTop:9999},'slow');
-		}
-		// 서버와 연결을 끊었을 때
-		function onClose(evt) {
-			alert("연결실패");
-		}
+      // 엔터입력시 메세지 보내기
+      msgInput.keypress(function(event){
+         var kcode=event.keyCode;
+         if(!msgInput.val()){
+         } else {
+            if(kcode=='13'){
+               chatService.add({room_num:$('#roomNum').val(),user_id:"${check.user_id}",msg_content:msgInput.val()},function(result){
+                  sendMessage();
+                  msgHistory.animate({scrollTop:9999},'slow');
+                  msgInput.val("");
+               });   
+            }   
+         }
+      });
 
-		
 
-		
-		
-	});
+
+      // 메시지 전송
+      function sendMessage() {            
+         sock.send(msgInput.val()+",${check.user_id}");
+      }
+      // 서버로부터 메시지를 받았을 때
+      function onMessage(msg) {
+         var data = msg.data;
+         var temp = data.split(",");
+         var time = new Date();
+         var str = "";
+         var selfId = temp[1];
+         
+
+         if("${check.user_id}" == selfId){
+            str += "<div class='outgoing_msg' data-roomNum='" + roomNum + "'>";
+            str += "<div class='sent_msg'>";
+            str += "<p>" + temp[0] + "</p>";
+            str += "<span class='time_date'>" + chatService.displayTime(time) + "</span></div></div>";
+         } else {
+            str += "<div class='incoming_msg' data-roomNum='" + roomNum + "'>";
+            str += "<div class='incoming_msg_img'> <img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'> </div>";
+            str += "<div class='received_msg'>";
+            str += "<div class='received_withd_msg'>";
+            str += "<h5>" + temp[1] + "</h5>";
+            str += "<p>" + temp[0] + "</p>";
+            str += "<span class='time_date'>" + chatService.displayTime(time) + "</span></div></div></div>";
+         }
+
+         msgHistory.append(str);
+         msgHistory.animate({scrollTop:9999},'slow');
+      }
+      // 서버와 연결을 끊었을 때
+      function onClose(evt) {
+         alert("연결실패");
+      }
+
+      
+
+      
+      
+   });
 </script>
 </main>
 </html>
-
-
-

@@ -46,11 +46,11 @@
   <h4 class="mb-3">성별</h4>
   <div class="d-block my-3">
     <div class="custom-control custom-radio">
-      <input id="male" name="pet_sex" type="radio" class="custom-control-input" value="M" checked required>
+      <input id="pet_sex" name="pet_sex" type="radio" class="custom-control-input" value="M" checked required>
       <label class="custom-control-label" for="pet_sex">수컷</label>
     </div>
     <div class="custom-control custom-radio">
-      <input id="female" name="pet_sex" type="radio" class="custom-control-input" value="F" required>
+      <input id="pet_sex" name="pet_sex" type="radio" class="custom-control-input" value="F" required>
       <label class="custom-control-label" for="pet_sex">암컷</label>
     </div>
   </div>
@@ -59,11 +59,11 @@
   <h4 class="mb-3">중성화</h4>
   <div class="d-block my-3">
     <div class="custom-control custom-radio">
-      <input id="check_o" name="check" type="radio" class="custom-control-input" checked required>
+      <input id="check" name="check" type="radio" class="custom-control-input" checked required>
       <label class="custom-control-label" for="check">O</label>
     </div>
     <div class="custom-control custom-radio">
-      <input id="check_x" name="check" type="radio" class="custom-control-input" required>
+      <input id="check" name="check" type="radio" class="custom-control-input" required>
       <label class="custom-control-label" for="check">X</label>
     </div>
   </div>

@@ -1,5 +1,7 @@
 package com.vanda.domain;
 
+import java.util.Date;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -7,54 +9,64 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "location")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class WalkVO {
-	private int petNum;
-	private double lat;
-	private double lon;
-	private double total;
-	private String timer;
+   private int petNum;
+   private double lat;
+   private double lon;
+   private double total;
+   private String timer;
+   private String date;
 
-	public String getTimer() {
-		return timer;
-	}
 
-	public void setTimer(String timer) {
-		this.timer = timer;
-	}
+   public String getDate() {
+      return date;
+   }
 
-	public double getTotal() {
-		return total;
-	}
+   public void setDate(String date) {
+      this.date = date;
+   }
 
-	public void setTotal(double total) {
-		this.total = total;
-	}
+   public String getTimer() {
+      return timer;
+   }
 
-	public int getPetNum() {
-		return petNum;
-	}
+   public void setTimer(String timer) {
+      this.timer = timer;
+   }
 
-	public void setPetNum(int petNum) {
-		this.petNum = petNum;
-	}
+   public double getTotal() {
+      return total;
+   }
 
-	public double getLat() {
-		return lat;
-	}
+   public void setTotal(double total) {
+      this.total = total;
+   }
 
-	public void setLat(double lat) {
-		this.lat = lat;
-	}
+   public int getPetNum() {
+      return petNum;
+   }
 
-	public double getLon() {
-		return lon;
-	}
+   public void setPetNum(int petNum) {
+      this.petNum = petNum;
+   }
 
-	public void setLon(double lon) {
-		this.lon = lon;
-	}
+   public double getLat() {
+      return lat;
+   }
 
-	public String toString() {
-		return "petNUM:"+ getPetNum() + " lat:" + getLat() + " lon:" + getLon()+" total:" + getTotal();
-	}
+   public void setLat(double lat) {
+      this.lat = lat;
+   }
+
+   public double getLon() {
+      return lon;
+   }
+
+   public void setLon(double lon) {
+      this.lon = lon;
+   }
+
+   public String toString() {
+      return "petNUM:"+ getPetNum() + " lat:" + getLat() + " lon:" + getLon()+" total:" + getTotal();
+   }
 
 }

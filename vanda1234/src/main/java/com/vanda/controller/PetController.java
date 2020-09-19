@@ -248,6 +248,45 @@ public class PetController {
 		return actList;
 
 	}
+	
+	
+	@ResponseBody
+   @RequestMapping(value = "/walksList", method = RequestMethod.POST)
+   public List<WalksVO> walkList(int pet_num, HttpSession session, Model model) {
+      System.out.println("펫 산책선택:"+pet_num);
+
+      // 산책 리스트
+      List<ActivityVO> actList = petService.actList(pet_num);
+      List<WalksVO> walksList = new ArrayList<>();
+
+      // 산책 리스트 xml 파일을 변환
+      // LAT,LON XML파일 데이터로 변환
+
+      for (int i = 0; i < actList.size(); i++) {
+         String path = actList.get(i).getAct_path();
+         String fileName = actList.get(i).getAct_name();
+
+         try {
+            
+            System.out.println(path + "/" + fileName);
+            JAXBContext jaxbContext = JAXBContext.newInstance(WalksVO.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+            // We had written this file in marshalling example
+            WalksVO walks = (WalksVO) jaxbUnmarshaller.unmarshal(new File(path + "/" + fileName + ".xml"));
+
+            walksList.add(walks);
+            System.out.println(walksList.get(i).getWalks());
+
+         } catch (Exception e) {
+            // TODO: handle exception
+         }
+
+      }
+      
+      return walksList;
+   }
+	
 
 	//배식
 	@PostMapping("/DIS")
@@ -272,7 +311,7 @@ public class PetController {
 		System.out.println("\r현재 배열 : " + list.toString());
 		System.out.println("----------------------------------------------");
 	
-			petService.eatUpdate(117,data);
+			petService.eatUpdate(101,data);
 			list.clear();
 		
 
