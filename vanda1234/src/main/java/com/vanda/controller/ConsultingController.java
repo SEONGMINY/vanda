@@ -56,7 +56,7 @@ public class ConsultingController {
 		UserVO loginUser = (UserVO) session.getAttribute("check");
 		System.out.println("user_id :" + user_id);
 		System.out.println("doc_id :" + doc_id);
-		//service.insert(user_id,doc_id);
+		service.insert(user_id,doc_id);
 		
 		
 		
