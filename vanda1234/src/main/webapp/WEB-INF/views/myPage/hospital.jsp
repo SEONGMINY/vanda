@@ -6,14 +6,10 @@
 
   <div class="mb-3">
     <label for="hosp_name">병원이름</label>
-    <c:choose>
-    <c:when test="${hosp ==null }">
+   
+    
     <input type="text" class="form-control" id="hosp_name" value="${hosp.hosp_name}" required>
-    </c:when>
-        <c:when test="${hosp !=null }">
-    <input type="text" class="form-control" id="hosp_name" value="${hosp.hosp_name}" readonly="readonly" required>
-    </c:when>
-    </c:choose>
+  
   </div>
   
   <div class="mb-3">
