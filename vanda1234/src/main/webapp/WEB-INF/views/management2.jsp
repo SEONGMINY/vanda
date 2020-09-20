@@ -539,45 +539,57 @@
 
        function changePetList(petNum) {
 
-           alert(petNum);
-            $.ajax({
-               url : "/pet/selectedPet",
-               type : "post",
-               dataType : "json",
-               data : {
-                  "pet_num" : petNum
-                  
-               },
-               success : function(data) {
+	         $.ajax({
+	            url : "/pet/selectedPet",
+	            type : "post",
+	            dataType : "json",
+	            data : {
+	               "pet_num" : petNum
+	               
+	            },
+	            success : function(data) {
 
-                  alert("성공");
-                   $("#weightValue").text(data.pet_weight+"kg");   // 현재 펫 몸무게
-                   $("#gramValue").text(data.eat_gram+"g");   // 현재 펫 배식량
-                   $("#distanceValue").text(data.total_distance+"kcal");   // 현재 펫 활동량
-                   $("#avg").text("/"+data.avg+"kg");   // 권장 펫 몸무게
-                   $("#gram").text("/"+data.gram+"g");   // 권장 펫 배식량
-                   $("#recomand_distance").text("/"+data.recomand_distance+"kcal");   // 권장 펫 활동량
+	                $("#weightValue").text(data.pet_weight+"kg");   // 현재 펫 몸무게
+	                $("#gramValue").text(data.eat_gram+"g");   // 현재 펫 배식량
+	                $("#avg").text("/"+data.avg+"kg");   // 권장 펫 몸무게
+	                $("#gram").text("/"+data.gram+"g");   // 권장 펫 배식량
+	                $("#recomand_distance").text(data.recomand_distance);   // 권장 펫 활동량
+	                kcal2 = data.recomand_distance;
 
-                  
-               },
-               error : function(request, status, error) {
-                  /* alert("code = " + request.status + " message = "
-                        + request.responseText + " error = " + error); */
-                        alert("금일 측정된 데이터가 존재하지않습니다.");
-                        $("#weightValue").text(0+"kg");   // 현재 펫 몸무게
-                        $("#gramValue").text(0+"g");   // 현재 펫 배식량
-                        $("#distanceValue").text(0+"kcal");   // 현재 펫 활동량
-                        $("#avg").text("/"+0+"kg");   // 권장 펫 몸무게
-                        $("#gram").text("/"+0+"g");   // 권장 펫 배식량
-                        $("#recomand_distance").text("/"+0+"kcal");   // 권장 펫 활동량
-                        
-                        return;
-                  // 실패 시 처리
-               }
+	                recommandKcal(petNum);
+	                
 
-            });
+	             /*  $("#eat").text(data.eat_gram);   // 현재 배식량 
+	               $("#weightValue").text(data.pet_weight+"kg");   // 현재 펫 몸무게
+	              $("#avg").text(data.avg);   //추천 몸무게
+	               $("#gram").text(data.gram);   //추천 배식량
+	               $("#walk").text(data.total_distance);   //현재 활동량
+	               $("#recomand_distance").text(data.recomand_distance); //추천 활동량 
+	               */
+	               /* if(data.eat_gram == 0){
+	                  alert("금일 측정된 데이터가 존재하지않습니다.");
+	                   return;
+	                   }*/
+	               
+	            },
+	            error : function(request, status, error) {
+	               /* alert("code = " + request.status + " message = "
+	                     + request.responseText + " error = " + error); */
+	                     alert("금일 측정된 데이터가 존재하지않습니다.");
+	                     $("#weightValue").text(0+"kg");   // 현재 펫 몸무게
+	                     $("#gramValue").text(0+"g");   // 현재 펫 배식량
+	                     $("#distanceValue").text(0+"kcal");   // 현재 펫 활동량
+	                     $("#avg").text("/"+0+"kg");   // 권장 펫 몸무게
+	                     $("#gram").text("/"+0+"g");   // 권장 펫 배식량
+	                     $("#recomand_distance").text(0);   // 권장 펫 활동량
+	                     
+	                     return;
+	               // 실패 시 처리
+	            }
 
-         }
+	         })
+
+	      }
 
        function walkList(petNum) {
            var arrData = [];
@@ -639,6 +651,39 @@
                  }            
            });
         }
+       
+       function recommandKcal(petNum) {
+			   
+	         $.ajax({
+		            url : "/pet/recommandKcal",
+		            type : "post",
+		            data : {
+		               "pet_num" : petNum
+		               
+		            }, success: function(data) {
+			            
+	            	 	
+			            var kcal = data
+			            kcal =kcal.split(":");
+			            var mm = parseInt(kcal[0]); // 내가 소모한 분
+			            var walk = parseInt(kcal[1]); // 얼만큼 소모해야 하는 시간
+		               
+		               var reco = $("#recomand_distance").text(); // 추천 소모량
+
+		               var recoval = parseInt(reco)/walk;
+
+		               $("#distanceValue").text(parseInt((recoval * mm))+"kcal");   // 현재 펫 활동량 
+
+		               
+		            },
+		            error : function(request, status, error) {
+		            	alert(request+error+status);
+		            }
+
+		         })
+
+	    	
+		    }
 
     </script>
 
@@ -695,13 +740,11 @@
        <!-- 체중, 배식, 활동량 정보 -->
        <div class="row">
          <div class="col-lg-4">
-         <a href="javascript:weightChart()">
            <div id="weight">
                  <p style="line-height: 30px" >체중</p>
               <p id="weightValue" style="font-size:40px;">${nonSelectedPet.pet_weight}KG</p>
               <p style="font-size:20px; color:#8C8C8C" id = "avg">/${nonSelectedPet.avg}KG</p>
            </div>
-          </a>
          </div><!-- /.col-lg-4 -->
          <div class="col-lg-4">
            <div id="eat">
@@ -711,13 +754,13 @@
            </div>
          </div><!-- /.col-lg-4 -->
          <div class="col-lg-4">
-         <a href="javascript:activityChart()" >
            <div id="activity">
               <p style="line-height: 30px">활동</p>
               <p id="distanceValue"style="font-size:40px;"id ="walk">${nonSelectedPet.total_distance}Kcal</p>
-              <p style="font-size:20px; color:#8C8C8C" id="recomand_distance">/${nonSelectedPet.recomand_distance}Kcal</p>
+              <p style="font-size:20px; color:#8C8C8C" id="recomand_distance">${nonSelectedPet.recomand_distance}</p>
+              <p style="font-size:20px; color:#8C8C8C" >/kal</p>
+              
            </div>
-           </a>
          </div>
        </div>
    
