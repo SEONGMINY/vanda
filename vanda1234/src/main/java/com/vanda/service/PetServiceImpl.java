@@ -54,6 +54,10 @@ public class PetServiceImpl implements PetService {
 	public int petRegister(String user_id, String pet_name) {
 		return petMapper.petRegister(user_id, pet_name);
 	}
+	
+	public PetVO getKcal(int pet_num) {
+		return petMapper.getKcal(pet_num);
+	}
 
 	// 배식테이블에 등록
 	public void eatRegister(int pet_num) {
