@@ -18,6 +18,9 @@ public interface PetMapper {
 
    // 펫등록 (펫테이블)
    public int petInsert(PetVO petVO);
+   
+   // 칼로리
+   public PetVO getKcal(int pet_num);
 
    // 펫등록 (register테이블)
    public int petRegister(@Param("user_id") String user_id, @Param("pet_name") String pet_name);
