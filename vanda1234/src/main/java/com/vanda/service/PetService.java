@@ -22,6 +22,9 @@ public interface PetService {
 
    // register테이블에 등록
    public int petRegister(String user_id, String pet_name);
+   
+   // 칼로리
+   public PetVO getKcal(int pet_num);
 
    // 배식 테이블 등록
    public void eatRegister(int pet_num);
