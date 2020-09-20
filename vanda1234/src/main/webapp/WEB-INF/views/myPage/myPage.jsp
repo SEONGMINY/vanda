@@ -224,29 +224,42 @@ function hospReg() {
 	
 }
 	function register() {
+
+		console.log($("#pet_name").val());
+		console.log($("#pet_age").val());
+		console.log($("#kind_num").val());
+		console.log($("#food_num").val());
+		console.log($("#pet_sex").val());
+		console.log($("#pet_check").val());
+		
+		
 		var formData = {
 				"pet_name" : $("#pet_name").val(),
 				"pet_age" : $("#pet_age").val(),
-				"kind_num" : $("#kind").val(),
-				"food_num" : $("#food").val(),
+				"kind_num" : $("#kind_num").val(),
+				"food_num" : $("#food_num option:selected").val(),
 				"pet_sex" : $("#pet_sex").val(),
-				"pet_check" : $("#check").val()	
-		}
+				"pet_check" : $("#pet_check").val()	
 
+				
+		}
+		console.log(formData);
 		$.ajax ({
-			url: "/user/petRegister",
+			url: "/pet/petRegister",
 			type: "post",
 			data: formData,
 			success: function(data){
 				if(data == 'success'){
 					alert("펫 등록이 되었습니다..");
-					window.location.href = "http://localhost:8080/user/logout";
+					window.location.href = "http://localhost:8080/management2";
 				} else {
 					alert("펫 등록에 실패했습니다..");
 				}		
 			},
 			error: function(err){
+				console.log(err);
 				alert("접속할수없음"+err);
+				
 			}
 		});
 
