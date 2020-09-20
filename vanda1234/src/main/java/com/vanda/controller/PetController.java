@@ -332,6 +332,51 @@ public class PetController {
 	  	System.out.println(data);
 	   
 	   }
+	
+	@ResponseBody
+	@RequestMapping(value = "/recommandKcal", method = RequestMethod.POST)
+	public String recommandKcal(int pet_num,HttpSession session) {
+		System.out.println("1234");
+
+		PetVO petVO = petService.getKcal(pet_num);
+		ActivityVO actVO = petService.todayActAndroid(pet_num);
+		
+		int kind = petVO.getKind_num();
+		System.out.println("견종"+kind);
+		int age = Integer.parseInt(petVO.getPet_age());
+		System.out.println("나이"+age);
+		String timer = actVO.getTimer();
+		String mm = timer.substring(0,2);
+		
+		if(kind == 1 || kind == 2) { // 30분
+			System.out.println("1");
+			if(0 <= age && age < 2) { // 애기
+				System.out.println(mm+":"+"15");
+				return mm+":"+"15";
+			} else if (2 <= age && age < 7) { // 청년
+				System.out.println(mm+":"+"30");
+				return mm+":"+"30";
+			} else if (7 <= age) { // 노인
+				System.out.println(mm+":"+"노인");
+				return mm+":"+"15";
+			}
+		} else if (kind == 3 || kind == 4) { // 1시간
+			System.out.println("2");
+			if(0 <= age && age < 2) { // 애기
+				System.out.println(mm+":"+"1시간 애기");
+				return mm+":"+"30";
+			} else if (2 <= age && age < 7) { // 청년
+				System.out.println(mm+":"+"1시간 청년");
+				return mm+":"+"60";
+			} else if (7 <= age) { // 노인
+				System.out.println(mm+":"+"1시간 노인");
+				return mm+":"+"45";
+			}
+		}
+
+		return "";
+
+	}
 
 
 }
