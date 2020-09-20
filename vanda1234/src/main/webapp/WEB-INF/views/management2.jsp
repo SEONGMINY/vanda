@@ -36,6 +36,12 @@
    <link rel="stylesheet" href="/resources/slick/slick.css">
    <link rel="stylesheet" href="/resources/slick/slick-theme.css">
    <script type="text/javascript" src="/resources/slick/slick.min.js"></script>
+   <script
+   src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+
    <meta name="theme-color" content="#563d7c">
    
    <style>
@@ -93,6 +99,10 @@
          float:left;
          margin: 10px 45px 10px 45px;
          border:10px solid #ffea00;
+         
+         }
+         .modal{
+            height : 45%
       }
       
 /* 지도 css */
@@ -244,10 +254,85 @@
     
     
     
+       /* 체중차트창 스타일 */
+       
+.weightpop {
+    display: none;
+    z-index: 1000;
+    border: 2px solid #ccc;
+    background: #fff;
+    cursor: move; }
+
+.weightpop_area .weightTitle {
+    padding: 10px 10px 10px 10px;
+    border: 0px solid #aaaaaa;
+    background: #f1f1f1;
+    color: #3eb0ce;
+    font-size: 1.3em;
+    font-weight: bold;
+    line-height: 24px; }
+
+.weightpop_area .weightpop_close {
+    width: 25px;
+    height: 25px;
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    }
+
+.weightpop_area .weightpop_close:hover {
+    cursor: pointer; }
+
+.weightpop_area .weightContent {
+    width: 100%;
+    height : 100%;    
+    /* margin: 2%; */
+    color: #828282; }
+    
+      
+    /* 활동차트창 스타일 */     
+.activitypop {
+    display: none;
+    z-index: 1000;
+    border: 2px solid #ccc;
+    background: #fff;
+    cursor: move; }
+
+.activitypop_area .activityTitle {
+    padding: 10px 10px 10px 10px;
+    border: 0px solid #aaaaaa;
+    background: #f1f1f1;
+    color: #3eb0ce;
+    font-size: 1.3em;
+    font-weight: bold;
+    line-height: 24px; }
+
+.activitypop_area .activitypop_close {
+    width: 25px;
+    height: 25px;
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    }
+
+.activitypop_area .activitypop_close:hover {
+    cursor: pointer; }
+
+.activitypop_area .activityContent {
+    width: 100%;
+    height : 100%;    
+    /* margin: 2%; */
+    color: #828282; }
+    
+    
     </style>
     
     <script>
        $(document).ready(function(){
+          
+           
           $('.multiple-items').slick({
                /* infinite: true, //양방향 무한 모션
                speed:300, // 슬라이드 스피드
@@ -261,47 +346,238 @@
           });           
       });
 
+       /* 체중 스크립트 */
+
+       function weightChartOpen() {
+           $('.weightpop').css("position", "absolute");
+           //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
+           $('.weightpop').css("top",(($(window).height() - $('.weightpop').outerHeight()) / 2 +15) + $(window).scrollTop());
+           $('.weightpop').css("left",(($(window).width() - $('.weightpop').outerWidth()) / 2) + $(window).scrollLeft());
+           $('.weightpop').draggable();
+           $('#weightbox').show();
+       }
+
+       function weightClose() {
+           $('#weightbox').hide();
+           
+       }
+
+       function weightChart() {
+          weightChartOpen(); //레이어 팝업창 오픈 
+
+           }
+
+       /* 활동차트 스크립트 */
+       
+           function activityClose() {
+           $('#activitybox').hide();
+           
+       }
+       function activityChart() {
+          activityChartOpen(); //레이어 팝업창 오픈 
+
+            }
+       
+       function activityChartOpen() {
+           $('.activitypop').css("position", "absolute");
+           //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
+           $('.activitypop').css("top",(($(window).height() - $('.activitypop').outerHeight()) / 2 ) + $(window).scrollTop());
+           $('.activitypop').css("left",(($(window).width() - $('.activitypop').outerWidth()) / 2) + $(window).scrollLeft());
+           $('.activitypop').draggable();
+           $('#activitybox').show();
+       }
+
+
+       function chartOpen(petNum){
+          alert(petNum);
+           var chartLabels = [];
+           var chartData = [];
+
+           var chartLabels1 = [];
+           var chartData1 = [];
+           
+           Chart.defaults.global.legend.display = false;
+        
+              $.ajax({
+                 url : "/getPetnum",
+                 type : "post",
+                 dataType : "json",
+                 data : {
+                    "pet_num" : petNum
+                 },
+                 success : function(data) {
+                    $.getJSON("http://localhost:8080/chartList",
+                          function(data) {
+                             $.each(data, function(inx, obj) {
+                                chartLabels.push(obj.weight_date);
+                                chartData.push(obj.pet_weight);
+                             });
+                             
+                             createChart();
+                             console.log("create Chart")
+                             
+                             
+                             
+                          });
+
+                    var lineChartData = {
+                       type : 'line',
+                       labels : chartLabels,
+                       datasets : [ {
+                          label : "Weight",
+                          pointBorderColor : "rgba(0,0,0,1)",
+                          borderColor : "rgba(0, 0, 0, 0.5)",
+                          backgroundColor : [ 'rgba(255, 255, 255, 0)' ],
+                          borderWidth : 3,
+                          data : chartData,
+                          options : {
+
+                          }
+                       } ]
+                    }
+
+                    
+                    function createChart() {
+
+                       var ctx = document.getElementById("canvas").getContext("2d");
+                    
+                       LineChartDemo = Chart.Line(ctx, {
+                          data : lineChartData,
+                          options : {
+                             scales : {
+                                yAxes : [ {
+                                   ticks : {
+                                      beginAtZero : true
+                                   }
+                                } ]
+                             },
+                             legend : {
+                                display : false
+                             },
+                             tooltips : {
+                                callbacks : {
+                                   label : function(tooltipItem) {
+                                      return tooltipItem.yLabel;
+                                   }
+                                }
+                             }
+                          }
+                       })
+                    }
+                    
+                    $.getJSON("http://localhost:8080/activityList",
+                            function(data) {
+                               $.each(data, function(inx, obj) {
+                                  chartLabels1.push(obj.act_date);
+                                  chartData1.push(obj.total_distance);
+                               });
+                               createChart1();
+                               console.log("create Chart")
+                            });
+
+                      var lineChartData1 = {
+                         type : 'line',
+                         labels : chartLabels1,
+                         datasets : [ {
+                            label : "distance",
+                            pointBorderColor : "rgba(0,0,0,1)",
+                            borderColor : "rgba(0, 0, 0, 0.5)",
+                            backgroundColor : [ 'rgba(255, 255, 255, 0)' ],
+                            borderWidth : 3,
+                            data : chartData1,
+                            options : {
+
+                            }
+                         } ]
+                      }
+
+                      function createChart1() {
+                         var ctx = document.getElementById("canvas1").getContext(
+                               "2d");
+                         LineChartDemo = Chart.Line(ctx, {
+                            data : lineChartData1,
+                            options : {
+                               scales : {
+                                  yAxes : [ {
+                                     ticks : {
+                                        beginAtZero : true
+                                     }
+                                  } ]
+                               },
+                               legend : {
+                                  display : false
+                               },
+                               tooltips : {
+                                  callbacks : {
+                                     label : function(tooltipItem) {
+                                        return tooltipItem.yLabel;
+                                        }
+                                     }
+                                  }
+                               }
+                            })
+                         }
+
+
+           
+
+           
+                 },
+                 error : function(request, status, error) {
+                    alert("code = " + request.status + " message = "
+                          + request.responseText + " error = "
+                          + error);
+                    // 실패 시 처리
+                 }
+
+              })
+          
+          
+          
+          }
+   
+
        function changePetList(petNum) {
 
-    	     alert(petNum);
-    	      $.ajax({
-    	         url : "/pet/selectedPet",
-    	         type : "post",
-    	         dataType : "json",
-    	         data : {
-    	            "pet_num" : petNum
-    	            
-    	         },
-    	         success : function(data) {
+           alert(petNum);
+            $.ajax({
+               url : "/pet/selectedPet",
+               type : "post",
+               dataType : "json",
+               data : {
+                  "pet_num" : petNum
+                  
+               },
+               success : function(data) {
 
-    	            alert("성공");
-    	             $("#weightValue").text(data.pet_weight+"kg");   // 현재 펫 몸무게
-    	             $("#gramValue").text(data.eat_gram+"g");   // 현재 펫 배식량
-    	             $("#distanceValue").text(data.total_distance+"kcal");   // 현재 펫 활동량
-    	             $("#avg").text("/"+data.avg+"kg");   // 권장 펫 몸무게
-    	             $("#gram").text("/"+data.gram+"g");   // 권장 펫 배식량
-    	             $("#recomand_distance").text("/"+data.recomand_distance+"kcal");   // 권장 펫 활동량
+                  alert("성공");
+                   $("#weightValue").text(data.pet_weight+"kg");   // 현재 펫 몸무게
+                   $("#gramValue").text(data.eat_gram+"g");   // 현재 펫 배식량
+                   $("#distanceValue").text(data.total_distance+"kcal");   // 현재 펫 활동량
+                   $("#avg").text("/"+data.avg+"kg");   // 권장 펫 몸무게
+                   $("#gram").text("/"+data.gram+"g");   // 권장 펫 배식량
+                   $("#recomand_distance").text("/"+data.recomand_distance+"kcal");   // 권장 펫 활동량
 
-    	            
-    	         },
-    	         error : function(request, status, error) {
-    	            /* alert("code = " + request.status + " message = "
-    	                  + request.responseText + " error = " + error); */
-    	                  alert("금일 측정된 데이터가 존재하지않습니다.");
-    	                  $("#weightValue").text(0+"kg");   // 현재 펫 몸무게
-    	                  $("#gramValue").text(0+"g");   // 현재 펫 배식량
-    	                  $("#distanceValue").text(0+"kcal");   // 현재 펫 활동량
-    	                  $("#avg").text("/"+0+"kg");   // 권장 펫 몸무게
-    	                  $("#gram").text("/"+0+"g");   // 권장 펫 배식량
-    	                  $("#recomand_distance").text("/"+0+"kcal");   // 권장 펫 활동량
-    	                  
-    	                  return;
-    	            // 실패 시 처리
-    	         }
+                  
+               },
+               error : function(request, status, error) {
+                  /* alert("code = " + request.status + " message = "
+                        + request.responseText + " error = " + error); */
+                        alert("금일 측정된 데이터가 존재하지않습니다.");
+                        $("#weightValue").text(0+"kg");   // 현재 펫 몸무게
+                        $("#gramValue").text(0+"g");   // 현재 펫 배식량
+                        $("#distanceValue").text(0+"kcal");   // 현재 펫 활동량
+                        $("#avg").text("/"+0+"kg");   // 권장 펫 몸무게
+                        $("#gram").text("/"+0+"g");   // 권장 펫 배식량
+                        $("#recomand_distance").text("/"+0+"kcal");   // 권장 펫 활동량
+                        
+                        return;
+                  // 실패 시 처리
+               }
 
-    	      });
+            });
 
-    	   }
+         }
 
        function walkList(petNum) {
            var arrData = [];
@@ -313,7 +589,7 @@
               data : {
                  "pet_num" : petNum,
               }, success : function(data) {
-            	  
+                 
                  var str = "";
                     var idx = 0;
                     $.each(data, function( index, value ) {
@@ -363,10 +639,7 @@
                  }            
            });
         }
-  	   
-    	       
 
-       
     </script>
 
   </head>
@@ -397,32 +670,38 @@
           <!-- 비만 매니지먼트  -->
           
           <c:forEach var="pet" items="${pet}" varStatus="status">
-	          <div class="col-lg-4" style="margin-bottom: 10px">
-	             <div class="card" style="width: 18rem;">
-	              <img src="..." class="card-img-top" alt="...">
-	              <div class="card-body">
-	                <h5 id="pet_name" value="${pet.pet_num}">이름 : ${pet.pet_name}</h5>
-	                <p class="petValue" id="pet_age" value="${pet.pet_age}">나이 : ${pet.pet_age}살</p>
-	                <p class="petValue" id="pet_sex" value="${pet.pet_sex}">성별 : ${pet.pet_sex}</p>
-	                <button id ="select_box " onclick="changePetList(${pet.pet_num}),walkList(${pet.pet_num});"  class="btn btn-info">상세정보</button>
-	              </div>
-	            </div>
-	          </div>
-	     </c:forEach>
-              
+             <div class="col-lg-4" style="margin-bottom: 10px">
+                <div class="card" style="width: 18rem;">
+                 <img src="..." class="card-img-top" alt="...">
+                 <div class="card-body">
+                   <h5 id="pet_name" value="${pet.pet_num}">이름 : ${pet.pet_name}</h5>
+                   <p class="petValue" id="pet_age" value="${pet.pet_age}">나이 : ${pet.pet_age}살</p>
+                   <p class="petValue" id="pet_sex" value="${pet.pet_sex}">성별 : ${pet.pet_sex}</p>
+                   <button id ="select_box " onclick="changePetList(${pet.pet_num}),walkList(${pet.pet_num}),chartOpen(${pet.pet_num});"  class="btn btn-info">상세정보</button>
+                 </div>
+               </div>
+             </div>
+        </c:forEach>
+        
+
+
           
        </div>
        
-       <hr class="featurette-divider">
+      <hr class="featurette-divider">
+      
+    
        
-        <!-- 체중, 배식, 활동량 정보 -->
+       <!-- 체중, 배식, 활동량 정보 -->
        <div class="row">
          <div class="col-lg-4">
+         <a href="javascript:weightChart()">
            <div id="weight">
                  <p style="line-height: 30px" >체중</p>
               <p id="weightValue" style="font-size:40px;">${nonSelectedPet.pet_weight}KG</p>
               <p style="font-size:20px; color:#8C8C8C" id = "avg">/${nonSelectedPet.avg}KG</p>
            </div>
+          </a>
          </div><!-- /.col-lg-4 -->
          <div class="col-lg-4">
            <div id="eat">
@@ -432,15 +711,16 @@
            </div>
          </div><!-- /.col-lg-4 -->
          <div class="col-lg-4">
+         <a href="javascript:activityChart()" >
            <div id="activity">
               <p style="line-height: 30px">활동</p>
               <p id="distanceValue"style="font-size:40px;"id ="walk">${nonSelectedPet.total_distance}Kcal</p>
               <p style="font-size:20px; color:#8C8C8C" id="recomand_distance">/${nonSelectedPet.recomand_distance}Kcal</p>
            </div>
+           </a>
          </div>
        </div>
-
-       
+   
        <hr class="featurette-divider">
        
        <!-- 산책  -->
@@ -563,6 +843,35 @@
         </article>
     </div> 
     
+    
+    
+        <!--체중 차트-->
+    <div id="weightbox" class="weightpop"
+        style="width: 700px; height: 450px;">
+        <article class="weightpop_area">
+        <div class="weightTitle">체중</div>
+        <a href="javascript:weightClose();" class="weightpop_close"
+            id="weightbox_close">X</a> <br>
+        <div class="weightContent">
+
+               <canvas id="canvas"></canvas>
+   
+       </div>
+        </article>
+    </div>
+    
+    <!--활동 차트-->
+        <div id="activitybox" class="activitypop"
+        style="width: 700px; height: 450px;">
+        <article class="activitypop_area">
+        <div class="activityTitle">활동</div>
+        <a href="javascript:activityClose();" class="activitypop_close"
+            id="activitybox_close">X</a> <br>
+        <div class="activityContent">
+               <canvas id="canvas1"></canvas>
+       </div>
+        </article>
+    </div>
   <!-- FOOTER -->
   <footer class="container">
     <p class="float-right"><a href="#">Back to top</a></p>
@@ -570,6 +879,11 @@
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7c08f314710cd5f7bdb6ccee17bbd24f&libraries=services"></script>
 
 <script type="text/javascript">
+
+
+
+
+
 //수의사가 상담 클릭시
 function test() {
    var id = $('#user_id').val();
