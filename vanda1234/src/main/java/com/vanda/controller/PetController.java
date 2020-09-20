@@ -96,27 +96,30 @@ public class PetController {
 	//사료리스트 list로 받기
 	@ResponseBody
 	@RequestMapping(value ="/petFood", method = RequestMethod.POST)
-	public String petFoodList(int kind_num) {
+	public String petFoodList(int kind_num,PetVO petVO) {
 		
 		ArrayList<FoodVO> list = kindService.foodList(kind_num);
 		System.out.println(list.size() + "개");
 		FoodVOList voLists = new FoodVOList();
 		voLists.lists = list;
 		
+		
 		return voLists.toJson();
 	}
 
 	// 펫 등록 처리
+	@ResponseBody
 	@RequestMapping(value = "/petRegister", method = RequestMethod.POST)
 	public String petRegister(PetVO petVO, HttpSession session) {
+		System.out.println("펫등록화면");
 		UserVO loginUser = (UserVO) session.getAttribute("check");
 		String user_id = loginUser.getUser_id();
 		System.out.println("로그인 유저 아이디 : " + user_id);
 
 		/* String user_id = loginUser.getUser_id(); */
-
+	
 		System.out.println("등록완료");
-		System.out.println(petVO);
+		System.out.println(petVO.toString());
 
 		if (petVO.getImgList() != null) {
 			System.out.println("pet컨트롤러 이미지가 널이아닐때");
@@ -140,7 +143,7 @@ public class PetController {
         
         
         session.setAttribute("pet",petUser);
-		return "redirect:/";
+		return "success";
 
 	}
 
@@ -332,51 +335,6 @@ public class PetController {
 	  	System.out.println(data);
 	   
 	   }
-	
-	@ResponseBody
-	@RequestMapping(value = "/recommandKcal", method = RequestMethod.POST)
-	public String recommandKcal(int pet_num,HttpSession session) {
-		System.out.println("1234");
-
-		PetVO petVO = petService.getKcal(pet_num);
-		ActivityVO actVO = petService.todayActAndroid(pet_num);
-		
-		int kind = petVO.getKind_num();
-		System.out.println("견종"+kind);
-		int age = Integer.parseInt(petVO.getPet_age());
-		System.out.println("나이"+age);
-		String timer = actVO.getTimer();
-		String mm = timer.substring(0,2);
-		
-		if(kind == 1 || kind == 2) { // 30분
-			System.out.println("1");
-			if(0 <= age && age < 2) { // 애기
-				System.out.println(mm+":"+"15");
-				return mm+":"+"15";
-			} else if (2 <= age && age < 7) { // 청년
-				System.out.println(mm+":"+"30");
-				return mm+":"+"30";
-			} else if (7 <= age) { // 노인
-				System.out.println(mm+":"+"노인");
-				return mm+":"+"15";
-			}
-		} else if (kind == 3 || kind == 4) { // 1시간
-			System.out.println("2");
-			if(0 <= age && age < 2) { // 애기
-				System.out.println(mm+":"+"1시간 애기");
-				return mm+":"+"30";
-			} else if (2 <= age && age < 7) { // 청년
-				System.out.println(mm+":"+"1시간 청년");
-				return mm+":"+"60";
-			} else if (7 <= age) { // 노인
-				System.out.println(mm+":"+"1시간 노인");
-				return mm+":"+"45";
-			}
-		}
-
-		return "";
-
-	}
 
 
 }
