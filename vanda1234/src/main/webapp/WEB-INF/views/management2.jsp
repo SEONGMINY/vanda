@@ -179,14 +179,12 @@
     z-index: 999;
     background-color: #000000;
     display: none; }
-
 .layerpop {
     display: none;
     z-index: 1000;
     border: 2px solid #ccc;
     background: #fff;
     cursor: move; }
-
 .layerpop_area .title {
     padding: 10px 10px 10px 10px;
     border: 0px solid #aaaaaa;
@@ -195,7 +193,6 @@
     font-size: 1.3em;
     font-weight: bold;
     line-height: 24px; }
-
 .layerpop_area .layerpop_close {
     width: 25px;
     height: 25px;
@@ -204,11 +201,9 @@
     top: 10px;
     right: 10px;
     background: transparent url('btn_exit_off.png') no-repeat; }
-
 .layerpop_area .layerpop_close:hover {
     background: transparent url('btn_exit_on.png') no-repeat;
     cursor: pointer; }
-
 .layerpop_area .content {
     width: 96%;    
     margin: 2%;
@@ -224,7 +219,6 @@
     border: 2px solid #ccc;
     background: #fff;
     cursor: move; }
-
 .layerpop_area2 .title {
     padding: 10px 10px 10px 10px;
     border: 0px solid #aaaaaa;
@@ -233,7 +227,6 @@
     font-size: 1.3em;
     font-weight: bold;
     line-height: 24px; }
-
 .layerpop_area2 .layerpop_close2 {
     width: 25px;
     height: 25px;
@@ -242,11 +235,9 @@
     top: 10px;
     right: 10px;
     background: transparent url('btn_exit_off.png') no-repeat; }
-
 .layerpop_area2 .layerpop_close2:hover {
     background: transparent url('btn_exit_on.png') no-repeat;
     cursor: pointer; }
-
 .layerpop_area2 .content2 {
     width: 96%;    
     margin: 2%;
@@ -262,7 +253,6 @@
     border: 2px solid #ccc;
     background: #fff;
     cursor: move; }
-
 .weightpop_area .weightTitle {
     padding: 10px 10px 10px 10px;
     border: 0px solid #aaaaaa;
@@ -271,7 +261,6 @@
     font-size: 1.3em;
     font-weight: bold;
     line-height: 24px; }
-
 .weightpop_area .weightpop_close {
     width: 25px;
     height: 25px;
@@ -280,10 +269,8 @@
     top: 10px;
     right: 10px;
     }
-
 .weightpop_area .weightpop_close:hover {
     cursor: pointer; }
-
 .weightpop_area .weightContent {
     width: 100%;
     height : 100%;    
@@ -298,7 +285,6 @@
     border: 2px solid #ccc;
     background: #fff;
     cursor: move; }
-
 .activitypop_area .activityTitle {
     padding: 10px 10px 10px 10px;
     border: 0px solid #aaaaaa;
@@ -307,7 +293,6 @@
     font-size: 1.3em;
     font-weight: bold;
     line-height: 24px; }
-
 .activitypop_area .activitypop_close {
     width: 25px;
     height: 25px;
@@ -316,10 +301,8 @@
     top: 10px;
     right: 10px;
     }
-
 .activitypop_area .activitypop_close:hover {
     cursor: pointer; }
-
 .activitypop_area .activityContent {
     width: 100%;
     height : 100%;    
@@ -339,15 +322,13 @@
                slidesToShow: 3, //한 화면에 보여줄 아이템수
                slidesToScroll: 3, // 한번에 슬라이드 시킬 아이템 개수
                arrows: true //좌우 화살 버튼 노출 여부 ( false 시 안보임 ) */
-
              infinite: true,
              slidesToShow: 3,
              slidesToScroll: 3
           });           
       });
-
+       
        /* 체중 스크립트 */
-
        function weightChartOpen() {
            $('.weightpop').css("position", "absolute");
            //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
@@ -356,17 +337,13 @@
            $('.weightpop').draggable();
            $('#weightbox').show();
        }
-
        function weightClose() {
            $('#weightbox').hide();
            
        }
-
        function weightChart() {
           weightChartOpen(); //레이어 팝업창 오픈 
-
            }
-
        /* 활동차트 스크립트 */
        
            function activityClose() {
@@ -375,7 +352,6 @@
        }
        function activityChart() {
           activityChartOpen(); //레이어 팝업창 오픈 
-
             }
        
        function activityChartOpen() {
@@ -386,13 +362,10 @@
            $('.activitypop').draggable();
            $('#activitybox').show();
        }
-
-
        function chartOpen(petNum){
-          alert(petNum);
+          
            var chartLabels = [];
            var chartData = [];
-
            var chartLabels1 = [];
            var chartData1 = [];
            
@@ -419,7 +392,6 @@
                              
                              
                           });
-
                     var lineChartData = {
                        type : 'line',
                        labels : chartLabels,
@@ -431,14 +403,11 @@
                           borderWidth : 3,
                           data : chartData,
                           options : {
-
                           }
                        } ]
                     }
-
                     
                     function createChart() {
-
                        var ctx = document.getElementById("canvas").getContext("2d");
                     
                        LineChartDemo = Chart.Line(ctx, {
@@ -474,7 +443,6 @@
                                createChart1();
                                console.log("create Chart")
                             });
-
                       var lineChartData1 = {
                          type : 'line',
                          labels : chartLabels1,
@@ -486,11 +454,9 @@
                             borderWidth : 3,
                             data : chartData1,
                             options : {
-
                             }
                          } ]
                       }
-
                       function createChart1() {
                          var ctx = document.getElementById("canvas1").getContext(
                                "2d");
@@ -517,10 +483,7 @@
                                }
                             })
                          }
-
-
            
-
            
                  },
                  error : function(request, status, error) {
@@ -529,68 +492,65 @@
                           + error);
                     // 실패 시 처리
                  }
-
               })
           
           
           
           }
    
-
        function changePetList(petNum) {
 
-	         $.ajax({
-	            url : "/pet/selectedPet",
-	            type : "post",
-	            dataType : "json",
-	            data : {
-	               "pet_num" : petNum
-	               
-	            },
-	            success : function(data) {
+    	    
+    	      $.ajax({
+    	         url : "/pet/selectedPet",
+    	         type : "post",
+    	         dataType : "json",
+    	         data : {
+    	            "pet_num" : petNum
+    	            
+    	         },
+    	         success : function(data) {
 
-	                $("#weightValue").text(data.pet_weight+"kg");   // 현재 펫 몸무게
-	                $("#gramValue").text(data.eat_gram+"g");   // 현재 펫 배식량
-	                $("#avg").text("/"+data.avg+"kg");   // 권장 펫 몸무게
-	                $("#gram").text("/"+data.gram+"g");   // 권장 펫 배식량
-	                $("#recomand_distance").text(data.recomand_distance);   // 권장 펫 활동량
-	                kcal2 = data.recomand_distance;
+    	           
+    	             $("#weightValue").text(data.pet_weight+"kg");   // 현재 펫 몸무게
+    	             $("#gramValue").text(data.eat_gram+"g");   // 현재 펫 배식량
+    	             $("#distanceValue").text(data.total_distance+"kcal");   // 현재 펫 활동량
+    	             $("#avg").text("/"+data.avg+"kg");   // 권장 펫 몸무게
+    	             $("#gram").text("/"+data.gram+"g");   // 권장 펫 배식량
+    	             $("#recomand_distance").text("/"+data.recomand_distance+"kcal");   // 권장 펫 활동량
 
-	                recommandKcal(petNum);
-	                
 
-	             /*  $("#eat").text(data.eat_gram);   // 현재 배식량 
-	               $("#weightValue").text(data.pet_weight+"kg");   // 현재 펫 몸무게
-	              $("#avg").text(data.avg);   //추천 몸무게
-	               $("#gram").text(data.gram);   //추천 배식량
-	               $("#walk").text(data.total_distance);   //현재 활동량
-	               $("#recomand_distance").text(data.recomand_distance); //추천 활동량 
-	               */
-	               /* if(data.eat_gram == 0){
-	                  alert("금일 측정된 데이터가 존재하지않습니다.");
-	                   return;
-	                   }*/
-	               
-	            },
-	            error : function(request, status, error) {
-	               /* alert("code = " + request.status + " message = "
-	                     + request.responseText + " error = " + error); */
-	                     alert("금일 측정된 데이터가 존재하지않습니다.");
-	                     $("#weightValue").text(0+"kg");   // 현재 펫 몸무게
-	                     $("#gramValue").text(0+"g");   // 현재 펫 배식량
-	                     $("#distanceValue").text(0+"kcal");   // 현재 펫 활동량
-	                     $("#avg").text("/"+0+"kg");   // 권장 펫 몸무게
-	                     $("#gram").text("/"+0+"g");   // 권장 펫 배식량
-	                     $("#recomand_distance").text(0);   // 권장 펫 활동량
-	                     
-	                     return;
-	               // 실패 시 처리
-	            }
+    	          /*  $("#eat").text(data.eat_gram);   // 현재 배식량 
+    	            $("#weightValue").text(data.pet_weight+"kg");   // 현재 펫 몸무게
+    	           $("#avg").text(data.avg);   //추천 몸무게
+    	            $("#gram").text(data.gram);   //추천 배식량
+    	            $("#walk").text(data.total_distance);   //현재 활동량
+    	            $("#recomand_distance").text(data.recomand_distance); //추천 활동량 
+    	            */
+    	            /* if(data.eat_gram == 0){
+    	               alert("금일 측정된 데이터가 존재하지않습니다.");
+    	                return;
+    	                }*/
+    	            
+    	         },
+    	         error : function(request, status, error) {
+    	            /* alert("code = " + request.status + " message = "
+    	                  + request.responseText + " error = " + error); */
+    	                  alert("금일 측정된 데이터가 존재하지않습니다.");
+    	                  $("#weightValue").text(0+"kg");   // 현재 펫 몸무게
+    	                  $("#gramValue").text(0+"g");   // 현재 펫 배식량
+    	                  $("#distanceValue").text(0+"kcal");   // 현재 펫 활동량
+    	                  $("#avg").text("/"+0+"kg");   // 권장 펫 몸무게
+    	                  $("#gram").text("/"+0+"g");   // 권장 펫 배식량
+    	                  $("#recomand_distance").text("/"+0+"kcal");   // 권장 펫 활동량
+    	                  
+    	                  return;
+    	            // 실패 시 처리
+    	         }
 
-	         })
+    	      })
 
-	      }
-
+    	   }
        function walkList(petNum) {
            var arrData = [];
            $('.multiple-items').slick('slickRemove', null, null, true);
@@ -617,8 +577,6 @@
                         //console.log(arrData[index].walks[arrData[i].walks.lenn].total);
                         
                     });
-
-
                     for(var i = 0; i<arrData.length;i++){
                         var path = [];
                        var mapOptin = {
@@ -626,13 +584,11 @@
                                 level:3
                             }
                         var container = document.getElementById('walk'+i);
-
                         // 폴리 라인
                         for(var j = 0;j<arrData[i].walks.length;j++){
                             path[j] = new kakao.maps.LatLng(arrData[i].walks[j].lat, arrData[i].walks[j].lon);
                            
                         }
-
                        var map = new kakao.maps.Map(container, mapOptin);
                     var polyline = new kakao.maps.Polyline({
                           map: map,
@@ -651,40 +607,6 @@
                  }            
            });
         }
-       
-       function recommandKcal(petNum) {
-			   
-	         $.ajax({
-		            url : "/pet/recommandKcal",
-		            type : "post",
-		            data : {
-		               "pet_num" : petNum
-		               
-		            }, success: function(data) {
-			            
-	            	 	
-			            var kcal = data
-			            kcal =kcal.split(":");
-			            var mm = parseInt(kcal[0]); // 내가 소모한 분
-			            var walk = parseInt(kcal[1]); // 얼만큼 소모해야 하는 시간
-		               
-		               var reco = $("#recomand_distance").text(); // 추천 소모량
-
-		               var recoval = parseInt(reco)/walk;
-
-		               $("#distanceValue").text(parseInt((recoval * mm))+"kcal");   // 현재 펫 활동량 
-
-		               
-		            },
-		            error : function(request, status, error) {
-		            	alert(request+error+status);
-		            }
-
-		         })
-
-	    	
-		    }
-
     </script>
 
   </head>
@@ -717,7 +639,7 @@
           <c:forEach var="pet" items="${pet}" varStatus="status">
              <div class="col-lg-4" style="margin-bottom: 10px">
                 <div class="card" style="width: 18rem;">
-                 <img src="..." class="card-img-top" alt="...">
+                 <img src="/resources/images/pet_img.jpg" class="card-img-top" alt="..." height="300px;">
                  <div class="card-body">
                    <h5 id="pet_name" value="${pet.pet_num}">이름 : ${pet.pet_name}</h5>
                    <p class="petValue" id="pet_age" value="${pet.pet_age}">나이 : ${pet.pet_age}살</p>
@@ -738,13 +660,16 @@
     
        
        <!-- 체중, 배식, 활동량 정보 -->
+       <c:if test="${check.user_rule eq 'member'}">
        <div class="row">
          <div class="col-lg-4">
+         <a href="javascript:weightChart()">
            <div id="weight">
                  <p style="line-height: 30px" >체중</p>
               <p id="weightValue" style="font-size:40px;">${nonSelectedPet.pet_weight}KG</p>
               <p style="font-size:20px; color:#8C8C8C" id = "avg">/${nonSelectedPet.avg}KG</p>
            </div>
+          </a>
          </div><!-- /.col-lg-4 -->
          <div class="col-lg-4">
            <div id="eat">
@@ -754,16 +679,16 @@
            </div>
          </div><!-- /.col-lg-4 -->
          <div class="col-lg-4">
+         <a href="javascript:activityChart()" >
            <div id="activity">
               <p style="line-height: 30px">활동</p>
               <p id="distanceValue"style="font-size:40px;"id ="walk">${nonSelectedPet.total_distance}Kcal</p>
-              <p style="font-size:20px; color:#8C8C8C" id="recomand_distance">${nonSelectedPet.recomand_distance}</p>
-              <p style="font-size:20px; color:#8C8C8C" >/kal</p>
-              
+              <p style="font-size:20px; color:#8C8C8C" id="recomand_distance">/${nonSelectedPet.recomand_distance}Kcal</p>
            </div>
+           </a>
          </div>
        </div>
-   
+   </c:if>
        <hr class="featurette-divider">
        
        <!-- 산책  -->
@@ -922,20 +847,13 @@
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7c08f314710cd5f7bdb6ccee17bbd24f&libraries=services"></script>
 
 <script type="text/javascript">
-
-
-
-
-
 //수의사가 상담 클릭시
 function test() {
    var id = $('#user_id').val();
    startCon(id);
    
 }
-
 /* 채팅 스크립트 */
-
 function chatOpen() {
     $('.layerpop2').css("position", "absolute");
     //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
@@ -944,22 +862,14 @@ function chatOpen() {
     $('.layerpop2').draggable();
     $('#layerbox2').show();
 }
-
 function chatClose() {
     $('#layerbox2').hide();
 }
-
 function chatStart() {
    chatOpen(); //레이어 팝업창 오픈 
-
     }
-
 var chat=[];
-
-
-
 function startCon(docId){
-
    
    
    $.ajax({
@@ -977,9 +887,7 @@ function startCon(docId){
                
             })
             const theTime = new Date(chat[0].room_date);
-
          for(var z=0; z<data.length; z++){
-
                var test = '<div class="chat_list" >'+
               '<div class="chat_people">'+
             '<div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>'+
@@ -989,7 +897,6 @@ function startCon(docId){
                  '<input type="hidden" id="roomNum" value='+chat[z].room_num+'></div>'+ 
                '</div></div></div>';
                
-
             $('#chatHistory').append(test);
          }
       popupClose();
@@ -1003,32 +910,26 @@ function startCon(docId){
                + request.responseText + " error = " + error); 
          // 실패 시 처리
       }
-
    })
    }
 /* 팝업스크립트 */
-
 function wrapWindowByMask() {
     //화면의 높이와 너비를 구한다.
     var maskHeight = $(document).height(); 
     var maskWidth = $(window).width();
-
     //문서영역의 크기 
     console.log( "document 사이즈:"+ $(document).width() + "*" + $(document).height()); 
     //브라우저에서 문서가 보여지는 영역의 크기
     console.log( "window 사이즈:"+ $(window).width() + "*" + $(window).height());        
-
     //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
     $('#mask').css({
         'width' : maskWidth,
         'height' : maskHeight
     });
-
     //애니메이션 효과
     //$('#mask').fadeIn(1000);      
     $('#mask').fadeTo("slow", 0.5);
 }
-
 function popupOpen() {
     $('.layerpop').css("position", "absolute");
     //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
@@ -1037,19 +938,15 @@ function popupOpen() {
     $('.layerpop').draggable();
     $('#layerbox').show();
 }
-
 function popupClose() {
     $('#layerbox').hide();
     $('#mask').hide();
     $('.list-group-item').remove();
 }
-
 //예악하기 버튼 클릭시 클릭한 병원에해당하는 수의사를 가져오기위한 병원번호
 var glb_hosp_tel;
 var arr= [];
-
 function goDetail() {
-
     var hosp_tel = glb_hosp_tel;
       
    
@@ -1063,22 +960,18 @@ function goDetail() {
                "hosp_tel" : hosp_tel
             },
             success : function(data) {
-
                $.each(data, function(index,item){
                   arr[index] = data[index];
                      
                   })
             
                   for(var i=0; i<data.length; i++) {
-
                      var divHosp='<div class="col-md-12"><a href=javascript:startCon("'+arr[i].user_id+'"); class="list-group-item" style="float:left;width:450px;height:100px;"><img src='+ arr[i].dimg_name + ' style="width:100px;height:60px;"/>'+ arr[i].user_id +' 수의사님과 상담하기</a></div>'
-
                      
                      $('#docArea').append(divHosp);   
                      }
                
          
-
             
                 popupOpen(); //수의사 선택화면 오픈 
                  wrapWindowByMask(); //화면 마스크 효과 
@@ -1090,7 +983,6 @@ function goDetail() {
                      + request.responseText + " error = " + error); 
                // 실패 시 처리
             }
-
          })
    
    
@@ -1098,8 +990,6 @@ function goDetail() {
     
    
 }
-
-
 </script>
 <script>
 /* 지도스크립트 */
@@ -1110,67 +1000,47 @@ var mapContainer = document.getElementById('map2'), // 지도를 표시할 div
         center: new kakao.maps.LatLng(35.901715, 128.613648), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };
-
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
 //장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places();  
-
 // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-
-
 // 키워드로 장소를 검색합니다
 searchPlaces();
-
 //키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
-
     var keyword = document.getElementById('keyword').value;
-
     if (!keyword.replace(/^\s+|\s+$/g, '')) {
         alert('키워드를 입력해주세요!');
         return false;
     }
-
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
     ps.keywordSearch( keyword, placesSearchCB); 
 }
-
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 function placesSearchCB(data, status, pagination) {
     if (status === kakao.maps.services.Status.OK) {
-
         // 정상적으로 검색이 완료됐으면
         // 검색 목록과 마커를 표출합니다
         displayPlaces(data);
-
         // 페이지 번호를 표출합니다
         displayPagination(pagination);
-
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-
         alert('검색 결과가 존재하지 않습니다.');
         return;
-
     } else if (status === kakao.maps.services.Status.ERROR) {
-
         alert('검색 결과 중 오류가 발생했습니다.');
         return;
-
     }
 }
-
 //오버레이 제거를 위한 임시 배열
 var delOverlay = [];
-
   function closeOverlay() {
      delOverlay[0].setMap(null);
      delOverlay.shift();
    }
 // 검색 결과 목록과 마커를 표출하는 함수입니다
 function displayPlaces(places) {
-
    
    
     var listEl = document.getElementById('placesList'), 
@@ -1181,33 +1051,22 @@ function displayPlaces(places) {
     
     // 검색 결과 목록에 추가된 항목들을 제거합니다
     removeAllChildNods(listEl);
-
     // 지도에 표시되고 있는 마커를 제거합니다
     removeMarker();
    
-
-
   //커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-
    
     for ( var i=0; i<places.length; i++ ) {
-
-
       
         // 마커를 생성하고 지도에 표시합니다
         var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
             marker = addMarker(placePosition, i), 
             itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
         bounds.extend(placePosition);
-
  
-
         
-
-
       
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
@@ -1215,7 +1074,6 @@ function displayPlaces(places) {
         (function(marker,title) {
            
             kakao.maps.event.addListener(marker, 'mouseover', function() {
-
                
                
                                   
@@ -1223,7 +1081,6 @@ function displayPlaces(places) {
             
             kakao.maps.event.addListener(marker, 'click', function() {
             
-
               $.ajax({
                url : "/consulting/selectHospital",
                type : "post",
@@ -1232,7 +1089,6 @@ function displayPlaces(places) {
                   "hosp_name" : title
                },
                success : function(data) {
-
                   glb_hosp_tel=data.hosp_tel;
                    
                               
@@ -1254,20 +1110,13 @@ function displayPlaces(places) {
                     '        </div>' + 
                     '    </div>' +    
                     '</div>';
-
             //마커 위에 커스텀오버레이를 표시합니다
             //마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-
-
-
             var overlay = new kakao.maps.CustomOverlay({
             content: content,
             position: marker.getPosition(),
-
             });
-
          
-
             
               overlay.setMap(map);  
       
@@ -1283,44 +1132,32 @@ function displayPlaces(places) {
                         + request.responseText + " error = " + error); */
                   // 실패 시 처리
                }
-
             })
             });
-
             kakao.maps.event.addListener(marker, 'mouseout', function() {
             
             });
-
             itemEl.onmouseover =  function () {
                 displayInfowindow(marker, title);
             };
-
             itemEl.onmouseout =  function () {
                 infowindow.close();
             };
         })(marker, places[i].place_name);
-
         fragment.appendChild(itemEl);
     }
-
     // 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
     listEl.appendChild(fragment);
     menuEl.scrollTop = 0;
-
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
     map.setBounds(bounds);
 }
-
-
-
 // 검색결과 항목을 Element로 반환하는 함수입니다
 function getListItem(index, places) {
-
     var el = document.createElement('li'),
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info">' +
                 '<h5>' + places.place_name + '</h5>';
-
     if (places.road_address_name) {
         itemStr += '    <span>' + places.road_address_name + '</span>' +
                     '   <span class="jibun gray">' +  places.address_name  + '</span>';
@@ -1330,13 +1167,10 @@ function getListItem(index, places) {
                  
       itemStr += '  <span class="tel">' + places.phone  + '</span>' +
                 '</div>';           
-
     el.innerHTML = itemStr;
     el.className = 'item';
-
     return el;
 }
-
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 function addMarker(position, idx, title) {
     var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
@@ -1351,13 +1185,10 @@ function addMarker(position, idx, title) {
             position: position, // 마커의 위치
             image: markerImage 
         });
-
     marker.setMap(map); // 지도 위에 마커를 표출합니다
     markers.push(marker);  // 배열에 생성된 마커를 추가합니다
-
     return marker;
 }
-
 // 지도 위에 표시되고 있는 마커를 모두 제거합니다
 function removeMarker() {
     for ( var i = 0; i < markers.length; i++ ) {
@@ -1365,23 +1196,19 @@ function removeMarker() {
     }   
     markers = [];
 }
-
 // 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
 function displayPagination(pagination) {
     var paginationEl = document.getElementById('pagination'),
         fragment = document.createDocumentFragment(),
         i; 
-
     // 기존에 추가된 페이지번호를 삭제합니다
     while (paginationEl.hasChildNodes()) {
         paginationEl.removeChild (paginationEl.lastChild);
     }
-
     for (i=1; i<=pagination.last; i++) {
         var el = document.createElement('a');
         el.href = "#";
         el.innerHTML = i;
-
         if (i===pagination.current) {
             el.className = 'on';
         } else {
@@ -1391,28 +1218,23 @@ function displayPagination(pagination) {
                 }
             })(i);
         }
-
         fragment.appendChild(el);
     }
     paginationEl.appendChild(fragment);
 }
-
 // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 // 인포윈도우에 장소명을 표시합니다
 function displayInfowindow(marker, title) {
     var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
-
     infowindow.setContent(content);
     infowindow.open(map, marker);
 }
-
  // 검색결과 목록의 자식 Element를 제거하는 함수입니다
 function removeAllChildNods(el) {   
     while (el.hasChildNodes()) {
         el.removeChild (el.lastChild);
     }
 }
-
 </script>
 <script type="text/javascript" src="/resources/js/chat.js"></script>
 <script type="text/javascript">
@@ -1426,27 +1248,20 @@ function removeAllChildNods(el) {
       var roomBox = $(".inbox_chat"); // 상당 내역 DIV
       var msgHistory = $(".msg_history"); // 채팅 DIV
       var msgInput = $(".write_msg"); // 채팅 치는 곳
-
       
-
       $(".chat_list").on("click", function(e){
          roomNum = $(this).data('num');
          msgList();
       });
-
       
-
       /* 메세지 불러오기  */
       function msgList(){
          chatService.msgList({room_num:roomNum},function(list){
             var str = "";
-
             if(list == null || list.length == 0){
                msgHistory.html("");
                return;
             }
-
-
             for(var i = 0;i<list.length;i++){
                
                if("${check.user_id}" == list[i].user_id){
@@ -1465,11 +1280,9 @@ function removeAllChildNods(el) {
                }
                   
             }
-
             msgHistory.html(str);
          });
       };
-
       /* 메세진 send 버튼 클릭시  */
       $(".msg_send_btn").on("click",function(e){
          if(!msgInput.val()){
@@ -1483,7 +1296,6 @@ function removeAllChildNods(el) {
          }      
       });
       
-
       // 엔터입력시 메세지 보내기
       msgInput.keypress(function(event){
          var kcode=event.keyCode;
@@ -1498,9 +1310,6 @@ function removeAllChildNods(el) {
             }   
          }
       });
-
-
-
       // 메시지 전송
       function sendMessage() {            
          sock.send(msgInput.val()+",${check.user_id}");
@@ -1513,7 +1322,6 @@ function removeAllChildNods(el) {
          var str = "";
          var selfId = temp[1];
          
-
          if("${check.user_id}" == selfId){
             str += "<div class='outgoing_msg' data-roomNum='" + roomNum + "'>";
             str += "<div class='sent_msg'>";
@@ -1528,7 +1336,6 @@ function removeAllChildNods(el) {
             str += "<p>" + temp[0] + "</p>";
             str += "<span class='time_date'>" + chatService.displayTime(time) + "</span></div></div></div>";
          }
-
          msgHistory.append(str);
          msgHistory.animate({scrollTop:9999},'slow');
       }
@@ -1536,9 +1343,7 @@ function removeAllChildNods(el) {
       function onClose(evt) {
          alert("연결실패");
       }
-
       
-
       
       
    });

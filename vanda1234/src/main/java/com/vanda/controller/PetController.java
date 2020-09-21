@@ -1,7 +1,10 @@
 package com.vanda.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -165,130 +168,47 @@ public class PetController {
 			
 		}
 
-		// 산책 리스트
-		List<ActivityVO> actList = petService.actList(pet_num);
-		List<WalksVO> walksList = new ArrayList<>();
-		
-		session.setAttribute("actList", actList);
-		
-		// 산책 리스트 xml 파일을 변환
-		for(int i=0;i<actList.size();i++) {
-			String path = actList.get(i).getAct_path();
-			String fileName = actList.get(i).getAct_name();
-
-			try {
-				System.out.println(path + "/" + fileName);
-				JAXBContext jaxbContext = JAXBContext.newInstance(WalksVO.class);
-				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-
-				// We had written this file in marshalling example
-				WalksVO walks = (WalksVO) jaxbUnmarshaller.unmarshal(new File(path + "/" + fileName + ".xml"));
-
-				System.out.println(walks.getWalks());
-				
-				walksList.add(walks);
-				System.out.println("walkList:"+walksList.get(i).getWalks());
-
-
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			
-		}
-		
-		session.setAttribute("walksList", walksList);
-
 		return petinfoVO;
 
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/selectedPetWalk", method = RequestMethod.POST)
-	public List<ActivityVO> changePetWalkList(int pet_num, HttpSession session, Model model) {
-		System.out.println(pet_num);
+	   @RequestMapping(value = "/walksList", method = RequestMethod.POST)
+	   public List<WalksVO> walkList(int pet_num, HttpSession session, Model model) {
+	      System.out.println("펫 산책선택:"+pet_num);
 
-		UserVO userVO = (UserVO) session.getAttribute("check");
-		String user_id = userVO.getUser_id();
-		int food_num = Integer.parseInt(foodservice.getfood(pet_num));
-		
-		System.out.println(food_num + "번");
-		PetInfoVO petinfoVO = petService.petInfo(user_id,pet_num,food_num);
-		
-		if(petinfoVO == null) {
-			petinfoVO = petService.recentPetInfo(user_id, pet_num, food_num);
-			
-		}
-		// 산책 리스트
-		List<ActivityVO> actList = petService.actList(pet_num);
-		List<WalksVO> walksList = new ArrayList<>();
-		
-		session.setAttribute("actList", actList);
-		
-		// 산책 리스트 xml 파일을 변환
-		/*
-		 * for(int i=0;i<actList.size();i++) { String path =
-		 * actList.get(i).getAct_path(); String fileName = actList.get(i).getAct_name();
-		 * 
-		 * try { System.out.println(path + "/" + fileName); JAXBContext jaxbContext =
-		 * JAXBContext.newInstance(WalksVO.class); Unmarshaller jaxbUnmarshaller =
-		 * jaxbContext.createUnmarshaller();
-		 * 
-		 * // We had written this file in marshalling example WalksVO walks = (WalksVO)
-		 * jaxbUnmarshaller.unmarshal(new File(path + "/" + fileName + ".xml"));
-		 * 
-		 * System.out.println(walks.getWalks());
-		 * 
-		 * walksList.add(walks);
-		 * System.out.println("walkList:"+walksList.get(i).getWalks());
-		 * 
-		 * 
-		 * } catch (Exception e) { // TODO: handle exception }
-		 * 
-		 * }
-		 */
-		
+	      // 산책 리스트
+	      List<ActivityVO> actList = petService.actList(pet_num);
+	      List<WalksVO> walksList = new ArrayList<>();
 
-		return actList;
+	      // 산책 리스트 xml 파일을 변환
+	      // LAT,LON XML파일 데이터로 변환
 
-	}
-	
-	
-	@ResponseBody
-   @RequestMapping(value = "/walksList", method = RequestMethod.POST)
-   public List<WalksVO> walkList(int pet_num, HttpSession session, Model model) {
-      System.out.println("펫 산책선택:"+pet_num);
+	      for (int i = 0; i < actList.size(); i++) {
+	         String path = actList.get(i).getAct_path();
+	         String fileName = actList.get(i).getAct_name();
 
-      // 산책 리스트
-      List<ActivityVO> actList = petService.actList(pet_num);
-      List<WalksVO> walksList = new ArrayList<>();
+	         try {
+	            
+	            System.out.println("test:"+path+"/"+fileName+".xml");
+	            JAXBContext jaxbContext = JAXBContext.newInstance(WalksVO.class);
+	            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-      // 산책 리스트 xml 파일을 변환
-      // LAT,LON XML파일 데이터로 변환
+	            // We had written this file in marshalling example
+	            WalksVO walks = (WalksVO) jaxbUnmarshaller.unmarshal(new File(path+"/"+fileName+".xml"));
 
-      for (int i = 0; i < actList.size(); i++) {
-         String path = actList.get(i).getAct_path();
-         String fileName = actList.get(i).getAct_name();
+	            walksList.add(walks);
+	            System.out.println("test:"+walksList.get(i).getWalks());
 
-         try {
-            
-            System.out.println(path + "/" + fileName);
-            JAXBContext jaxbContext = JAXBContext.newInstance(WalksVO.class);
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+	         } catch (Exception e) {
+	            // TODO: handle exception
+	        	 System.out.println(e);
+	         }
 
-            // We had written this file in marshalling example
-            WalksVO walks = (WalksVO) jaxbUnmarshaller.unmarshal(new File(path + "/" + fileName + ".xml"));
-
-            walksList.add(walks);
-            System.out.println(walksList.get(i).getWalks());
-
-         } catch (Exception e) {
-            // TODO: handle exception
-         }
-
-      }
-      
-      return walksList;
-   }
+	      }
+	      
+	      return walksList;
+	   }
 	
 
 	//배식
@@ -335,6 +255,53 @@ public class PetController {
 	  	System.out.println(data);
 	   
 	   }
+	
+	@ResponseBody
+	@RequestMapping(value = "/recommandKcal", method = RequestMethod.POST)
+	public String recommandKcal(int pet_num,HttpSession session) {
+		System.out.println("1234");
+
+		PetVO petVO = petService.getKcal(pet_num);
+		ActivityVO actVO = petService.todayActAndroid(pet_num);
+
+		int kind = petVO.getKind_num();
+		System.out.println("견종"+kind);
+		int age = Integer.parseInt(petVO.getPet_age());
+		System.out.println("나이"+age);
+		String timer = actVO.getTimer();
+		String mm = timer.substring(0,2);
+
+		if(kind == 1 || kind == 2) { // 30분
+			System.out.println("1");
+			if(0 <= age && age < 2) { // 애기
+				System.out.println(mm+":"+"15");
+				return mm+":"+"15";
+			} else if (2 <= age && age < 7) { // 청년
+				System.out.println(mm+":"+"30");
+				return mm+":"+"30";
+			} else if (7 <= age) { // 노인
+				System.out.println(mm+":"+"노인");
+				return mm+":"+"15";
+			}
+		} else if (kind == 3 || kind == 4) { // 1시간
+			System.out.println("2");
+			if(0 <= age && age < 2) { // 애기
+				System.out.println(mm+":"+"1시간 애기");
+				return mm+":"+"30";
+			} else if (2 <= age && age < 7) { // 청년
+				System.out.println(mm+":"+"1시간 청년");
+				return mm+":"+"60";
+			} else if (7 <= age) { // 노인
+				System.out.println(mm+":"+"1시간 노인");
+				return mm+":"+"45";
+			}
+		}
+
+		return "";
+
+	}
+
+
 
 
 }

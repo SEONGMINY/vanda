@@ -91,7 +91,7 @@
 							<div class="select_img">
 								<img src="" />
 							</div>
-							<br><%=request.getRealPath("/")%>
+							<%-- <br><%=request.getRealPath("/")%> --%>
 						</div>
 					</div>
 

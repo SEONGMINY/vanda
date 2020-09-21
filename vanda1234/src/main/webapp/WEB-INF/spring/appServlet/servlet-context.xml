@@ -43,7 +43,7 @@
    <!-- 업로드 패스 설정 -->
    <beans:bean class="java.lang.String" id="uploadPath">
       <beans:constructor-arg
-         value="C:\Users\김민식\Documents\workspace-spring-tool-suite-4-4.6.2.RELEASE\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\vanda1234\resources" />
+         value="C:\Users\user\Desktop\지우면인생망함\vanda\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\vanda1234\resources" />
          
    </beans:bean>
 

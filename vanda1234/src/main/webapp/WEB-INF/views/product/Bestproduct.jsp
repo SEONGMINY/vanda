@@ -74,7 +74,7 @@
         <div class="list-group">
           <a href="/product/shopmain" class="list-group-item">전체보기</a>
           <a href="/product/Bestproduct" class="list-group-item">인기상품</a>
-          <a href="#" class="list-group-item">추천상품</a>
+         <!--  <a href="#" class="list-group-item">추천상품</a> -->
         </div>
         
 
@@ -93,13 +93,13 @@
 
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-              <img class="d-block img-fluid" src="http://localhost:8080/resources\upload\2020\09\15\6f9c3bdd-3afb-4831-8ebc-dbb00e9e0f9f_pet5.jpg" alt="First slide">
+              <img class="d-block img-fluid" src="http://localhost:8080/resources\upload\2020\09\21\6f9c3bdd-3afb-4831-8ebc-dbb00e9e0f9f_pet5.jpg" alt="First slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://localhost:8080/resources\upload\2020\09\11\0f5e6408-6812-4376-913e-5d76d251b519_pet3.jpg" alt="Second slide">
+              <img class="d-block img-fluid" src="http://localhost:8080/resources\upload\2020\09\21\0f5e6408-6812-4376-913e-5d76d251b519_pet3.jpg" alt="Second slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://localhost:8080/resources\upload\2020\09\11\98aa11ec-32c9-427f-9c83-bdd5e8899bff_pet4.jpg" alt="Third slide">
+              <img class="d-block img-fluid" src="http://localhost:8080/resources\upload\2020\09\21\98aa11ec-32c9-427f-9c83-bdd5e8899bff_pet4.jpg" alt="Third slide">
             </div>
           </div>
 

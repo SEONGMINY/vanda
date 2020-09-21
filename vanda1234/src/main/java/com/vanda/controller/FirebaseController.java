@@ -45,6 +45,7 @@ public class FirebaseController {
 
 		// 받아온 센서값이 string형
 		String test = httpServletRequest.getParameter("result");
+		System.out.println(test);
 		// JSON 변환
 		JSONObject test1 = new JSONObject(test);
 		String device_id = (String) test1.get("device_id");

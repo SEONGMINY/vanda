@@ -47,7 +47,8 @@ public class AndroidController {
 
       UserVO userInfo = userService.login(user_id, user_pass);
 
-      if (userInfo != null) { // 로그인 성공 userService.tokenUpdate(user_id, token);
+      if (userInfo != null) { // 로그인 성공 
+    	 userService.tokenUpdate(user_id, token);
          List<PetVO> petList = petService.getPetInfo(user_id);
          System.out.println(userInfo.getUser_id());
          System.out.println(userInfo.getUser_pass());
@@ -174,7 +175,8 @@ public class AndroidController {
 
       UserVO userInfo = userService.autoLogin(user_id);
 
-      if (userInfo != null) { // 로그인 성공 userService.tokenUpdate(user_id, token);
+      if (userInfo != null) { // 로그인 성공 
+    	 userService.tokenUpdate(user_id, token);
 
          List<PetVO> petList = petService.getPetInfo(user_id);
          System.out.println(userInfo.getUser_id());
