@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.vanda.domain.HospitalVO;
 import com.vanda.domain.KakaoVO;
+import com.vanda.domain.MemDeviceVO;
 import com.vanda.domain.UserVO;
 import com.vanda.mapper.UserMapper;
 
@@ -127,6 +128,11 @@ public class UserServiceImpl implements UserService {
 	public void hospModify(HospitalVO hosp) {
 		userMapper.hospModify(hosp);
 		
+	}
+
+	@Override
+	public void device(MemDeviceVO md) {
+		userMapper.device(md);
 	}
 
 

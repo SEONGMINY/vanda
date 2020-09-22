@@ -154,6 +154,36 @@
 </body>
 <script>
 
+function device() {
+	var formData = {
+			"user_id" : $("#user_id").val(),
+			"device_type" : $("#device_type option:selected").val(),
+			"device_id" : $("#device_id").val(),
+			"pet_num" : $("#pet_num option:selected").val(),
+			"device_ip" : ""
+	}
+
+	$.ajax ({
+		url: "/user/device",
+		type: "post",
+		data: formData,
+		success: function(data){
+			if(data == 'success'){
+				alert("등록되었습니다.");
+				window.location.href = "http://localhost:8080/management2";
+				
+			} else {
+				alert("오류발생");
+			}		
+		},
+		error: function(request, status, error){
+			alert("접속할수없음");
+			alert("code = " + request.status + " message = "
+	                  + request.responseText + " error = " + error);
+		}
+	});
+}
+
 function hospModify() {
 	var formData = {
 

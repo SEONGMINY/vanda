@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.vanda.domain.HospitalVO;
 import com.vanda.domain.KakaoVO;
+import com.vanda.domain.MemDeviceVO;
 import com.vanda.domain.UserVO;
 
 public interface UserService {
@@ -61,5 +62,7 @@ public interface UserService {
 	public void setDoc(String user_id, String hosp_tel);
 
 	public void hospModify(HospitalVO hosp);
+	
+	public void device(MemDeviceVO md);
 
 }

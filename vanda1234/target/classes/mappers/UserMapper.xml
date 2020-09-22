@@ -128,4 +128,11 @@
 		#{hosp_add},hosp_content=#{hosp_content},himg_name=#{himg_name} WHERE
 		hosp_tel=#{hosp_tel}
 	</update>
+	
+	<insert id="device">
+		insert into
+		memdevice(user_id,device_id,pet_num,device_type,device_ip) values
+		(#{user_id},#{device_id},#{pet_num},#{device_type},#{device_ip})
+
+	</insert>
 </mapper>

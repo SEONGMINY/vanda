@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.vanda.domain.EatVO;
 import com.vanda.domain.HospitalVO;
 import com.vanda.domain.KakaoVO;
+import com.vanda.domain.MemDeviceVO;
 import com.vanda.domain.PetVO;
 import com.vanda.domain.UserVO;
 import com.vanda.domain.WeightVO;
@@ -424,6 +425,20 @@ public class UserController {
 	   
 	   
       userService.hospModify(hosp);
+      
+      return "success";
+      
+   }
+   // 기기 등록
+   @ResponseBody
+   @PostMapping(value="/device")
+   public String device(MemDeviceVO md,HttpSession session) throws Exception {
+	  
+	  System.out.println(md.toString()); 
+	   
+      userService.device(md);
+      
+      
       
       return "success";
       

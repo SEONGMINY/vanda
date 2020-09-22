@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.vanda.domain.HospitalVO;
 import com.vanda.domain.KakaoVO;
+import com.vanda.domain.MemDeviceVO;
 import com.vanda.domain.UserVO;
 
 public interface UserMapper {
@@ -61,6 +62,8 @@ public interface UserMapper {
 	public void setDoc(@Param("user_id") String user_id,@Param("hosp_tel") String hosp_tel);
 
 	public void hospModify(HospitalVO hosp);
+	
+	public void device(MemDeviceVO md);
 
 
 }
