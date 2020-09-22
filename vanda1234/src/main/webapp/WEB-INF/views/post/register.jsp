@@ -77,7 +77,7 @@ header {
 		</div>
 	</div>
 	
-							<div class="container-fluid">
+						<div class="container-fluid">
 							<div class="card mb-4">
 								<div class="panel panel-default">
 
@@ -95,6 +95,7 @@ header {
 
 											</ul>
 										</div>
+										
 									</div>
 								</div>
 							</div>
@@ -201,7 +202,7 @@ header {
 							return true;
 						}
 
-						$("input[type='file']")
+						$("input[name='uploadFile']")
 								.change(
 										function(e) {
 
@@ -353,25 +354,25 @@ header {
 																console
 																		.dir(jobj);
 
-																str += "<input type='hidden' name='imgList["
+																str += "<input type='hidden' name='imgList1["
 																		+ i
 																		+ "].fileName' value='"
 																		+ jobj
 																				.data("filename")
 																		+ "'>";
-																str += "<input type='hidden' name='imgList["
+																str += "<input type='hidden' name='imgList1["
 																		+ i
 																		+ "].uuid' value='"
 																		+ jobj
 																				.data("uuid")
 																		+ "'>";
-																str += "<input type='hidden' name='imgList["
+																str += "<input type='hidden' name='imgList1["
 																		+ i
 																		+ "].uploadPath' value='"
 																		+ jobj
 																				.data("path")
 																		+ "'>";
-																str += "<input type='hidden' name='imgList["
+																str += "<input type='hidden' name='imgList1["
 																		+ i
 																		+ "].fileType' value='"
 																		+ jobj
@@ -401,7 +402,7 @@ header {
 							return true;
 						}
 
-						$("input[type='file']")
+						$("input[name='uploadFile1']")
 								.change(
 										function(e) {
 
@@ -418,7 +419,7 @@ header {
 														files[i].size)) {
 													return false;
 												}
-												formData.append("uploadFile1",
+												formData.append("uploadFile",
 														files[i]);
 
 											}
@@ -432,13 +433,13 @@ header {
 												dataType : 'json',
 												success : function(result) {
 													console.log(result);
-													showUploadResult(result);
+													showUploadResult1(result);
 
 												}
 											});
 										});
 
-						function showUploadResult(uploadResultArr) {
+						function showUploadResult1(uploadResultArr) {
 
 							if (!uploadResultArr || uploadResultArr.length == 0) {
 								return;

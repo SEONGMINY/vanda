@@ -11,8 +11,16 @@ public class PostDTO {
 	private String post_Date;
 	private int post_Count;
 	private String serCategory;
-	
+
+	public List<PostImgVO> getImgList1() {
+		return imgList1;
+	}
+	public void setImgList1(List<PostImgVO> imgList1) {
+		this.imgList1 = imgList1;
+	}
 	private List<PostImgVO> imgList;
+	
+	private List<PostImgVO> imgList1;
 	
 	public List<PostImgVO> getImgList() {
 		return imgList;
@@ -20,6 +28,9 @@ public class PostDTO {
 	public void setImgList(List<PostImgVO> imgList) {
 		this.imgList = imgList;
 	}
+	
+
+	
 	public int getPostNum() {
 		return post_Num;
 	}

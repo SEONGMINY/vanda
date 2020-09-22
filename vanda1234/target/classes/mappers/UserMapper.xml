@@ -123,11 +123,11 @@
 	</insert>
 
 	<update id="hospModify" parameterType="HospitalVO">
-		UPDATE hospital SET
-		hosp_tel = #{hosp_tel},hosp_name=#{hosp_name}, hosp_add=
-		#{hosp_add},hosp_content=#{hosp_content},himg_name=#{himg_name} WHERE
-		hosp_tel=#{hosp_tel}
-	</update>
+      UPDATE hospital SET
+      hosp_tel = #{hosp_tel},hosp_name=#{hosp_name}, hosp_add=
+      #{hosp_add},hosp_content=#{hosp_content} WHERE
+      hosp_tel=#{hosp_tel}
+   </update>
 	
 	<insert id="device">
 		insert into

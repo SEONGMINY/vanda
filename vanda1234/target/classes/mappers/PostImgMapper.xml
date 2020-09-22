@@ -22,4 +22,17 @@
 	<delete id="deleteAll">
 		DELETE IMG WHERE POST_NUM = #{POST_NUM}
 	</delete>
+	
+	<insert id="insert1">
+	insert into IMG2(UUID, UPLOADPATH, FILENAME, FILETYPE, POST_NUM)
+	values (#{uuid}, #{uploadPath},#{fileName}, #{fileType}, #{postNum})
+	</insert>
+	
+	<select id="findBypostNum1" resultType="PostImgVO">
+		SELECT * FROM IMG2 WHERE POST_NUM = #{postNum}
+	</select>
+	
+	<delete id="deleteAll1">
+		DELETE IMG2 WHERE POST_NUM = #{POST_NUM}
+	</delete>
 </mapper>

@@ -63,6 +63,29 @@ header {
 .uploadResult ul li span {
   color:white;
 }
+
+.uploadResult1 {
+  width:100%;
+  
+}
+.uploadResult1 ul{
+  display:flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+}
+.uploadResult1 ul li {
+  list-style: none;
+  padding: 10px;
+  align-content: center;
+  text-align: center;
+}
+.uploadResult1 ul li img{
+  width: 100px;
+}
+.uploadResult1 ul li span {
+  color:white;
+}
 .bigPictureWrapper {
   position: absolute;
   display: none;
@@ -154,15 +177,28 @@ header {
   <div class="card-header">
     <div class="panel panel-default">
 
-      <div class="panel-heading">파일</div>
+      <div class="panel-heading">비포</div>
       <div class="panel-body">
-        
+               
         <div class='uploadResult' style="float:left; width:50%;"> 
           <ul>
           </ul>
         </div>
         
-        <div class='uploadResult' style="float:left; width:50%;"> 
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="container-fluid">
+<div class="card mb-4">
+  <div class="card-header">
+    <div class="panel panel-default">
+
+      <div class="panel-heading">에프터</div>
+      <div class="panel-body">
+        <div class='uploadResult1' style="float:left; width:50%;"> 
           <ul>
           </ul>
         </div>
@@ -487,6 +523,39 @@ header {
 				         }
 				       });
 			       $(".uploadResult ul").html(str);
+				}); 
+			
+			})();
+
+
+		(function(){
+			var postNum = '<c:out value="${post.postNum}"/>';
+
+			$.getJSON("/post/getImgList1", {postNum: postNum}, function(arr){
+				console.log(arr);
+
+				var str ="";
+
+				$(arr).each(function(i, attach){
+
+					//image type
+					if(attach.fileType){
+				           var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
+				           
+				           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+				           str += "<img src='/display?fileName="+fileCallPath+"'>";
+				           str += "</div>";
+				           str +"</li>";
+				         }else{
+				             
+				           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+				           str += "<span> "+ attach.fileName+"</span><br/>";
+				           str += "<img src='/resources/img/picture.png'></a>";
+				           str += "</div>";
+				           str +"</li>";
+				         }
+				       });
+			       $(".uploadResult1 ul").html(str);
 				}); 
 			
 			})();

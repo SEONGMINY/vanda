@@ -35,10 +35,24 @@ public class PostServiceImpl implements PostService {
 		}
 
 		post.getImgList().forEach(img -> {
-
+			System.out.println(img);
 			img.setPostNum(post.getPostNum());
 			imgMapper.insert(img);
 		});
+		
+		if(post.getImgList1() == null || post.getImgList1().size() <= 0) {
+			return;
+		}
+		
+		post.getImgList1().forEach(img1 ->{
+			System.out.println(img1);
+			img1.setPostNum(post.getPostNum());
+			imgMapper.insert1(img1);
+		});
+		
+		
+		
+		
 	}
 
 	@Override
@@ -53,7 +67,8 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public boolean modify(PostDTO board) {
 
-		 imgMapper.deleteAll(board.getPostNum()); 
+		 imgMapper.deleteAll(board.getPostNum());
+		 imgMapper.deleteAll1(board.getPostNum());
 
 		boolean modifyResult = mapper.update(board) == 1;
 
@@ -63,6 +78,15 @@ public class PostServiceImpl implements PostService {
 
 				img.setPostNum(board.getPostNum());
 				imgMapper.insert(img);
+
+			});
+		}
+		
+		if (modifyResult && board.getImgList1() != null && board.getImgList1().size() > 0) {
+			board.getImgList1().forEach(img -> {
+
+				img.setPostNum(board.getPostNum());
+				imgMapper.insert1(img);
 
 			});
 		}
@@ -76,6 +100,7 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public boolean remove(int postNum) {
 		imgMapper.deleteAll(postNum);
+		imgMapper.deleteAll1(postNum);
 
 		return mapper.delete(postNum) == 1;
 	}
@@ -107,6 +132,13 @@ public class PostServiceImpl implements PostService {
 	public List<PostImgVO> getImgList(int postNum) {
 		return imgMapper.findBypostNum(postNum);
 	}
+	
+	@Override
+	public List<PostImgVO> getImgList1(int postNum) {
+		return imgMapper.findBypostNum1(postNum);
+	}
+	
+	
 	
 	public List<PostDTO> getListWithPaging(Criteria crt){
 		return mapper.getListWithPaging(crt);

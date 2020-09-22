@@ -12,4 +12,10 @@ public interface PostImgMapper {
 	public List<PostImgVO> findBypostNum(int postNum);
 	
 	public void deleteAll(int postNum);
+
+	public void insert1(PostImgVO img);
+
+	public List<PostImgVO> findBypostNum1(int postNum);
+
+	public void deleteAll1(int postNum);
 }

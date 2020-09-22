@@ -45,4 +45,7 @@ public interface PostService {
 	public void ggmodify(GgVO gg);
 
 	public List<String> selectYoutube(int gg_Num);
+
+	public List<PostImgVO> getImgList1(int postNum);
+
 }

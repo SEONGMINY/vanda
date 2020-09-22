@@ -74,9 +74,10 @@ public class PostController {
 		
 		if (post.getImgList() != null) {
 			post.getImgList().forEach((img) -> log.info(img.toString()));
+		}		
+		if (post.getImgList1() != null) {
+			post.getImgList1().forEach((img1) -> log.info(img1.toString()));
 		}
-		log.info("--------------");
-
 		service.register(post);
 		rttr.addFlashAttribute("result", post.getPostNum());
 		return "redirect:/post/postlist";
@@ -111,21 +112,14 @@ public class PostController {
 	//삭제 포스트방식
 	@PostMapping("/remove")
 	public String remove(int postNum, Criteria crt, RedirectAttributes rttr) {
-//		service.remove(postNum);
-//		rttr.addFlashAttribute("result", "success");
-//		rttr.addAttribute("pageNum", crt.getPageNum());
-//		rttr.addAttribute("amount", crt.getAmount());
-//		rttr.addAttribute("type", crt.getType());
-//		rttr.addAttribute("keyword", crt.getKeyword());
-//		return "redirect:/post/postlist";
-		
-		
-		
+			
 		List<PostImgVO> imgList = service.getImgList(postNum);
+		List<PostImgVO> imgList1 = service.getImgList1(postNum);
 		service.removeReply(postNum);
 		if(service.remove(postNum)) {
 			
 			deleteFiles(imgList);
+			deleteFiles(imgList1);
 			
 			rttr.addFlashAttribute("result", "success");
 		}
@@ -139,13 +133,22 @@ public class PostController {
 
 	}
 	
+	@GetMapping(value = "/getImgList1", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<PostImgVO>> getImgList1(int postNum){
+		System.out.println("456");
+		return new ResponseEntity<>(service.getImgList1(postNum), HttpStatus.OK);
+		}
+	
+	
 	//ajax 통신 이미지 리스트 가져와줌
 	@GetMapping(value = "/getImgList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 		public ResponseEntity<List<PostImgVO>> getImgList(int postNum){
+		System.out.println("123");
 			return new ResponseEntity<>(service.getImgList(postNum), HttpStatus.OK);
 		}
-	
+		
 	private void deleteFiles(List<PostImgVO> imgList) {
 		
 		if(imgList == null || imgList.size() == 0) {
