@@ -64,6 +64,7 @@ public interface UserMapper {
 	public void hospModify(HospitalVO hosp);
 	
 	public void device(MemDeviceVO md);
-
+	//병원사진 등록전 hospnum알아오기
+	public int getHospnum(String hosp_tel);
 
 }

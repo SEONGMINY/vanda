@@ -112,8 +112,8 @@
 	</select>
 	<insert id="hospInsert">
 		insert into
-		hospital(hosp_num,hosp_tel,hosp_name,hosp_add,hosp_content,himg_name) values
-		(hospital_seq.nextval,#{hosp_tel},#{hosp_name},#{hosp_add},#{hosp_content},#{himg_name})
+		hospital(hosp_num,hosp_tel,hosp_name,hosp_add,hosp_content) values
+		(hospital_seq.nextval,#{hosp_tel},#{hosp_name},#{hosp_add},#{hosp_content})
 
 	</insert>
 	<insert id="setDoc">
@@ -135,4 +135,9 @@
 		(#{user_id},#{device_id},#{pet_num},#{device_type},#{device_ip})
 
 	</insert>
+		
+		<select id="getHospnum" resultType="int">
+		select hosp_num from hospital where
+		hosp_tel = #{hosp_tel}
+	</select>
 </mapper>

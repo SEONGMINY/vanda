@@ -403,19 +403,23 @@ public class UserController {
    
    }
    
-   @ResponseBody
    @PostMapping(value="/hospReg")
-   public String hospReg(HospitalVO hosp,HttpSession session) {
+   public String hospReg(HospitalVO hosp,HttpSession session, RedirectAttributes rttr) {
 	   UserVO loginUser = (UserVO) session.getAttribute("check");
 	   String user_id = loginUser.getUser_id();
-	   
+	  
 	   System.out.println("등록한 병원 정보 : " + hosp.toString());
+	
+		if (hosp.getHospimgList() != null) {
+			hosp.getHospimgList().forEach((img) -> System.out.println(img.toString()));
+		}
+		System.out.println("hosp 이미지 : " + hosp.getHospimgList());
 	   
 	   userService.hospInsert(hosp);
 	   
 	   userService.setDoc(user_id,hosp.getHosp_tel());
 	   
-	   return "success";
+	   return "redirect:/";
    }
    
    // 병원정보 수정

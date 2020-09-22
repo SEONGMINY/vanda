@@ -1,5 +1,7 @@
 package com.vanda.domain;
 
+import java.util.List;
+
 public class HospitalVO {
 
 	private String hosp_tel;
@@ -7,17 +9,17 @@ public class HospitalVO {
 	private String hosp_content;
 	private String hosp_add;
 	private String himg_name;
+	
+	private List<HospImgVO> hospimgList;
 
-	public HospitalVO() {
+
+
+	public List<HospImgVO> getHospimgList() {
+		return hospimgList;
 	}
 
-	public HospitalVO(String hosp_name,String hosp_content,String hosp_add,String hosp_tel,String himg_name) {
-		this.hosp_name=hosp_name;
-		this.hosp_content=hosp_content;
-		this.hosp_add=hosp_add;
-		this.hosp_tel=hosp_tel;
-		this.himg_name=himg_name;
-		
+	public void setHospimgList(List<HospImgVO> hospimgList) {
+		this.hospimgList = hospimgList;
 	}
 
 	public String getHosp_tel() {

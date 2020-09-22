@@ -10,6 +10,7 @@ import com.vanda.domain.HospitalVO;
 import com.vanda.domain.KakaoVO;
 import com.vanda.domain.MemDeviceVO;
 import com.vanda.domain.UserVO;
+import com.vanda.mapper.HospImgMapper;
 import com.vanda.mapper.UserMapper;
 
 @Repository
@@ -17,7 +18,8 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserMapper userMapper;
-
+	@Autowired
+	private HospImgMapper himgMapper;
 	// 일반 회원가입
 	@Override
 	public int geInsert(UserVO userVO) {
@@ -115,6 +117,19 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void hospInsert(HospitalVO hosp) {
 		userMapper.hospInsert(hosp);
+		int hosp_num = userMapper.getHospnum(hosp.getHosp_tel());
+		if(hosp.getHospimgList() == null || hosp.getHospimgList().size() <=0) {
+			
+			return;
+		}
+		
+		hosp.getHospimgList().forEach(img -> {
+			
+			img.sethosp_num(hosp_num);
+			himgMapper.insert(img);
+			
+		});
+		
 		
 	}
 
