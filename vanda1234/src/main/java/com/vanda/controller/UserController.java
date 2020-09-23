@@ -9,8 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,9 +25,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.vanda.domain.EatVO;
+import com.vanda.domain.HospImgVO;
 import com.vanda.domain.HospitalVO;
 import com.vanda.domain.KakaoVO;
 import com.vanda.domain.MemDeviceVO;
+import com.vanda.domain.PetImgVO;
 import com.vanda.domain.PetVO;
 import com.vanda.domain.UserVO;
 import com.vanda.domain.WeightVO;
@@ -39,8 +45,8 @@ public class UserController {
    private UserService userService;
    @Autowired
    private PetService petService;
-	@Autowired
-	private ChatService service;
+   @Autowired
+   private ChatService service;
    //선택한 펫의 목록보여줌
    @ResponseBody
    @RequestMapping(value="/test",method = RequestMethod.POST)
@@ -74,19 +80,19 @@ public class UserController {
    @RequestMapping(value="idcheck",method = RequestMethod.POST,produces ="application/text; charset=utf8")
    @ResponseBody
    public String idCheck(String id) {
-	  
-	  UserVO userVO = new UserVO();
-	  userVO.setUser_id(id);
+     
+     UserVO userVO = new UserVO();
+     userVO.setUser_id(id);
       
-	  int result = userService.idChk(userVO);
-	  
-	  if(result == 1) {
-		  return "1";
-	  } else if (result == 0) {
-		  return "0";
-	  }
-	  
-	  return "";
+     int result = userService.idChk(userVO);
+     
+     if(result == 1) {
+        return "1";
+     } else if (result == 0) {
+        return "0";
+     }
+     
+     return "";
 
    }
 
@@ -111,9 +117,9 @@ public class UserController {
    @RequestMapping(value = "geSignUp", method = RequestMethod.POST)
    @ResponseBody
    public String gesignUp(UserVO userVO) throws Exception {
-	  System.out.println("들어 왔나?");
-	  System.out.println(userVO.toString());
-	  
+     System.out.println("들어 왔나?");
+     System.out.println(userVO.toString());
+     
       System.out.println("가입 성공");
       int result = userService.idChk(userVO);
 
@@ -146,24 +152,24 @@ public class UserController {
    @RequestMapping(value = "docSignUp", method = RequestMethod.POST)
    @ResponseBody
    public String docsignUp(UserVO userVO) throws Exception {
-	  
-	   System.out.println("들어 왔나?");
-	   System.out.println(userVO.toString());
-	  
-	   System.out.println("가입 성공");
-	   int result = userService.idChk(userVO);
+     
+      System.out.println("들어 왔나?");
+      System.out.println(userVO.toString());
+     
+      System.out.println("가입 성공");
+      int result = userService.idChk(userVO);
 
-	   if (result == 1) {
-		   System.out.println("중복된 아이디");
+      if (result == 1) {
+         System.out.println("중복된 아이디");
 
-		   return "fail";
-	   } else if (result == 0) {
-		   System.out.println("사용가능한 아이디");
-		   userService.docInsert(userVO);
-		   return "success";
-	   }
+         return "fail";
+      } else if (result == 0) {
+         System.out.println("사용가능한 아이디");
+         userService.docInsert(userVO);
+         return "success";
+      }
       
-	   return "";
+      return "";
       
    }
 
@@ -336,7 +342,7 @@ public class UserController {
    @ResponseBody
    public String editINFO(UserVO userVO, HttpSession session) throws Exception {
       
-	  System.out.println("왓다");
+     System.out.println("왓다");
       userService.editINFO(userVO);
       
       return "success";
@@ -385,49 +391,49 @@ public class UserController {
    @RequestMapping(value = "/registerDev", method = RequestMethod.POST)
    public String registerDev(String device_id, int device_type,HttpSession session) throws Exception {
    
-	   UserVO loginUser = (UserVO) session.getAttribute("check");
-	   String user_id = loginUser.getUser_id();
-	   List<Integer> petnum =  new ArrayList<Integer>();
-	   petnum = userService.selectPetnum(user_id);
-	 
-	   userService.registerDev(device_id,device_type);
-	   
-	   
-	   for(int i=0; i<petnum.size(); i++) {
-		
-			userService.registerMemdev(user_id,device_id,petnum.get(i));
-	   }
-	   
-	   
-	   return "home";
+      UserVO loginUser = (UserVO) session.getAttribute("check");
+      String user_id = loginUser.getUser_id();
+      List<Integer> petnum =  new ArrayList<Integer>();
+      petnum = userService.selectPetnum(user_id);
+    
+      userService.registerDev(device_id,device_type);
+      
+      
+      for(int i=0; i<petnum.size(); i++) {
+      
+         userService.registerMemdev(user_id,device_id,petnum.get(i));
+      }
+      
+      
+      return "home";
    
    }
    
    @PostMapping(value="/hospReg")
    public String hospReg(HospitalVO hosp,HttpSession session, RedirectAttributes rttr) {
-	   UserVO loginUser = (UserVO) session.getAttribute("check");
-	   String user_id = loginUser.getUser_id();
-	  
-	   System.out.println("등록한 병원 정보 : " + hosp.toString());
-	
-		if (hosp.getHospimgList() != null) {
-			hosp.getHospimgList().forEach((img) -> System.out.println(img.toString()));
-		}
-		System.out.println("hosp 이미지 : " + hosp.getHospimgList());
-	   
-	   userService.hospInsert(hosp);
-	   
-	   userService.setDoc(user_id,hosp.getHosp_tel());
-	   
-	   return "redirect:/";
+      UserVO loginUser = (UserVO) session.getAttribute("check");
+      String user_id = loginUser.getUser_id();
+     
+      System.out.println("등록한 병원 정보 : " + hosp.toString());
+   
+      if (hosp.getHospimgList() != null) {
+         hosp.getHospimgList().forEach((img) -> System.out.println(img.toString()));
+      }
+      System.out.println("hosp 이미지 : " + hosp.getHospimgList());
+      
+      userService.hospInsert(hosp);
+      
+      userService.setDoc(user_id,hosp.getHosp_tel());
+      
+      return "redirect:/";
    }
    
    // 병원정보 수정
    @ResponseBody
    @PostMapping(value="/hospModify")
    public String hospModify(HospitalVO hosp,HttpSession session) throws Exception {
-	   
-	   
+      
+      
       userService.hospModify(hosp);
       
       return "success";
@@ -437,9 +443,9 @@ public class UserController {
    @ResponseBody
    @PostMapping(value="/device")
    public String device(MemDeviceVO md,HttpSession session) throws Exception {
-	  
-	  System.out.println(md.toString()); 
-	   
+     
+     System.out.println(md.toString()); 
+      
       userService.device(md);
       
       
@@ -447,5 +453,11 @@ public class UserController {
       return "success";
       
    }
+   @GetMapping(value = "/getImgList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+   @ResponseBody
+      public ResponseEntity<List<HospImgVO>> getImgList(String hosp_tel){
+      System.out.println("유저 겟이미지리스트");
+         return new ResponseEntity<>(userService.getImgList(hosp_tel), HttpStatus.OK);
+      }
 
 }

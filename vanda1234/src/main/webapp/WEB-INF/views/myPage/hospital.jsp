@@ -40,7 +40,7 @@ $(document)
 
                   var formData = new FormData();
 
-                  var inputFile = $("input[name='uploadFile']");
+                  var inputFile = $("input[name='uploadFile1']");
 
                   var files = inputFile[0].files;
 
@@ -79,7 +79,7 @@ $(document)
                   return;
                   }
 
-               var uploadUL = $(".uploadResult ul");
+               var uploadUL = $(".uploadResult1 ul");
                   
                
             var str="";
@@ -112,7 +112,7 @@ $(document)
                 });
 
                 uploadUL.append(str);
-                  $(".uploadResult ul li").each(function(i, obj){
+                  $(".uploadResult1 ul li").each(function(i, obj){
                        
                        var jobj = $(obj);
                        console.dir(jobj);
@@ -173,9 +173,9 @@ $(document)
 
       <div class="mb-3">
     <label for="uploadfile">병원 이미지</label>
-  <input type="file" class="form-control" name="uploadFile">
+  <input type="file" class="form-control" name="uploadFile1">
   </div>
-          <div class='uploadResult'> 
+          <div class='uploadResult1'> 
           <ul>
           
           </ul>
@@ -191,4 +191,3 @@ $(document)
   </c:when>
   </c:choose>
 </form>
-

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
 <mapper namespace="com.vanda.mapper.HospImgMapper">
-	<insert id="insert">
-	insert into HOSPIMG(UUID, UPLOADPATH, FILENAME, FILETYPE, hosp_num)
-	values (#{uuid}, #{uploadPath},#{fileName}, #{fileType}, #{hosp_num})
-	</insert>
-	
-	
-	
+   <insert id="insert">
+   insert into HOSPIMG(UUID, UPLOADPATH, FILENAME, FILETYPE, hosp_num)
+   values (#{uuid}, #{uploadPath},#{fileName}, #{fileType}, #{hosp_num})
+   </insert>
+   
+      <select id="getImgList" resultType="HospImgVO">
+      SELECT * FROM HOSPIMG WHERE hosp_num = (select hosp_num from hospital where hosp_tel = #{hosp_tel})
+   </select>
+   
 </mapper>

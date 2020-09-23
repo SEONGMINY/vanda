@@ -315,7 +315,9 @@
     <script>
        $(document).ready(function(){
           
-           
+
+
+			
           $('.multiple-items').slick({
                /* infinite: true, //양방향 무한 모션
                speed:300, // 슬라이드 스피드
@@ -497,10 +499,43 @@
           
           
           }
-   
+
+		function setPetimg(petNum) {
+			
+      		$.getJSON("/pet/getImgList", {petNum: petNum}, function(arr){
+    			console.log(arr);
+
+    			var str ="";
+
+    			$(arr).each(function(i, attach){
+
+    				//image type
+    				if(attach.fileType){
+    			           var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
+    			           
+    			            str += "<div><img src='/display?fileName="+fileCallPath+"'>";
+    			           str += "</div>";
+    			          
+    			         }else{
+    			             
+    			           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+    			           str += "<span> "+ attach.fileName+"</span><br/>";
+    			           str += "<img src='/resources/img/picture.png'></a>";
+    			           str += "</div>";
+    			           str +"</li>";
+    			         }
+    			       });
+    		       $("#abcd").html(str);
+    			}); 
+			
+			}
+       
        function changePetList(petNum) {
 
-    	    
+
+
+
+      	    
     	      $.ajax({
     	         url : "/pet/selectedPet",
     	         type : "post",
@@ -511,6 +546,9 @@
     	         },
     	         success : function(data) {
 
+    	 			
+
+    		
     	           
     	             $("#weightValue").text(data.pet_weight+"kg");   // 현재 펫 몸무게
     	             $("#gramValue").text(data.eat_gram+"g");   // 현재 펫 배식량
@@ -607,49 +645,19 @@
                  }            
            });
         }
-    </script>
+
+       
+
+       </script>
+       
+
 
   </head>
   <body>
     <header>
        <%@include file="./navBar.jsp" %>       
    </header>
-   <script>
-   $(document).ready(function(){
-		(function(){
-			var petNum = '<c:out value="${pet_num}"/>';
-
-			$.getJSON("/pet/getImgList", {petNum: pet_num}, function(arr){
-				console.log(arr);
-
-				var str ="";
-
-				$(arr).each(function(i, attach){
-
-					//image type
-					if(attach.fileType){
-				           var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
-				           
-				           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
-				           str += "<img src='/display?fileName="+fileCallPath+"'>";
-				           str += "</div>";
-				           str +"</li>";
-				         }else{
-				             
-				           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
-				           str += "<span> "+ attach.fileName+"</span><br/>";
-				           str += "<img src='/resources/img/picture.png'></a>";
-				           str += "</div>";
-				           str +"</li>";
-				         }
-				       });
-			       $(".uploadResult ul").html(str);
-				}); 
-			
-			}
-   </script>
    
-  
   <!-- =========================================================================================-->
   <main role="main">
   
@@ -674,16 +682,13 @@
              <div class="col-lg-4" style="margin-bottom: 10px">
              	<p>${pet.pet_num}  펫 넘버</p>
                 <div class="card" style="width: 18rem;">
-                 <img src="/resources/images/pet_img.jpg" class="card-img-top" alt="..." height="300px;">
+                 <div id="abcd" style="height:300px;"></div>
                  <div class="card-body">
                    <h5 id="pet_name" value="${pet.pet_num}">이름 : ${pet.pet_name}</h5>
                    <p class="petValue" id="pet_age" value="${pet.pet_age}">나이 : ${pet.pet_age}살</p>
                    <p class="petValue" id="pet_sex" value="${pet.pet_sex}">성별 : ${pet.pet_sex}</p>
                    <button id ="select_box " onclick="changePetList(${pet.pet_num}),walkList(${pet.pet_num}),chartOpen(${pet.pet_num});"  class="btn btn-info">상세정보</button>
-                   <div class='uploadResult'>
-			          <ul>
-			          </ul>
-			        </div>
+				
                  </div>
                </div>
              </div>
@@ -1138,7 +1143,7 @@ function displayPlaces(places) {
                     '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
                     '        </div>' + 
                     '        <div class="body">' + 
-                    '            <div class="img">' +
+                    '            <div class="img" id="hosp_img">' +
                     '                <img src=' + data.himg_name + ' width="73" height="70">' +
                     '           </div>' + 
                     '            <div class="desc">' + 
@@ -1161,7 +1166,31 @@ function displayPlaces(places) {
       
               delOverlay.unshift(overlay);
          
-               
+              $.getJSON("/user/getImgList", {hosp_tel: data.hosp_tel}, function(arr){
+                  console.log(arr);
+
+                  var str ="";
+
+                  $(arr).each(function(i, attach){
+
+                     //image type
+                     if(attach.fileType){
+                             var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
+                             
+                             str += "<div><img src='/display?fileName="+fileCallPath+"'>";
+                             str += "</div>";
+                             str +"</li>";
+                           }else{
+                               
+                             str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+                             str += "<span> "+ attach.fileName+"</span><br/>";
+                             str += "<img src='/resources/img/picture.png'></a>";
+                             str += "</div>";
+                             str +"</li>";
+                           }
+                         });
+                      $("#hosp_img").html(str);
+                  }); 
                   
                   
                },

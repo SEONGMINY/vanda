@@ -5,31 +5,31 @@
 
 <configuration>
 
-	<typeAliases>
-		<typeAlias type="com.vanda.domain.UserVO" alias="UserVO" />
-		<typeAlias type="com.vanda.domain.ProductVO" alias="ProductVO" />
-		<typeAlias type="com.vanda.domain.KakaoVO" alias="KakaoVO" />
-		<typeAlias type="com.vanda.domain.PetVO" alias="PetVO" />
-		<typeAlias type="com.vanda.domain.EatVO" alias="EatVO" />
-		<typeAlias type="com.vanda.domain.WeightVO" alias="WeightVO" />
-		<typeAlias type="com.vanda.domain.FoodVO" alias="FoodVO" />
-		<typeAlias type="com.vanda.domain.PostDTO" alias="PostDTO" />
-		<typeAlias type="com.vanda.domain.PageDTO" alias="PageDTO" />
-		<typeAlias type="com.vanda.domain.ReplyVO" alias="ReplyVO" />
-		<typeAlias type="com.vanda.domain.KindVO" alias="KindVO" />
-		<typeAlias type="com.vanda.domain.FoodWeightVO" alias="FoodWeightVO" />
-		<typeAlias type="com.vanda.domain.ActivityVO" alias="ActivityVO" />
-		<typeAlias type="com.vanda.domain.PostImgVO" alias="PostImgVO" />
-		<typeAlias type="com.vanda.domain.PetInfoVO" alias="PetInfoVO" />
-		<typeAlias type="com.vanda.domain.PetImgVO" alias="PetImgVO" />
-		<typeAlias type="com.vanda.domain.OrderVO" alias="OrderVO" />
-		<typeAlias type="com.vanda.domain.OrderListVO" alias="OrderListVO" />
-		<typeAlias type="com.vanda.domain.HospitalVO" alias="HospitalVO" />
-		<typeAlias type="com.vanda.domain.DoctorVO" alias="DoctorVO" />
-		<typeAlias type="com.vanda.domain.GgVO" alias="GgVO" />
-		
+   <typeAliases>
+      <typeAlias type="com.vanda.domain.UserVO" alias="UserVO" />
+      <typeAlias type="com.vanda.domain.ProductVO" alias="ProductVO" />
+      <typeAlias type="com.vanda.domain.KakaoVO" alias="KakaoVO" />
+      <typeAlias type="com.vanda.domain.PetVO" alias="PetVO" />
+      <typeAlias type="com.vanda.domain.EatVO" alias="EatVO" />
+      <typeAlias type="com.vanda.domain.WeightVO" alias="WeightVO" />
+      <typeAlias type="com.vanda.domain.FoodVO" alias="FoodVO" />
+      <typeAlias type="com.vanda.domain.PostDTO" alias="PostDTO" />
+      <typeAlias type="com.vanda.domain.PageDTO" alias="PageDTO" />
+      <typeAlias type="com.vanda.domain.ReplyVO" alias="ReplyVO" />
+      <typeAlias type="com.vanda.domain.KindVO" alias="KindVO" />
+      <typeAlias type="com.vanda.domain.FoodWeightVO" alias="FoodWeightVO" />
+      <typeAlias type="com.vanda.domain.ActivityVO" alias="ActivityVO" />
+      <typeAlias type="com.vanda.domain.PostImgVO" alias="PostImgVO" />
+      <typeAlias type="com.vanda.domain.PetInfoVO" alias="PetInfoVO" />
+      <typeAlias type="com.vanda.domain.PetImgVO" alias="PetImgVO" />
+      <typeAlias type="com.vanda.domain.OrderVO" alias="OrderVO" />
+      <typeAlias type="com.vanda.domain.OrderListVO" alias="OrderListVO" />
+      <typeAlias type="com.vanda.domain.HospitalVO" alias="HospitalVO" />
+      <typeAlias type="com.vanda.domain.DoctorVO" alias="DoctorVO" />
+      <typeAlias type="com.vanda.domain.GgVO" alias="GgVO" />
+      <typeAlias type="com.vanda.domain.HospImgVO" alias="HospImgVO" />
 
-	</typeAliases>
+   </typeAliases>
 
 
 </configuration>
