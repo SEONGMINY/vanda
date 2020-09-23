@@ -95,6 +95,10 @@
 		WEIGHT WHERE pet_num = #{pet_num} AND ROWNUM = 1 ORDER BY WEIGHT_DATE
 		DESC
 	</select>
+	
+		<select id="readpetNum" resultType="petVO">
+			SELECT * FROM POST WHERE PET_NUM = #{petNum}
+		</select>
 
 	<select id="getPetNum" resultType="int">
 		select pet_num from member,pet

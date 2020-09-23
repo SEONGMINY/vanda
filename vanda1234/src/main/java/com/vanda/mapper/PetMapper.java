@@ -99,4 +99,7 @@ public interface PetMapper {
    
    // 안드로이드 적절 배식량
    public List<FoodWeightVO> standardEat(@Param("food_num") int food_num);
+
+   public PetVO readpetNum(int petNum);
+
 }

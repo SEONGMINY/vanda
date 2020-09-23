@@ -95,4 +95,7 @@ public interface PetService {
 
    public HospitalVO selectHospital(String hosp_name);
 
+   public PetVO getpetNum(int petNum);
+
+
 }

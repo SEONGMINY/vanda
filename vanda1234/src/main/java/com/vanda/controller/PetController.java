@@ -15,18 +15,27 @@ import javax.xml.bind.Unmarshaller;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.vanda.common.Criteria;
 import com.vanda.domain.ActivityVO;
 import com.vanda.domain.FoodVO;
 import com.vanda.domain.FoodVOList;
+import com.vanda.domain.PetImgVO;
 import com.vanda.domain.PetInfoVO;
 import com.vanda.domain.PetVO;
+import com.vanda.domain.PostImgVO;
 import com.vanda.domain.UserVO;
 import com.vanda.domain.WalksVO;
 import com.vanda.mapper.PetMapper;
@@ -49,6 +58,7 @@ public class PetController {
 	
 	@Autowired
 	private KindService kindService;
+	
 
 	// 센서값 리스트(받아온 값이 string형일때)
 	ArrayList<Float> list = new ArrayList<Float>();
@@ -77,6 +87,12 @@ public class PetController {
 			return "pet/main";
 		}
 		// return "pet/main";
+	}
+	
+	@GetMapping({ "/pet"})
+	public void get(@RequestParam("petNum") int petNum,Model model) {
+
+		model.addAttribute("post", petService.getpetNum(petNum));
 	}
 
 	// 펫 등록 화면
@@ -111,7 +127,6 @@ public class PetController {
 	}
 
 	// 펫 등록 처리
-	@ResponseBody
 	@RequestMapping(value = "/petRegister", method = RequestMethod.POST)
 	public String petRegister(PetVO petVO, HttpSession session) {
 		System.out.println("펫등록화면");
@@ -141,17 +156,24 @@ public class PetController {
 		petService.eatRegister(pet_num); // 배식테이블에 insert
 		petService.weightRegister(pet_num);
 		petVO.setPet_num(pet_num);
-		petService.petImgInsert(petVO);
+		 petService.petImgInsert(petVO); 
         List<PetVO> petUser = petService.getPetInfo(user_id);
         
         
         session.setAttribute("pet",petUser);
-		return "success";
+		return "home";
 
 	}
 
 	// 선택한 펫의 목록보여줌
 	// ajax사용시 쓸거임
+	
+	@GetMapping(value = "/getImgList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+		public ResponseEntity<List<PetImgVO>> getImgList(int petNum){
+		System.out.println("펫컨트롤러 겟이미지리스트");
+			return new ResponseEntity<>(petService.getImgList(petNum), HttpStatus.OK);
+		}
 
 	@ResponseBody
 	@RequestMapping(value = "/selectedPet", method = RequestMethod.POST)

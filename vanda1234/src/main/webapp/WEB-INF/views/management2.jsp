@@ -614,6 +614,40 @@
     <header>
        <%@include file="./navBar.jsp" %>       
    </header>
+   <script>
+   $(document).ready(function(){
+		(function(){
+			var petNum = '<c:out value="${pet_num}"/>';
+
+			$.getJSON("/pet/getImgList", {petNum: pet_num}, function(arr){
+				console.log(arr);
+
+				var str ="";
+
+				$(arr).each(function(i, attach){
+
+					//image type
+					if(attach.fileType){
+				           var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
+				           
+				           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+				           str += "<img src='/display?fileName="+fileCallPath+"'>";
+				           str += "</div>";
+				           str +"</li>";
+				         }else{
+				             
+				           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+				           str += "<span> "+ attach.fileName+"</span><br/>";
+				           str += "<img src='/resources/img/picture.png'></a>";
+				           str += "</div>";
+				           str +"</li>";
+				         }
+				       });
+			       $(".uploadResult ul").html(str);
+				}); 
+			
+			}
+   </script>
    
   
   <!-- =========================================================================================-->
@@ -638,6 +672,7 @@
           
           <c:forEach var="pet" items="${pet}" varStatus="status">
              <div class="col-lg-4" style="margin-bottom: 10px">
+             	<p>${pet.pet_num}  펫 넘버</p>
                 <div class="card" style="width: 18rem;">
                  <img src="/resources/images/pet_img.jpg" class="card-img-top" alt="..." height="300px;">
                  <div class="card-body">
@@ -645,12 +680,16 @@
                    <p class="petValue" id="pet_age" value="${pet.pet_age}">나이 : ${pet.pet_age}살</p>
                    <p class="petValue" id="pet_sex" value="${pet.pet_sex}">성별 : ${pet.pet_sex}</p>
                    <button id ="select_box " onclick="changePetList(${pet.pet_num}),walkList(${pet.pet_num}),chartOpen(${pet.pet_num});"  class="btn btn-info">상세정보</button>
+                   <div class='uploadResult'>
+			          <ul>
+			          </ul>
+			        </div>
                  </div>
                </div>
              </div>
         </c:forEach>
         
-
+		
 
           
        </div>

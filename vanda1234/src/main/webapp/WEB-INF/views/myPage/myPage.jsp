@@ -141,9 +141,11 @@
     	<div id="device-page" style="display:none;">
     		<%@include file="./device.jsp" %>
     	</div>
+    	<c:if test="${check.user_rule == 'doctor'}">
     	<div id="hospital-page" style="display:none;">
     		<%@include file="./hospital.jsp" %>
     	</div>
+    	</c:if>
     </div>
   </div>
 
@@ -190,7 +192,7 @@ function hospModify() {
 	         "hosp_name" : $('#hosp_name').val(),
 	         "hosp_tel" : $('#hosp_tel').val(),
 	         "hosp_add" : $('#hosp_add').val(),
-	         "hosp_content" : $('#hosp_content').val()\
+	         "hosp_content" : $('#hosp_content').val()
 	         }
 
 	   $.ajax ({
@@ -216,49 +218,7 @@ function hospModify() {
 	}
 
 
-	function register() {
 
-		console.log($("#pet_name").val());
-		console.log($("#pet_age").val());
-		console.log($("#kind_num").val());
-		console.log($("#food_num").val());
-		console.log($("#pet_sex").val());
-		console.log($("#pet_check").val());
-		
-		
-		var formData = {
-				"pet_name" : $("#pet_name").val(),
-				"pet_age" : $("#pet_age").val(),
-				"kind_num" : $("#kind_num").val(),
-				"food_num" : $("#food_num option:selected").val(),
-				"pet_sex" : $("#pet_sex").val(),
-				"pet_check" : $("#pet_check").val()	
-
-				
-		}
-		console.log(formData);
-		$.ajax ({
-			url: "/pet/petRegister",
-			type: "post",
-			data: formData,
-			success: function(data){
-				if(data == 'success'){
-					alert("펫 등록이 되었습니다..");
-					window.location.href = "http://localhost:8080/management2";
-				} else {
-					alert("펫 등록에 실패했습니다..");
-				}		
-			},
-			error: function(err){
-				console.log(err);
-				alert("접속할수없음"+err);
-				
-			}
-		});
-
-		
-		
-	};
 	function modify() {
 		var formData = {
 				"user_name" : $("#user_name").val(),

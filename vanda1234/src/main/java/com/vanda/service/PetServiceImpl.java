@@ -31,12 +31,12 @@ public class PetServiceImpl implements PetService {
 	@Override
 	public void petInsert(PetVO petVO) {
 		petMapper.petInsert(petVO);
-
+		
+		
 	}
 
 	@Override
 	public void petImgInsert(PetVO petVO) {
-
 		if (petVO.getImgList() == null || petVO.getImgList().size() <= 0) {
 			System.out.println("이미지 없음");
 			return;
@@ -48,6 +48,7 @@ public class PetServiceImpl implements PetService {
 			imgMapper.insert(img);
 			System.out.println("펫브이오의 펫넘 : " + petVO.getPet_num());
 		});
+		
 	}
 
 	// register테이블에 등록
@@ -201,6 +202,11 @@ public class PetServiceImpl implements PetService {
 	public List<FoodWeightVO> standardEat(int food_num) {
 		// TODO Auto-generated method stub
 		return petMapper.standardEat(food_num);
+	}
+
+	@Override
+	public PetVO getpetNum(int petNum) {
+		return petMapper.readpetNum(petNum);
 	}
 	
 }
