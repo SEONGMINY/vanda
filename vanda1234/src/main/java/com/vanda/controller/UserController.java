@@ -229,6 +229,13 @@ public class UserController {
           
           //로그인한 유저의 펫정보를 받아옴.
           List<PetVO> petUser = petService.getPetInfo(user_id);
+          for(int i = 0 ; i < petUser.size();i++) {
+        	  PetVO tempVo = petUser.get(i);
+        	  tempVo.setImgList(petService.getImgList(tempVo.getPet_num()));  
+          }
+//          for(PetVO tempVo : petUser) {
+//        	  tempVo.setImgList(petService.getImgList(tempVo.getPet_num()));
+//          }
         
     
           session.setAttribute("pet",petUser);

@@ -680,9 +680,13 @@
           
           <c:forEach var="pet" items="${pet}" varStatus="status">
              <div class="col-lg-4" style="margin-bottom: 10px">
-             	<p>${pet.pet_num}  펫 넘버</p>
                 <div class="card" style="width: 18rem;">
-                 <div id="abcd" style="height:300px;"></div>
+                 <div class="imgCard" style="height:300px;">
+                 	<c:if test="${not empty pet.imgList}">
+                 		<img style="height:300px; width:286px;" src="${pet.imgList[0].uploadPath}${pet.imgList[0].fileName}">
+                 		<%-- <img class="${pet.imgList[0].fileName}"src="${pet.imgList[0].uploadPath}${pet.imgList[0].uuid}${pet.imgList[0].fileName}"> --%>
+                 	</c:if>
+                 </div>
                  <div class="card-body">
                    <h5 id="pet_name" value="${pet.pet_num}">이름 : ${pet.pet_name}</h5>
                    <p class="petValue" id="pet_age" value="${pet.pet_age}">나이 : ${pet.pet_age}살</p>
