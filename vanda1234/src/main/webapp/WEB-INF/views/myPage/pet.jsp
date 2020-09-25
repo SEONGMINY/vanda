@@ -15,7 +15,7 @@
 	  <div class="custom-file">
 	    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="uploadFile">
 	    <label class="custom-file-label" for="inputGroupFile01"></label>
-	 		          <div class='uploadResult'> 
+	 		          <div class='uploadResult' style="display:none"> 
           <ul>
           
           </ul>
