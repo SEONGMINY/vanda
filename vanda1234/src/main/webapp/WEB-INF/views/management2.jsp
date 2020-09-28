@@ -555,7 +555,9 @@
     	             $("#distanceValue").text(data.total_distance+"kcal");   // 현재 펫 활동량
     	             $("#avg").text("/"+data.avg+"kg");   // 권장 펫 몸무게
     	             $("#gram").text("/"+data.gram+"g");   // 권장 펫 배식량
-    	             $("#recomand_distance").text("/"+data.recomand_distance+"kcal");   // 권장 펫 활동량
+    	             var reco_distance = Math.floor(data.recomand_distance);
+    	             $("#recomand_distance").text("/"+reco_distance+"kcal");   // 권장 펫 활동량
+    	             recommandKcal(petNum);
 
 
     	          /*  $("#eat").text(data.eat_gram);   // 현재 배식량 
@@ -645,6 +647,34 @@
                  }            
            });
         }
+
+       function recommandKcal(petNum) {
+		   
+	         $.ajax({
+		            url : "/pet/recommandKcal",
+		            type : "post",
+		            data : {
+		               "pet_num" : petNum
+		               
+		            }, success: function(data) {
+			            
+	            	 	
+			            var kcal = data
+			            kcal = kcal.split(":");
+			            var mm = parseInt(kcal[0]); // 내가 소모한 분
+			            var walk = parseInt(kcal[1]); // 얼만큼 소모해야 하는 시간
+			            
+		               var reco = $("#recomand_distance").text().replace(/[^0-9]/g,''); // 추천 소모량
+		               var recoval = parseInt(reco)/walk;
+		               $("#distanceValue").text(parseInt((parseInt(recoval) * mm))+"kcal");   // 현재 펫 활동량 
+		               
+		            },
+		            error : function(request, status, error) {
+		            	alert(request+error+status);
+		            }
+		         })
+	    	
+		    }
 
        
 

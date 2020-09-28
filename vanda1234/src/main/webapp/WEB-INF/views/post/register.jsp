@@ -82,7 +82,7 @@ header {
 								<div class="panel panel-default">
 
 									<div class="card-header">
-										<i class=""></i>After
+										<i class=""></i>before
 									</div>
 
 									<div class="panel-body">
@@ -106,7 +106,7 @@ header {
 								<div class="panel panel-default">
 
 									<div class="card-header">
-										<i class=""></i>Before
+										<i class=""></i>After
 									</div>
 
 									<div class="panel-body">

@@ -177,7 +177,7 @@ header {
   <div class="card-header">
     <div class="panel panel-default">
 
-      <div class="panel-heading">비포</div>
+      <div class="panel-heading">Before</div>
       <div class="panel-body">
                
         <div class='uploadResult' style="float:left; width:50%;"> 
@@ -196,7 +196,7 @@ header {
   <div class="card-header">
     <div class="panel panel-default">
 
-      <div class="panel-heading">에프터</div>
+      <div class="panel-heading">After</div>
       <div class="panel-body">
         <div class='uploadResult1' style="float:left; width:50%;"> 
           <ul>

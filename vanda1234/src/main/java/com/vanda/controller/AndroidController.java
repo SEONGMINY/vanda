@@ -31,6 +31,7 @@ public class AndroidController {
 
    @Autowired
    private PetService petService;
+   
 
    @RequestMapping(value = "/login", produces = "application/json; charset=utf-8")
    @ResponseBody
@@ -108,6 +109,50 @@ public class AndroidController {
                   break;
                }
             }
+            
+            
+            if (actVO!=null) {
+            	int recoval,kcalVal;
+    			int kind = pet.getKind_num();
+    			System.out.println("견종"+kind);
+    			int age = Integer.parseInt(pet.getPet_age());
+    			System.out.println("나이"+age);
+    			String timer = actVO.getTimer();
+    			String mm = timer.substring(0,2);
+    			int intmm = Integer.parseInt(mm); 
+    					
+    			if(kind == 1 || kind == 2) { // 30분
+    				if(0 <= age && age < 2) { // 애기
+    					recoval = (int) ((weight*99)/15);
+    					kcalVal = recoval*intmm;
+    					petObj.put("pet_act", kcalVal);
+    				} else if (2 <= age && age < 7) { // 청년
+    					recoval = (int) ((weight*99)/30);
+    					kcalVal = recoval*intmm;
+    					petObj.put("pet_act", kcalVal);
+    				} else if (7 <= age) { // 노인
+    					recoval = (int) ((weight*99)/15);
+    					kcalVal = recoval*intmm;
+    					petObj.put("pet_act", kcalVal);
+    				}
+    			} else if (kind == 3 || kind == 4) { // 1시간
+    				if(0 <= age && age < 2) { // 애기
+    					recoval = (int) ((weight*99)/30);
+    					kcalVal = recoval*intmm;
+    					petObj.put("pet_act", kcalVal);
+    				} else if (2 <= age && age < 7) { // 청년
+    					recoval = (int) ((weight*99)/60);
+    					kcalVal = recoval*intmm;
+    					petObj.put("pet_act", kcalVal);
+    				} else if (7 <= age) { // 노인
+    					recoval = (int) ((weight*99)/45);
+    					kcalVal = recoval*intmm;
+    					petObj.put("pet_act", kcalVal);
+    				}
+    			}
+    		} else {
+    			petObj.put("pet_act", 0);
+    		}
             
 
             System.out.println("펫 번호:" + pet.getPet_num());
@@ -262,7 +307,6 @@ public class AndroidController {
             petObj.put("avg_weight", standardWeight);
             petObj.put("pet_eat", eat);
             petObj.put("avg_eat", gram);
-            petObj.put("pet_act", distance);
             petObj.put("avg_act", weight * 99);
             petObj.put("weight_list",weightList);
             petObj.put("eat_list",eatList);
