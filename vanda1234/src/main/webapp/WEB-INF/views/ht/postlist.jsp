@@ -46,7 +46,7 @@ header {
 	<div class="card mb-4" style="margin-top: 150px">
 		<div class="card mb-4">
 			<div class="card-header">
-				<i class="fas fa-table mr-1"></i>홈트레이닝
+				<i class="fas fa-table mr-1"></i>공식정보
 				<button id='regBtn' type="button"
 					class="btn btn-xs float-right btn-outline-dark"">게시글 작성</button>
 

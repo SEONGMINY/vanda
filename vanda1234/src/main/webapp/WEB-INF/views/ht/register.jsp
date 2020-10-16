@@ -41,7 +41,7 @@ header {
 	<div class="container-fluid">
 		<div class="card mb-4">
 			<div class="card-header">
-				<i class="fas fa-table mr-1"></i>홈트레이닝
+				<i class="fas fa-table mr-1"></i>공식정보
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">

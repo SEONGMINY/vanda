@@ -760,7 +760,7 @@
          <a href="javascript:activityChart()" >
            <div id="activity">
               <p style="line-height: 30px">활동</p>
-              <p id="distanceValue"style="font-size:40px;"id ="walk">${nonSelectedPet.total_distance}Kcal</p>
+              <p id="distanceValue"style="font-size:40px;"id ="walk">${nonSelectedPet.total_distance}m</p>
               <p style="font-size:20px; color:#8C8C8C" id="recomand_distance">/${nonSelectedPet.recomand_distance}Kcal</p>
            </div>
            </a>
